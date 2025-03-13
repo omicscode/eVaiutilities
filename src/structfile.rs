@@ -231,3 +231,11 @@ pub struct Combiner {
     pub aml_0156_dna131_ro: String,
     pub aml_0156_dna131_co: String,
 }
+
+#[derive(Debug, Clone, PartialOrd, PartialEq)]
+
+pub struct GeneMapper {
+    pub gene: String,
+    pub start: usize,
+    pub end: usize,
+}

@@ -1,12 +1,14 @@
 use crate::structfile::GRange;
+use crate::structfile::GeneMapper;
 use std::error::Error;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 /*
  Author Gaurav Sablok
- IBCH Poznan, Poland
- Date: 2025-3-11
-
+ Instytut Chemii Bioorganicznej
+ Polskiej Akademii Nauk
+ ul. Noskowskiego 12/14 | 61-704, Poznań
+ Date: 2025-3-12
 */
 
 pub fn analyzegtf(pathgtf: &str) -> Result<String, Box<dyn Error>> {
@@ -14,7 +16,7 @@ pub fn analyzegtf(pathgtf: &str) -> Result<String, Box<dyn Error>> {
     let fileread = BufReader::new(fileread);
 
     let mut g_range: Vec<GRange> = Vec::new();
-    // let mut iterrange_last: Vec<String> = Vec::new();
+    let mut genemapper: Vec<GeneMapper> = Vec::new();
 
     for i in fileread.lines() {
         let line = i.expect("file not present");
@@ -37,10 +39,13 @@ pub fn analyzegtf(pathgtf: &str) -> Result<String, Box<dyn Error>> {
                 indexend: linevec[7].clone(),
                 collectable: linevec[8].clone(),
             });
+            genemapper.push(GeneMapper {
+                gene: linevec[2].clone(),
+                start: linevec[3].parse::<usize>().unwrap(),
+                end: linevec[4].parse::<usize>().unwrap(),
+            })
         }
     }
-
-    println!("{:?}", g_range);
 
     Ok("The gtf have been analyzed".to_string())
 }
