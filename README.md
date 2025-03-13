@@ -1,5 +1,5 @@
-# exVai-analyzer
- - exVaianalyzer for open genomics
+# eVai-analyzer
+ - eVaianalyzer for open genomics
  - from variant annotation to filtering, preparating user reports and database and restapi human genomics
  
  ```
