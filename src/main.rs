@@ -1,5 +1,6 @@
 mod args;
 mod genomeanalyzer;
+mod gtfanalyzer;
 mod structfile;
 mod variantaccumulation;
 mod variantdatabase;
@@ -7,6 +8,7 @@ mod variantfilter;
 use crate::args::CommandParse;
 use crate::args::Commands;
 use crate::genomeanalyzer::genomemap;
+use crate::gtfanalyzer::analyzegtf;
 use crate::variantaccumulation::variantpopulate;
 use crate::variantdatabase::variantdatabase;
 use crate::variantfilter::variantanalyzer;
@@ -46,6 +48,10 @@ fn main() {
         } => {
             let command = variantdatabase(acmgfile, tsvfile, databasename).unwrap();
             println!("The variant database has been created:{}", command);
+        }
+        Commands::GTFAnalyze { gtffile } => {
+            let command = analyzegtf(gtffile).unwrap();
+            println!("The gtf has been analyzed:{:?}", command);
         }
     }
 }

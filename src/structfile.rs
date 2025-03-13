@@ -1,5 +1,19 @@
 #[derive(Debug, Clone, PartialOrd, PartialEq)]
 
+pub struct GRange {
+    pub id: String,
+    pub name: String,
+    pub genetype: String,
+    pub start: String,
+    pub end: String,
+    pub index: String,
+    pub strand: String,
+    pub indexend: String,
+    pub collectable: String,
+}
+
+#[derive(Debug, Clone, PartialOrd, PartialEq)]
+
 pub struct Genomeanalyzer {
     pub chrom: String,
     pub start: String,

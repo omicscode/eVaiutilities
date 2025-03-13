@@ -41,4 +41,9 @@ pub enum Commands {
         /// please provide the name of the database
         databasename: String,
     },
+    /// analyze the corresponding gtf
+    GTFAnalyze {
+        /// path to the gtf file
+        gtffile: String,
+    },
 }
