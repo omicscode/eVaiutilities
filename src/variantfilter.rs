@@ -1,7 +1,6 @@
 use crate::structfile::Combiner;
 use crate::structfile::Genomeanalyzer;
 use crate::structfile::Genomecapture;
-use std::collections::HashSet;
 use std::error::Error;
 use std::fs::File;
 use std::io::BufRead;
@@ -22,7 +21,6 @@ pub fn variantanalyzer(path1: &str, path2: &str, variant: &str) -> Result<String
     let fileopen = File::open(path1).expect("file not found");
     let fileread = BufReader::new(fileopen);
     let mut filesplit: Vec<Genomeanalyzer> = Vec::new();
-    let mut hashids: HashSet<String> = HashSet::new();
 
     for i in fileread.lines() {
         let line = i.expect("line not present");
@@ -82,7 +80,6 @@ pub fn variantanalyzer(path1: &str, path2: &str, variant: &str) -> Result<String
                 bp7: linevec[45].to_string(),
                 bp8: linevec[46].to_string(),
             });
-            hashids.insert(linevec[5].to_string());
         }
     }
 
@@ -162,114 +159,117 @@ pub fn variantanalyzer(path1: &str, path2: &str, variant: &str) -> Result<String
 
     let mut combineanalyzer: Vec<Combiner> = Vec::new();
 
-    for hashid in hashids.iter() {
-        for j in filesplit.iter() {
-            for genomeiter in genomecapture.iter() {
-                if *hashid == j.priortranscript && genomeiter.othertranscripts.contains(hashid) {
-                    combineanalyzer.push(Combiner {
-                        chrom: j.chrom.clone(),
-                        start: j.start.clone(),
-                        stop: j.stop.clone(),
-                        priortranscript: j.priortranscript.clone(),
-                        hgvpc: j.hgvpc.clone(),
-                        cannonical: j.cannonical.clone(),
-                        othertranscript: j.othertranscript.clone(),
-                        genotype: j.genotype.clone(),
-                        phenotype: j.phenotype.clone(),
-                        medgencui: j.medgencui.clone(),
-                        inheritance: j.inheritance.clone(),
-                        finalclass: j.finalclass.clone(),
-                        score_pathogen: j.score_pathogen.clone(),
-                        flag: j.flag.clone(),
-                        note: j.note.clone(),
-                        vcforig: j.vcforig.clone(),
-                        pvs1: j.pvs1.clone(),
-                        ps1: j.ps1.clone(),
-                        ps2: j.ps2.clone(),
-                        ps3: j.ps3.clone(),
-                        ps4: j.ps4.clone(),
-                        pm1: j.pm1.clone(),
-                        pm2: j.pm2.clone(),
-                        pm3: j.pm3.clone(),
-                        pm4: j.pm4.clone(),
-                        pm5: j.pm5.clone(),
-                        pm6: j.pm6.clone(),
-                        pp1: j.pp1.clone(),
-                        pp2: j.pp2.clone(),
-                        pp3: j.pp3.clone(),
-                        pp4: j.pp4.clone(),
-                        pp5: j.pp5.clone(),
-                        ba1: j.ba1.clone(),
-                        bs1: j.bs1.clone(),
-                        bs2: j.bs2.clone(),
-                        bs3: j.bs3.clone(),
-                        bs4: j.bs4.clone(),
-                        bp1: j.bp1.clone(),
-                        bp2: j.bp2.clone(),
-                        bp3: j.bp3.clone(),
-                        bp4: j.bp4.clone(),
-                        bp5: j.bp5.clone(),
-                        bp6: j.bp6.clone(),
-                        bp7: j.bp7.clone(),
-                        bp8: j.bp8.clone(),
-                        effect: genomeiter.effect.clone(),
-                        transcript: genomeiter.transcript.clone(),
-                        selectcannonical: genomeiter.selectcannonical.clone(),
-                        tfbsid: genomeiter.tfbsid.clone(),
-                        tfbsname: genomeiter.tfbsname.clone(),
-                        exonintronnum: genomeiter.exonintronnum.clone(),
-                        hgvsc: genomeiter.hgvsc.clone(),
-                        cdsdistance: genomeiter.cdsdistance.clone(),
-                        cdslen: genomeiter.cdslen.clone(),
-                        aalen: genomeiter.aalen.clone(),
-                        othertranscripts: genomeiter.othertranscripts.clone(),
-                        exac_an: genomeiter.exac_an.clone(),
-                        exac_ac: genomeiter.exac_ac.clone(),
-                        exac_af: genomeiter.exac_af.clone(),
-                        exac_istarget: genomeiter.exac_istarget.clone(),
-                        dnsnp: genomeiter.dnsnp.clone(),
-                        dnsnp_version: genomeiter.dnsnp_version.clone(),
-                        dbsnp_1tgp_ref_freq: genomeiter.dbsnp_1tgp_ref_freq.clone(),
-                        dbsnp_1tgp_alt_freq: genomeiter.dbsnp_1tgp_alt_freq.clone(),
-                        common_1tgp_1perc: genomeiter.common_1tgp_1perc.clone(),
-                        esp6500siv2_ea_freq: genomeiter.esp6500siv2_ea_freq.clone(),
-                        esp6500siv2_aa_freq: genomeiter.esp6500siv2_aa_freq.clone(),
-                        esp6500siv2_all_freq: genomeiter.esp6500siv2_all_freq.clone(),
-                        gnomad_af_all: genomeiter.gnomad_af_all.clone(),
-                        gnomad_hom_all: genomeiter.gnomad_hom_all.clone(),
-                        gnomad_af_max_pop: genomeiter.gnomad_af_max_pop.clone(),
-                        cadd_score: genomeiter.cadd_score.clone(),
-                        dbscsnv_ab_score: genomeiter.dbscsnv_ab_score.clone(),
-                        dbscsnv_rf_score: genomeiter.dbscsnv_rf_score.clone(),
-                        papi_pred: genomeiter.papi_pred.clone(),
-                        papi_score: genomeiter.papi_score.clone(),
-                        polyphen_2_pred: genomeiter.polyphen_2_pred.clone(),
-                        polyphen_2_score: genomeiter.polyphen_2_score.clone(),
-                        sift_pred: genomeiter.sift_pred.clone(),
-                        sift_score: genomeiter.sift_score.clone(),
-                        pseeac_rf_pred: genomeiter.pseeac_rf_score.clone(),
-                        pseeac_rf_score: genomeiter.pseeac_rf_score.clone(),
-                        clinvar_hotspot: genomeiter.clinvar_hotspot.clone(),
-                        clinvar_rcv: genomeiter.clinvar_rcv.clone(),
-                        clinvar_clinical_significance: genomeiter
-                            .clinvar_clinical_significance
-                            .clone(),
-                        clinvar_rev_status: genomeiter.clinvar_rev_status.clone(),
-                        clinvar_traitsclinvar_pmids: genomeiter.clinvar_traitsclinvar_pmids.clone(),
-                        diseases: genomeiter.diseases.clone(),
-                        disease_ids: genomeiter.disease_ids.clone(),
-                        aml_0156_dna131_geno: genomeiter.aml_0156_dna131_geno.clone(),
-                        aml_0156_dna131_qual: genomeiter.aml_0156_dna131_qual.clone(),
-                        aml_0156_dna131_geno_qual: genomeiter.aml_0156_dna131_geno_qual.clone(),
-                        aml_0156_dna131_filter: genomeiter.aml_0156_dna131_filter.clone(),
-                        aml_0156_dna131_af: genomeiter.aml_0156_dna131_af.clone(),
-                        aml_0156_dna131_ao: genomeiter.aml_0156_dna131_ao.clone(),
-                        aml_0156_dna131_ro: genomeiter.aml_0156_dna131_ro.clone(),
-                        aml_0156_dna131_co: genomeiter.aml_0156_dna131_co.clone(),
-                    })
-                }
+    for j in filesplit.iter() {
+        for genomeiter in genomecapture.iter() {
+            if variant == j.generef && j.priortranscript == genomeiter.transcript {
+                combineanalyzer.push(Combiner {
+                    chrom: j.chrom.clone(),
+                    start: j.start.clone(),
+                    stop: j.stop.clone(),
+                    priortranscript: j.priortranscript.clone(),
+                    hgvpc: j.hgvpc.clone(),
+                    cannonical: j.cannonical.clone(),
+                    othertranscript: j.othertranscript.clone(),
+                    genotype: j.genotype.clone(),
+                    phenotype: j.phenotype.clone(),
+                    medgencui: j.medgencui.clone(),
+                    inheritance: j.inheritance.clone(),
+                    finalclass: j.finalclass.clone(),
+                    score_pathogen: j.score_pathogen.clone(),
+                    flag: j.flag.clone(),
+                    note: j.note.clone(),
+                    vcforig: j.vcforig.clone(),
+                    pvs1: j.pvs1.clone(),
+                    ps1: j.ps1.clone(),
+                    ps2: j.ps2.clone(),
+                    ps3: j.ps3.clone(),
+                    ps4: j.ps4.clone(),
+                    pm1: j.pm1.clone(),
+                    pm2: j.pm2.clone(),
+                    pm3: j.pm3.clone(),
+                    pm4: j.pm4.clone(),
+                    pm5: j.pm5.clone(),
+                    pm6: j.pm6.clone(),
+                    pp1: j.pp1.clone(),
+                    pp2: j.pp2.clone(),
+                    pp3: j.pp3.clone(),
+                    pp4: j.pp4.clone(),
+                    pp5: j.pp5.clone(),
+                    ba1: j.ba1.clone(),
+                    bs1: j.bs1.clone(),
+                    bs2: j.bs2.clone(),
+                    bs3: j.bs3.clone(),
+                    bs4: j.bs4.clone(),
+                    bp1: j.bp1.clone(),
+                    bp2: j.bp2.clone(),
+                    bp3: j.bp3.clone(),
+                    bp4: j.bp4.clone(),
+                    bp5: j.bp5.clone(),
+                    bp6: j.bp6.clone(),
+                    bp7: j.bp7.clone(),
+                    bp8: j.bp8.clone(),
+                    effect: genomeiter.effect.clone(),
+                    transcript: genomeiter.transcript.clone(),
+                    selectcannonical: genomeiter.selectcannonical.clone(),
+                    tfbsid: genomeiter.tfbsid.clone(),
+                    tfbsname: genomeiter.tfbsname.clone(),
+                    exonintronnum: genomeiter.exonintronnum.clone(),
+                    hgvsc: genomeiter.hgvsc.clone(),
+                    cdsdistance: genomeiter.cdsdistance.clone(),
+                    cdslen: genomeiter.cdslen.clone(),
+                    aalen: genomeiter.aalen.clone(),
+                    othertranscripts: genomeiter.othertranscripts.clone(),
+                    exac_an: genomeiter.exac_an.clone(),
+                    exac_ac: genomeiter.exac_ac.clone(),
+                    exac_af: genomeiter.exac_af.clone(),
+                    exac_istarget: genomeiter.exac_istarget.clone(),
+                    dnsnp: genomeiter.dnsnp.clone(),
+                    dnsnp_version: genomeiter.dnsnp_version.clone(),
+                    dbsnp_1tgp_ref_freq: genomeiter.dbsnp_1tgp_ref_freq.clone(),
+                    dbsnp_1tgp_alt_freq: genomeiter.dbsnp_1tgp_alt_freq.clone(),
+                    common_1tgp_1perc: genomeiter.common_1tgp_1perc.clone(),
+                    esp6500siv2_ea_freq: genomeiter.esp6500siv2_ea_freq.clone(),
+                    esp6500siv2_aa_freq: genomeiter.esp6500siv2_aa_freq.clone(),
+                    esp6500siv2_all_freq: genomeiter.esp6500siv2_all_freq.clone(),
+                    gnomad_af_all: genomeiter.gnomad_af_all.clone(),
+                    gnomad_hom_all: genomeiter.gnomad_hom_all.clone(),
+                    gnomad_af_max_pop: genomeiter.gnomad_af_max_pop.clone(),
+                    cadd_score: genomeiter.cadd_score.clone(),
+                    dbscsnv_ab_score: genomeiter.dbscsnv_ab_score.clone(),
+                    dbscsnv_rf_score: genomeiter.dbscsnv_rf_score.clone(),
+                    papi_pred: genomeiter.papi_pred.clone(),
+                    papi_score: genomeiter.papi_score.clone(),
+                    polyphen_2_pred: genomeiter.polyphen_2_pred.clone(),
+                    polyphen_2_score: genomeiter.polyphen_2_score.clone(),
+                    sift_pred: genomeiter.sift_pred.clone(),
+                    sift_score: genomeiter.sift_score.clone(),
+                    pseeac_rf_pred: genomeiter.pseeac_rf_score.clone(),
+                    pseeac_rf_score: genomeiter.pseeac_rf_score.clone(),
+                    clinvar_hotspot: genomeiter.clinvar_hotspot.clone(),
+                    clinvar_rcv: genomeiter.clinvar_rcv.clone(),
+                    clinvar_clinical_significance: genomeiter.clinvar_clinical_significance.clone(),
+                    clinvar_rev_status: genomeiter.clinvar_rev_status.clone(),
+                    clinvar_traitsclinvar_pmids: genomeiter.clinvar_traitsclinvar_pmids.clone(),
+                    diseases: genomeiter.diseases.clone(),
+                    disease_ids: genomeiter.disease_ids.clone(),
+                    aml_0156_dna131_geno: genomeiter.aml_0156_dna131_geno.clone(),
+                    aml_0156_dna131_qual: genomeiter.aml_0156_dna131_qual.clone(),
+                    aml_0156_dna131_geno_qual: genomeiter.aml_0156_dna131_geno_qual.clone(),
+                    aml_0156_dna131_filter: genomeiter.aml_0156_dna131_filter.clone(),
+                    aml_0156_dna131_af: genomeiter.aml_0156_dna131_af.clone(),
+                    aml_0156_dna131_ao: genomeiter.aml_0156_dna131_ao.clone(),
+                    aml_0156_dna131_ro: genomeiter.aml_0156_dna131_ro.clone(),
+                    aml_0156_dna131_co: genomeiter.aml_0156_dna131_co.clone(),
+                    y,
+                })
             }
         }
     }
+
+    let mut variantgenome = File::create("variantfilter.txt").expect("file not present");
+    for i in combineanalyzer.iter() {
+        writeln!(variantgenome, "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t")
+    }
+
     Ok("The result has been written".to_string())
 }
