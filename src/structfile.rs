@@ -239,3 +239,12 @@ pub struct GeneMapper {
     pub start: usize,
     pub end: usize,
 }
+
+
+#[derive(Debug, Clone, PartialOrd, PartialEq)]
+
+pub struct ExonCollate {
+    pub name: String, 
+    pub start: usize, 
+    pub end: usize,
+}
