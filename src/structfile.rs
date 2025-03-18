@@ -240,11 +240,31 @@ pub struct GeneMapper {
     pub end: usize,
 }
 
-
 #[derive(Debug, Clone, PartialOrd, PartialEq)]
 
 pub struct ExonCollate {
-    pub name: String, 
-    pub start: usize, 
+    pub name: String,
+    pub start: usize,
     pub end: usize,
+}
+
+#[derive(Debug, Clone, PartialOrd, PartialEq)]
+pub struct Fasta {
+    pub header: String,
+    pub sequence: String,
+}
+
+#[derive(Debug, Clone, PartialOrd, PartialEq)]
+pub struct PriorTranscript {
+    pub header: String,
+    pub start: usize,
+    pub end: usize,
+}
+
+#[derive(Debug, Clone, PartialOrd, PartialEq)]
+pub struct FastaUpdown {
+    pub header: String,
+    pub sequence: String,
+    pub upstream: String,
+    pub downstream: String,
 }

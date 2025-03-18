@@ -7,7 +7,7 @@
  ```
 
  ```
- ./target/debug/eVaianalyzer
+ ./target/debug/eVaianalyzer -h
  variantannotator
 
  Usage: eVaianalyzer <COMMAND>
@@ -18,12 +18,12 @@
   populate     variant accumulation
   database     create variant database
   gtf-analyze  analyze the corresponding gtf
+  variant-seq  prepare the variant seq annotation
   help         Print this message or the help of the given subcommand(s)
 
  Options:
   -h, --help     Print help
   -V, --version  Print version
-
  ```
 
  Gaurav Sablok \

@@ -1,4 +1,5 @@
 mod args;
+mod fastanalyzer;
 mod genomeanalyzer;
 mod gtfanalyzer;
 mod structfile;
@@ -7,6 +8,7 @@ mod variantdatabase;
 mod variantfilter;
 use crate::args::CommandParse;
 use crate::args::Commands;
+use crate::fastanalyzer::fastagtf;
 use crate::genomeanalyzer::genomemap;
 use crate::gtfanalyzer::analyzegtf;
 use crate::variantaccumulation::variantpopulate;
@@ -52,6 +54,15 @@ fn main() {
         Commands::GTFAnalyze { gtffile } => {
             let command = analyzegtf(gtffile).unwrap();
             println!("The gtf has been analyzed:{:?}", command);
+        }
+        Commands::VariantSeq {
+            acmgfile,
+            fastafile,
+            sequpstream,
+            downstream,
+        } => {
+            let command = fastagtf(acmgfile, fastafile, *sequpstream, *downstream).unwrap();
+            println!("The sequences have been written:{:?}", command);
         }
     }
 }

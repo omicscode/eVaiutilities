@@ -46,4 +46,15 @@ pub enum Commands {
         /// path to the gtf file
         gtffile: String,
     },
+    /// prepare the variant seq annotation.
+    VariantSeq {
+        /// provide the ACMG file
+        acmgfile: String,
+        /// provide fasta file
+        fastafile: String,
+        /// upstream
+        sequpstream: usize,
+        ///downstream
+        downstream: usize,
+    },
 }
