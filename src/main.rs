@@ -41,10 +41,6 @@ fn main() {
             let command = variantanalyzer(acmgfile, tsvfile, variant).unwrap();
             println!("The filtered variant file has been written:{}", command);
         }
-        Commands::Populate { acmgfile, tsvfile } => {
-            let command = variantpopulate(acmgfile, tsvfile).unwrap();
-            println!("The variant accumulation file has been written:{}", command);
-        }
         Commands::Database {
             acmgfile,
             tsvfile,

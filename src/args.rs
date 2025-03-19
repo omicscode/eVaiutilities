@@ -25,13 +25,6 @@ pub enum Commands {
         /// provide the variant
         variant: String,
     },
-    /// variant accumulation
-    Populate {
-        /// please provide the path to the acmg file
-        acmgfile: String,
-        /// please provide the path to the tsv file
-        tsvfile: String,
-    },
     /// create variant database
     Database {
         /// please provide the path to the acmg file

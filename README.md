@@ -8,14 +8,13 @@
 
  ```
  ./target/debug/eVaianalyzer -h
-  variantannotator
+ variantannotator
 
  Usage: eVaianalyzer <COMMAND>
 
  Commands:
   analyzer         analyzer for the variants
   filter           filter the variants
-  populate         variant accumulation
   database         create variant database
   gtf-analyze      analyze the corresponding gtf
   variant-seq      prepare the variant seq annotation
