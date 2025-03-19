@@ -57,4 +57,6 @@ pub enum Commands {
         ///downstream
         downstream: usize,
     },
+    /// download the human genome
+    DownloadGenome { input: String },
 }

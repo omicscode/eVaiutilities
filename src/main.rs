@@ -1,6 +1,7 @@
 mod args;
 mod fastanalyzer;
 mod genomeanalyzer;
+mod genomedownload;
 mod gtfanalyzer;
 mod structfile;
 mod variantaccumulation;
@@ -10,6 +11,7 @@ use crate::args::CommandParse;
 use crate::args::Commands;
 use crate::fastanalyzer::fastagtf;
 use crate::genomeanalyzer::genomemap;
+use crate::genomedownload::downloadgenome;
 use crate::gtfanalyzer::analyzegtf;
 use crate::variantaccumulation::variantpopulate;
 use crate::variantdatabase::variantdatabase;
@@ -17,7 +19,7 @@ use crate::variantfilter::variantanalyzer;
 use clap::Parser;
 
 /*
- Author Gaurav Sablok
+ Authom Gaurav Sablok
  Instytut Chemii Bioorganicznej
  Polskiej Akademii Nauk
  ul. Noskowskiego 12/14 | 61-704, Poznań
@@ -63,6 +65,10 @@ fn main() {
         } => {
             let command = fastagtf(acmgfile, fastafile, *sequpstream, *downstream).unwrap();
             println!("The sequences have been written:{:?}", command);
+        }
+        Commands::DownloadGenome { input } => {
+            let command = downloadgenome(input).unwrap();
+            println!("The genome has been downloaded:{:?}", command);
         }
     }
 }
