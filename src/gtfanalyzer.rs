@@ -1,7 +1,6 @@
 use crate::structfile::ExonCollate;
 use crate::structfile::GRange;
 use crate::structfile::GeneMapper;
-use std::env::args;
 use std::error::Error;
 use std::fmt::write;
 use std::fs::File;

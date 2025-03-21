@@ -164,7 +164,7 @@ pub fn genomemap(path1: &str, path2: &str) -> Result<String, Box<dyn Error>> {
     for hashid in hashids.iter() {
         for j in filesplit.iter() {
             for genomeiter in genomecapture.iter() {
-                if* hashid == j.priortranscript && genomeiter.othertranscripts.contains(hashid) {
+                if *hashid == j.priortranscript && genomeiter.othertranscripts.contains(hashid) {
                     combineanalyzer.push(Combiner {
                         chrom: j.chrom.clone(),
                         start: j.start.clone(),
@@ -250,7 +250,9 @@ pub fn genomemap(path1: &str, path2: &str) -> Result<String, Box<dyn Error>> {
                         pseeac_rf_score: genomeiter.pseeac_rf_score.clone(),
                         clinvar_hotspot: genomeiter.clinvar_hotspot.clone(),
                         clinvar_rcv: genomeiter.clinvar_rcv.clone(),
-                        clinvar_clinical_significance: genomeiter.clinvar_clinical_significance.clone(),
+                        clinvar_clinical_significance: genomeiter
+                            .clinvar_clinical_significance
+                            .clone(),
                         clinvar_rev_status: genomeiter.clinvar_rev_status.clone(),
                         clinvar_traitsclinvar_pmids: genomeiter.clinvar_traitsclinvar_pmids.clone(),
                         diseases: genomeiter.diseases.clone(),
@@ -268,5 +270,94 @@ pub fn genomemap(path1: &str, path2: &str) -> Result<String, Box<dyn Error>> {
             }
         }
     }
+
+    let mut variantgenome = File::create("variantfilter.txt").expect("file not present");
+    for i in combineanalyzer.iter() {
+        writeln!(variantgenome, "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t
+                {}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}", i.chrom, i.start, i.stop, i.priortranscript, i.hgvpc, i.cannonical, i.othertranscript, i.genotype, i.phenotype, i.medgencui, i.inheritance,i.finalclass, i.score_pathogen, i.flag, i.note, i.vcforig,
+                        i.pvs1,
+                        i.ps1,
+                        i.ps2,
+                        i.ps3,
+                        i.ps4,
+                        i.pm1,
+                        i.pm2,
+                        i.pm3,
+                        i.pm4,
+                        i.pm5,
+                        i.pm6,
+                        i.pp1,
+                        i.pp2,
+                        i.pp3,
+                        i.pp4,
+                        i.pp5,
+                        i.ba1,
+                        i.bs1,
+                        i.bs2,
+                        i.bs3,
+                        i.bs4,
+                        i.bp1,
+                        i.bp2,
+                        i.bp3,
+                        i.bp4,
+                        i.bp5,
+                        i.bp6,
+                        i.bp7,
+                        i.bp8,
+                        i.effect,
+                        i.transcript,
+                        i.selectcannonical,
+                        i.tfbsid,
+                        i.tfbsname,
+                        i.exonintronnum,
+                        i.hgvsc,
+                        i.cdsdistance,
+                        i.cdslen,
+                        i.aalen,
+                        i.othertranscripts,
+                        i.exac_an,
+                        i.exac_ac,
+                        i.exac_af,
+                        i.exac_istarget,
+                        i.dnsnp,
+                        i.dnsnp_version,
+                        i.dbsnp_1tgp_ref_freq,
+                        i.dbsnp_1tgp_alt_freq,
+                        i.common_1tgp_1perc,
+                        i.esp6500siv2_ea_freq,
+                        i.esp6500siv2_aa_freq,
+                        i.esp6500siv2_all_freq,
+                        i.gnomad_af_all,
+                        i.gnomad_hom_all,
+                        i.gnomad_af_max_pop,
+                        i.cadd_score,
+                        i.dbscsnv_ab_score,
+                        i.dbscsnv_rf_score,
+                        i.papi_pred,
+                        i.papi_score,
+                        i.polyphen_2_pred,
+                        i.polyphen_2_score,
+                        i.sift_pred,
+                        i.sift_score,
+                        i.pseeac_rf_pred,
+                        i.pseeac_rf_score,
+                        i.clinvar_hotspot,
+                        i.clinvar_rcv,
+                        i.clinvar_clinical_significance,
+                        i.clinvar_rev_status,
+                        i.clinvar_traitsclinvar_pmids,
+                        i.diseases,
+                        i.disease_ids,
+                        i.aml_0156_dna131_geno,
+                        i.aml_0156_dna131_qual,
+                        i.aml_0156_dna131_geno_qual,
+                        i.aml_0156_dna131_filter,
+                        i.aml_0156_dna131_af,
+                        i.aml_0156_dna131_ao,
+                        i.aml_0156_dna131_ro,
+                        i.aml_0156_dna131_co,
+        ).expect("line not present");
+    }
+
     Ok("The result has been written".to_string())
 }
