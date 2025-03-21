@@ -2,9 +2,8 @@ use crate::structfile::ExonCollate;
 use crate::structfile::GRange;
 use crate::structfile::GeneMapper;
 use std::error::Error;
-use std::fmt::write;
 use std::fs::File;
-use std::io::{BufRead, BufReader};
+use std::io::{BufRead, BufReader, Write};
 
 /*
  Author Gaurav Sablok
@@ -70,14 +69,22 @@ pub fn analyzegtf(pathgtf: &str) -> Result<String, Box<dyn Error>> {
                     linecollectvec[4].parse::<usize>().unwrap(),
                 ));
             }
-            for i in exonvec.iter() {
-                exonvector.push(ExonCollate {
-                    name: i.0.clone(),
-                    start: i.1,
-                    end: i.2,
-                });
-            }
+            exonvector.push(ExonCollate {
+                name: linecollectvec[2].clone(),
+                start: linecollectvec[3].parse::<usize>().unwrap(),
+                end: linecollectvec[4].parse::<usize>().unwrap(),
+                exoncapture: exonvec,
+            });
         }
+    }
+    let mut filewrite = File::create("gtf-collate-exon.txt").expect("file not present");
+    for i in exonvector.iter() {
+        writeln!(
+            filewrite,
+            "{}\t{}\t{}\t{:?}",
+            i.name, i.start, i.end, i.exoncapture
+        )
+        .expect("file not present");
     }
 
     Ok("The gtf have been analyzed".to_string())

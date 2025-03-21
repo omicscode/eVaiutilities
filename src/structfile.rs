@@ -246,6 +246,7 @@ pub struct ExonCollate {
     pub name: String,
     pub start: usize,
     pub end: usize,
+    pub exoncapture: Vec<(String, usize, usize)>,
 }
 
 #[derive(Debug, Clone, PartialOrd, PartialEq)]
