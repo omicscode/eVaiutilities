@@ -9,7 +9,7 @@ pub struct GRange {
     pub index: String,
     pub strand: String,
     pub indexend: String,
-    pub collectable: String,
+    pub collectable: Vec<String>,
 }
 
 #[derive(Debug, Clone, PartialOrd, PartialEq)]

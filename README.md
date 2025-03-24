@@ -26,6 +26,12 @@
   -V, --version  Print version
  ```
 
+ - variantfiler 
+ 
+ ```
+ ibch/eVai-analyzer » ./target/debug/eVaianalyzer filter ./data-repo/sample1.tsv ./data-repo/sampletest.tsv TTT
+ ```
+
  Gaurav Sablok \
  Instytut Chemii Bioorganicznej \
  Polskiej Akademii Nauk \
