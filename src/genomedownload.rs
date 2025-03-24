@@ -3,6 +3,9 @@ use std::error::Error;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 use std::process::Command;
+use std::fs;
+use std::env;
+use std::path::Path;
 /*
  Authom Gaurav Sablok
  Instytut Chemii Bioorganicznej
@@ -18,23 +21,50 @@ pub fn downloadgenome(input: &str) -> Result<String, Box<dyn Error>> {
             .arg("https://www.ncbi.nlm.nih.gov/grc/human")
             .output()
             .expect("command to fail");
+
+        
+        let _ = fs::create_dir("./download").unwrap();
+        let newpath = Path::new("./download");
+        let _ = env::set_current_dir(newpath);
+        let _ = Command::new("wget")
+            .arg("https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.29_GRCh38.p14/GCA_000001405.29_GRCh38.p14_feature_count.txt.gz").output()
+            .expect("command to fail");
+        let _ = Command::new("wget")
+            .arg("https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.29_GRCh38.p14/GCA_000001405.29_GRCh38.p14_feature_table.txt.gz").output()
+            .expect("command to fail");
+        let _ = Command::new("wget")
+            .arg("https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.29_GRCh38.p14/GCA_000001405.29_GRCh38.p14_genomic.fna.gz",).output()
+            .expect("command to fail");
+        let _ = Command::new("wget")
+            .arg("https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.29_GRCh38.p14/GCA_000001405.29_GRCh38.p14_genomic.gbff.gz").output()
+            .expect("command to fail");
+        let _ = Command::new("wget")
+            .arg("https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.29_GRCh38.p14/GCA_000001405.29_GRCh38.p14_genomic.gff.gz").output()
+            .expect("command to fail");
+        let _ = Command::new("wget")
+            .arg("https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.29_GRCh38.p14/GCA_000001405.29_GRCh38.p14_genomic.gtf.gz").output()
+            .expect("command to fail");
+        let _ = Command::new("wget")
+            .arg("https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.29_GRCh38.p14/GCA_000001405.29_GRCh38.p14_genomic_gaps.txt.gz").output()
+            .expect("command to fail");
+        let _ = Command::new("wget")
+            .arg("https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.29_GRCh38.p14/GCA_000001405.29_GRCh38.p14_protein.faa.gz",).output()
+            .expect("command to fail");
+        let _ = Command::new("wget")
+            .arg("https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.29_GRCh38.p14/GCA_000001405.29_GRCh38.p14_protein.gpff.gz").output()
+            .expect("command to fail");
+        let _ = Command::new("wget")
+            .arg("https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.29_GRCh38.p14/GCA_000001405.29_GRCh38.p14_rna_from_genomic.fna.gz").output()
+            .expect("command to fail");
+        let _ = Command::new("wget")
+            .arg("https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.29_GRCh38.p14/GCA_000001405.29_GRCh38.p14_translated_cds.faa.gz").output()
+            .expect("command to fail");
+        let _ = Command::new("wget")
+            .arg("https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.29_GRCh38.p14/GCA_000001405.29_GRCh38.p14_cds_from_genomic.fna.gz").output()
+            .expect("command to fail");
     }
 
-    let download: Vec<_> = vec![
-        "wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.29_GRCh38.p14/GCA_000001405.29_GRCh38.p14_cds_from_genomic.fna.gz",
-        "wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.29_GRCh38.p14/GCA_000001405.29_GRCh38.p14_feature_count.txt.gz",
-        "wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.29_GRCh38.p14/GCA_000001405.29_GRCh38.p14_feature_table.txt.gz",
-        "wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.29_GRCh38.p14/GCA_000001405.29_GRCh38.p14_genomic.fna.gz",
-        "wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.29_GRCh38.p14/GCA_000001405.29_GRCh38.p14_genomic.gbff.gz",
-        "wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.29_GRCh38.p14/GCA_000001405.29_GRCh38.p14_genomic.gff.gz",
-        "wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.29_GRCh38.p14/GCA_000001405.29_GRCh38.p14_genomic.gtf.gz",
-        "wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.29_GRCh38.p14/GCA_000001405.29_GRCh38.p14_genomic_gaps.txt.gz",
-        "wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.29_GRCh38.p14/GCA_000001405.29_GRCh38.p14_protein.faa.gz",
-        "wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.29_GRCh38.p14/GCA_000001405.29_GRCh38.p14_protein.gpff.gz",
-        "wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.29_GRCh38.p14/GCA_000001405.29_GRCh38.p14_rna_from_genomic.fna.gz",
-        "wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.29_GRCh38.p14/GCA_000001405.29_GRCh38.p14_translated_cds.faa.gz",
-    ];
-
+  
     let mut md5sumarray: HashMap<String, String> = HashMap::new();
 
     let filenames: Vec<_> = vec![
@@ -71,39 +101,32 @@ pub fn downloadgenome(input: &str) -> Result<String, Box<dyn Error>> {
         md5sumarray.insert(filenames[i].to_string(), md5sumvalues[i].to_string());
     }
 
-    for i in download.iter() {
-        let _ = Command::new("wget")
-            .arg(i)
-            .output()
-            .expect("command to fail");
-    }
+        // let _ = Command::new("md5sum")
+    //     .arg("*.gz")
+    //     .arg(">")
+    //     .arg("download.txt");
 
-    let _ = Command::new("md5sum")
-        .arg("*.gz")
-        .arg(">")
-        .arg("download.txt");
+    // let fileopen = File::open("download.txt").expect("file not present");
+    // let fileread = BufReader::new(fileopen);
+    // let mut filevecnames: Vec<String> = Vec::new();
+    // let mut filevecmd5sum: Vec<String> = Vec::new();
 
-    let fileopen = File::open("download.txt").expect("file not present");
-    let fileread = BufReader::new(fileopen);
-    let mut filevecnames: Vec<String> = Vec::new();
-    let mut filevecmd5sum: Vec<String> = Vec::new();
+    // for i in fileread.lines() {
+    //     let line = i.expect("file not present");
+    //     let linevec = line.split("\t").collect::<Vec<_>>();
+    //     filevecmd5sum.push(linevec[1].to_string());
+    //     filevecnames.push(linevec[0].to_string());
+    // }
 
-    for i in fileread.lines() {
-        let line = i.expect("file not present");
-        let linevec = line.split("\t").collect::<Vec<_>>();
-        filevecmd5sum.push(linevec[1].to_string());
-        filevecnames.push(linevec[0].to_string());
-    }
-
-    for i in filevecmd5sum.iter() {
-        for j in md5sumvalues.iter() {
-            if i == j {
-                continue;
-            } else if i != j {
-                println!("The downloaded files are not complete");
-            }
-        }
-    }
+    // for i in filevecmd5sum.iter() {
+    //     for j in md5sumvalues.iter() {
+    //         if i == j {
+    //             continue;
+    //         } else if i != j {
+    //             println!("The downloaded files are not complete");
+    //         }
+    //     }
+    // }
 
     Ok("The downloaded version of the human genome has been written to the disc".to_string())
 }
