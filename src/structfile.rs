@@ -269,3 +269,11 @@ pub struct FastaUpdown {
     pub upstream: String,
     pub downstream: String,
 }
+
+#[derive(Debug, Clone, PartialOrd, PartialEq)]
+
+pub struct Transcript {
+  pub variant: String, 
+  pub id: Vec<String>,
+  pub additional: String,
+}

@@ -85,7 +85,6 @@ pub fn analyzegtf(pathgtf: &str) -> Result<String, Box<dyn Error>> {
                 exoncapture: exonvec.clone(),
             });
         }
-         println!("{:?}", exonvector);
     
     let mut filewrite = File::create("gtf-collate-exon.txt").expect("file not present");
     for i in exonvector.iter() {

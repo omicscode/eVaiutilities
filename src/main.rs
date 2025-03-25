@@ -6,6 +6,7 @@ mod gtfanalyzer;
 mod structfile;
 mod variantdatabase;
 mod variantfilter;
+mod acmgtranscript;
 use crate::args::CommandParse;
 use crate::args::Commands;
 use crate::fastanalyzer::fastagtf;
@@ -14,6 +15,7 @@ use crate::genomedownload::downloadgenome;
 use crate::gtfanalyzer::analyzegtf;
 use crate::variantdatabase::variantdatabase;
 use crate::variantfilter::variantanalyzer;
+use crate::acmgtranscript::acmgannotate;
 use clap::Parser;
 
 /*
@@ -63,6 +65,10 @@ fn main() {
         Commands::DownloadGenome { input } => {
             let command = downloadgenome(input).unwrap();
             println!("The genome has been downloaded:{:?}", command);
+        }
+        Commands::ACMGTranscript { acmgfile } => {
+         let command = acmgannotate(acmgfile).unwrap();
+         println!("The transcript ids have been written:{:?}", command);
         }
     }
 }

@@ -52,4 +52,9 @@ pub enum Commands {
     },
     /// download the human genome
     DownloadGenome { input: String },
+    /// variant-transcriptids
+    ACMGTranscript {
+     /// provide the ACMG file 
+     acmgfile: String, 
+    }
 }
