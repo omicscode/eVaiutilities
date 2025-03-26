@@ -45,16 +45,12 @@ pub enum Commands {
         acmgfile: String,
         /// provide fasta file
         fastafile: String,
-        /// upstream
-        sequpstream: usize,
-        ///downstream
-        downstream: usize,
     },
     /// download the human genome
     DownloadGenome { input: String },
     /// variant-transcriptids
     ACMGTranscript {
-     /// provide the ACMG file 
-     acmgfile: String, 
-    }
+        /// provide the ACMG file
+        acmgfile: String,
+    },
 }

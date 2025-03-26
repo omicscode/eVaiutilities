@@ -261,13 +261,13 @@ pub struct PriorTranscript {
     pub alternate: Vec<String>,
 }
 
-#[derive(Debug, Clone, PartialOrd, PartialEq)]
-pub struct FastaUpdown {
-    pub header: String,
-    pub sequence: String,
-    pub upstream: String,
-    pub downstream: String,
-}
+// #[derive(Debug, Clone, PartialOrd, PartialEq)]
+// pub struct FastaUpdown {
+//     pub header: String,
+//     pub sequence: String,
+//     pub upstream: String,
+//     pub downstream: String,
+// }
 
 #[derive(Debug, Clone, PartialOrd, PartialEq)]
 

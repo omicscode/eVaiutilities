@@ -1,9 +1,8 @@
 use crate::structfile::Fasta;
-use crate::structfile::FastaUpdown;
 use crate::structfile::PriorTranscript;
 use std::error::Error;
 use std::fs::File;
-use std::io::{BufRead, BufReader};
+use std::io::{BufRead, BufReader, Write};
 use std::process::Command;
 /*
  Author Gaurav Sablok
@@ -13,12 +12,7 @@ use std::process::Command;
  Date: 2025-3-18
 */
 
-pub fn fastagtf(
-    pathacmg: &str,
-    pathfasta: &str,
-    sequenceupstream: usize,
-    sequencedownstream: usize,
-) -> Result<String, Box<dyn Error>> {
+pub fn fastagtf(pathacmg: &str, pathfasta: &str) -> Result<String, Box<dyn Error>> {
     let fastafile = File::open(pathfasta).expect("file not present");
     let fastaread = BufReader::new(fastafile);
     let mut vecfastaid: Vec<String> = Vec::new();
@@ -61,41 +55,47 @@ pub fn fastagtf(
             });
         }
     }
- 
-        let _ = Command::new("wget")
+
+    let _ = Command::new("wget")
             .arg("https://ftp.ensembl.org/pub/release-113/fasta/homo_sapiens/cds/Homo_sapiens.GRCh38.cds.all.fa.gz")
             .output()
             .expect("result not found");
 
-        let mut sequencewrite: Vec<Fasta> = Vec::new();
-        for i in flattentranscript.iter() {
-            for j in fastacombine.iter() {
-                if *i == j.header.to_string() {
-                    sequencewrite.push(Fasta {
-                        header: i.clone(),
+    let mut priorsequencewrite: Vec<Fasta> = Vec::new();
+    for i in priortranscript.iter() {
+        for j in fastacombine.iter() {
+            if *i.prior == j.header.to_string() {
+                priorsequencewrite.push(Fasta {
+                    header: i.prior.clone(),
+                    sequence: j.sequence.clone(),
+                })
+            }
+        }
+    }
+
+    let mut alternatesequencewrite: Vec<Fasta> = Vec::new();
+    for i in priortranscript.iter() {
+        for j in fastacombine.iter() {
+            for val in i.alternate.iter() {
+                if *val == j.header.to_string() {
+                    alternatesequencewrite.push(Fasta {
+                        header: val.to_string(),
                         sequence: j.sequence.clone(),
                     })
                 }
             }
         }
-
-        let mut sequenceflank: Vec<FastaUpdown> = Vec::new();
-        for i in flattentranscript.iter() {
-            for j in fastacombine.iter() {
-                for idster in priortranscript.iter() {
-                    if *i == j.header.to_string() {
-                        sequenceflank.push(FastaUpdown {
-                            header: i.clone(),
-                            sequence: j.sequence.clone(),
-                            upstream: j.sequence.to_string()
-                                [idster.start - sequenceupstream..sequencedownstream]
-                                .to_string(),
-                            downstream: j.sequence[sequenceupstream..idster.end].to_string(),
-                        })
-                    }
-                }
-            }
-        }
     }
+
+    let mut priorsequenceout = File::create("priorsequence.fasta").expect("file not found");
+    let mut alternatesequenceout = File::create("alternatesequence.fasta").expect("file not found");
+    for i in priorsequencewrite.iter() {
+        writeln!(priorsequenceout, ">{}\n{}", i.header, i.sequence).expect("line not present");
+    }
+
+    for i in alternatesequencewrite.iter() {
+        writeln!(alternatesequenceout, ">{}\n{}", i.header, i.sequence).expect("line not present");
+    }
+
     Ok("The sequences have been written".to_string())
 }

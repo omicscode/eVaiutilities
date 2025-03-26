@@ -1,3 +1,4 @@
+mod acmgtranscript;
 mod args;
 mod fastanalyzer;
 mod genomeanalyzer;
@@ -6,7 +7,7 @@ mod gtfanalyzer;
 mod structfile;
 mod variantdatabase;
 mod variantfilter;
-mod acmgtranscript;
+use crate::acmgtranscript::acmgannotate;
 use crate::args::CommandParse;
 use crate::args::Commands;
 use crate::fastanalyzer::fastagtf;
@@ -15,7 +16,6 @@ use crate::genomedownload::downloadgenome;
 use crate::gtfanalyzer::analyzegtf;
 use crate::variantdatabase::variantdatabase;
 use crate::variantfilter::variantanalyzer;
-use crate::acmgtranscript::acmgannotate;
 use clap::Parser;
 
 /*
@@ -56,10 +56,8 @@ fn main() {
         Commands::VariantSeq {
             acmgfile,
             fastafile,
-            sequpstream,
-            downstream,
         } => {
-            let command = fastagtf(acmgfile, fastafile, *sequpstream, *downstream).unwrap();
+            let command = fastagtf(acmgfile, fastafile).unwrap();
             println!("The sequences have been written:{:?}", command);
         }
         Commands::DownloadGenome { input } => {
@@ -67,8 +65,8 @@ fn main() {
             println!("The genome has been downloaded:{:?}", command);
         }
         Commands::ACMGTranscript { acmgfile } => {
-         let command = acmgannotate(acmgfile).unwrap();
-         println!("The transcript ids have been written:{:?}", command);
+            let command = acmgannotate(acmgfile).unwrap();
+            println!("The transcript ids have been written:{:?}", command);
         }
     }
 }

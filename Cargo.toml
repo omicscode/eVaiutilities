@@ -2,6 +2,12 @@
 name = "eVaianalyzer"
 version = "0.1.0"
 edition = "2024"
+readme = "README.md"
+license = "MIT"
+authors = [ "Gaurav Sablok <gsablok@ibch.poznan.pl>"]
+description = "variant analyzer for human genomics"
+homepage = "https://github.com/IBCHgenomic/eVai-analyzer"
+repository = "https://github.com/IBCHgenomic/eVai-analyzer"
 
 [dependencies]
 clap = { version = "4.5.32", features = ["derive"] }
