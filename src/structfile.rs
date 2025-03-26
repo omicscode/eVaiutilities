@@ -257,9 +257,8 @@ pub struct Fasta {
 
 #[derive(Debug, Clone, PartialOrd, PartialEq)]
 pub struct PriorTranscript {
-    pub header: String,
-    pub start: usize,
-    pub end: usize,
+    pub prior: String,
+    pub alternate: Vec<String>,
 }
 
 #[derive(Debug, Clone, PartialOrd, PartialEq)]
@@ -273,7 +272,7 @@ pub struct FastaUpdown {
 #[derive(Debug, Clone, PartialOrd, PartialEq)]
 
 pub struct Transcript {
-  pub variant: String, 
-  pub id: Vec<String>,
-  pub additional: String,
+    pub variant: String,
+    pub id: Vec<String>,
+    pub additional: String,
 }

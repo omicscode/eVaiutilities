@@ -4,6 +4,7 @@ use crate::structfile::PriorTranscript;
 use std::error::Error;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
+use std::process::Command;
 /*
  Author Gaurav Sablok
  Instytut Chemii Bioorganicznej
@@ -13,8 +14,8 @@ use std::io::{BufRead, BufReader};
 */
 
 pub fn fastagtf(
-    pathfasta: &str,
     pathacmg: &str,
+    pathfasta: &str,
     sequenceupstream: usize,
     sequencedownstream: usize,
 ) -> Result<String, Box<dyn Error>> {
@@ -25,7 +26,8 @@ pub fn fastagtf(
     for i in fastaread.lines() {
         let line = i.expect("line not present");
         if line.starts_with(">") {
-            vecfastaid.push(line.replace(">", ""));
+            let lineselect: Vec<_> = line.split(" ").collect::<Vec<_>>();
+            vecfastaid.push(lineselect[0].to_string().replace(">", ""));
         } else if !line.starts_with(">") {
             vecfastaseq.push(line);
         }
@@ -37,12 +39,10 @@ pub fn fastagtf(
             sequence: vecfastaseq[i].clone(),
         });
     }
+
     let acmgopen = File::open(pathacmg).expect("file not present");
     let acmgread = BufReader::new(acmgopen);
-    let mut transcript: Vec<_> = Vec::new();
-    let mut transcriptadd: Vec<_> = Vec::new();
     let mut priortranscript: Vec<PriorTranscript> = Vec::new();
-
     for i in acmgread.lines() {
         let line = i.expect("line not present");
         if line.starts_with("#") {
@@ -55,23 +55,17 @@ pub fn fastagtf(
                 .into_iter()
                 .map(|x| x.replace(":null", ""))
                 .collect::<Vec<_>>();
-            transcript.push(linegenome);
-            transcriptadd.push(linecut[5].clone());
             priortranscript.push(PriorTranscript {
-                header: linecut[0].clone(),
-                start: linecut[2].parse::<usize>().unwrap(),
-                end: linecut[3].parse::<usize>().unwrap(),
+                prior: linecut[5].clone(),
+                alternate: linegenome,
             });
         }
-
-        let flattentranscript: Vec<String> = transcript
-            .clone()
-            .into_iter()
-            .flatten()
-            .collect::<Vec<_>>()
-            .into_iter()
-            .map(|x| x.to_string())
-            .collect::<Vec<_>>();
+    }
+ 
+        let _ = Command::new("wget")
+            .arg("https://ftp.ensembl.org/pub/release-113/fasta/homo_sapiens/cds/Homo_sapiens.GRCh38.cds.all.fa.gz")
+            .output()
+            .expect("result not found");
 
         let mut sequencewrite: Vec<Fasta> = Vec::new();
         for i in flattentranscript.iter() {
