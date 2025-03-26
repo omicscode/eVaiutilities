@@ -1,6 +1,7 @@
 # eVai-analyzer
  - eVaianalyzer for open genomics
- - from variant annotation to filtering, preparating user reports and database and restapi human genomics
+ - from variant annotation to filtering, preparating user reports and database and restapi human genomics.
+ - crate available at: [eVaianalyzer](https://crates.io/crates/eVaianalyzer)
  
  ```
  cargo build
