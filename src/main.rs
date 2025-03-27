@@ -4,6 +4,7 @@ mod fastanalyzer;
 mod genomeanalyzer;
 mod genomedownload;
 mod gtfanalyzer;
+mod sequenceprofile;
 mod structfile;
 mod variantdatabase;
 mod variantfilter;
@@ -14,6 +15,7 @@ use crate::fastanalyzer::fastagtf;
 use crate::genomeanalyzer::genomemap;
 use crate::genomedownload::downloadgenome;
 use crate::gtfanalyzer::analyzegtf;
+use crate::sequenceprofile::sequence;
 use crate::variantdatabase::variantdatabase;
 use crate::variantfilter::variantanalyzer;
 use clap::Parser;
@@ -67,6 +69,15 @@ fn main() {
         Commands::ACMGTranscript { acmgfile } => {
             let command = acmgannotate(acmgfile).unwrap();
             println!("The transcript ids have been written:{:?}", command);
+        }
+        Commands::SequenceProfile {
+            acmgfile,
+            fastafile,
+            upstream,
+            downstream,
+        } => {
+            let command = sequence(acmgfile, fastafile, *upstream, *downstream).unwrap();
+            println!("The sequences have been written:{:?}", command);
         }
     }
 }

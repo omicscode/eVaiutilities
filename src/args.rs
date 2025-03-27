@@ -53,4 +53,15 @@ pub enum Commands {
         /// provide the ACMG file
         acmgfile: String,
     },
+    /// sequence profiling
+    SequenceProfile {
+        /// provide the acmg file
+        acmgfile: String,
+        /// provide the fasta file
+        fastafile: String,
+        /// upstream location
+        upstream: usize,
+        /// downstream location
+        downstream: usize,
+    },
 }
