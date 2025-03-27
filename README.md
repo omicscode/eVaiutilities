@@ -2,6 +2,7 @@
  - eVaianalyzer for open genomics
  - from variant annotation to filtering, preparating user reports and database and restapi human genomics.
  - crate available at: [eVaianalyzer](https://crates.io/crates/eVaianalyzer)
+ - **new version coming with lots of new features**
  
  ```
  cargo build
@@ -27,11 +28,6 @@
   -h, --help     Print help
   -V, --version  Print version
 
- ```
-
- - variantfiler 
- 
- ```
  ibch/eVai-analyzer » ./target/debug/eVaianalyzer analyzer ./data-repo/sample1.tsv ./data-repo/sampletest.tsv
  ibch/eVai-analyzer » ./target/debug/eVaianalyzer filter ./data-repo/sample1.tsv ./data-repo/sampletest.tsv TTT
  ibch/eVai-analyzer » ./target/debug/eVaianalyzer acmg-transcript ./data-repo/sample1.tsv 
