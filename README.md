@@ -1,7 +1,7 @@
 # eVai-analyzer
  - eVaianalyzer for open genomics
  - from variant annotation to filtering, preparating user reports and database and restapi human genomics.
- - crate available at: [eVaianalyzer](https://crates.io/crates/eVaianalyzer)
+ - **new version coming with lots of new features**
  
  ```
  cargo build
@@ -35,6 +35,8 @@
  ```
  ibch/eVai-analyzer » ./target/debug/eVaianalyzer variant-analyzer ./data-repo/sample1.tsv ./data-repo/sampletest.tsv
  ibch/eVai-analyzer » ./target/debug/eVaianalyzer variant-filter ./data-repo/sample1.tsv ./data-repo/sampletest.tsv TTT
+ ibch/eVai-analyzer » ./target/debug/eVaianalyzer analyzer ./data-repo/sample1.tsv ./data-repo/sampletest.tsv
+ ibch/eVai-analyzer » ./target/debug/eVaianalyzer filter ./data-repo/sample1.tsv ./data-repo/sampletest.tsv TTT
  ibch/eVai-analyzer » ./target/debug/eVaianalyzer acmg-transcript ./data-repo/sample1.tsv 
  ibch/eVai-analyzer » ./target/debug/eVaianalyzer gtf-analyze ./data-repo/samplegtf.gtf
  ibch/eVai-analyzer » ./target/debug/eVaianalyzer download-genome yes
@@ -47,5 +49,4 @@
  Polskiej Akademii Nauk \
  ul. Noskowskiego 12/14 | 61-704, Poznań \
  Poland
-
 
