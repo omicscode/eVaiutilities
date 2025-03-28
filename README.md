@@ -1,12 +1,11 @@
 # eVai-analyzer
- - eVaianalyzer for open genomics
- - from variant annotation to filtering, preparating user reports and database and restapi human genomics.
+ - eVai-analyzer for open genomics.
+ - It analyzes the eVai output files for variant annotation to filtering, preparating user reports and database and restapi human genomics.
  - **new version coming with lots of new features**
  
  ```
  cargo build
  ```
-
 
  ```
  variantannotator
@@ -27,12 +26,7 @@
  Options:
   -h, --help     Print help
   -V, --version  Print version
-
- ```
-
- - variantfiler 
  
- ```
  ibch/eVai-analyzer » ./target/debug/eVaianalyzer variant-analyzer ./data-repo/sample1.tsv ./data-repo/sampletest.tsv
  ibch/eVai-analyzer » ./target/debug/eVaianalyzer variant-filter ./data-repo/sample1.tsv ./data-repo/sampletest.tsv TTT
  ibch/eVai-analyzer » ./target/debug/eVaianalyzer analyzer ./data-repo/sample1.tsv ./data-repo/sampletest.tsv
