@@ -16,13 +16,13 @@ use std::io::{BufRead, BufReader};
 
 */
 
-pub fn variantdatabase(
-    path1: &str,
-    path2: &str,
-    databasename: &str,
-) -> Result<String, Box<dyn Error>> {
+pub fn variantdatabase(path1: &str, path2: &str) -> Result<String, Box<dyn Error>> {
     let fileopen = File::open(path1).expect("file not found");
     let fileread = BufReader::new(fileopen);
+    let binding = path1.to_string();
+    let filename = binding.split(".").collect::<Vec<_>>();
+    let filenamewrite = format!("{}.{}", filename[0].to_string(), "db");
+
     let mut filesplit: Vec<Genomeanalyzer> = Vec::new();
     let mut hashids: HashSet<String> = HashSet::new();
 
@@ -276,7 +276,7 @@ pub fn variantdatabase(
         }
     }
 
-    let variantdatabase = Connection::open(databasename)?;
+    let variantdatabase = Connection::open(filenamewrite)?;
     variantdatabase.execute(
         "create table if no exits variants(
             id integer primary key,

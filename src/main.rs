@@ -43,12 +43,8 @@ fn main() {
             let command = variantanalyzer(acmgfile, tsvfile, variant).unwrap();
             println!("The filtered variant file has been written:{}", command);
         }
-        Commands::VariantDatabase {
-            acmgfile,
-            tsvfile,
-            databasename,
-        } => {
-            let command = variantdatabase(acmgfile, tsvfile, databasename).unwrap();
+        Commands::VariantDatabase { acmgfile, tsvfile } => {
+            let command = variantdatabase(acmgfile, tsvfile).unwrap();
             println!("The variant database has been created:{}", command);
         }
         Commands::GTFAnalyze { gtffile } => {

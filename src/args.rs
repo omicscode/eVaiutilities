@@ -31,8 +31,6 @@ pub enum Commands {
         acmgfile: String,
         /// please provide the path to the tsv file
         tsvfile: String,
-        /// please provide the name of the database
-        databasename: String,
     },
     /// analyze the corresponding gtf
     GTFAnalyze {
