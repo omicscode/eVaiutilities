@@ -31,11 +31,11 @@ use clap::Parser;
 fn main() {
     let argsparse = CommandParse::parse();
     match &argsparse.command {
-        Commands::Analyzer { acmgfile, tsvfile } => {
+        Commands::VariantAnalyzer { acmgfile, tsvfile } => {
             let command = genomemap(acmgfile, tsvfile).unwrap();
             println!("The file has been converted: {:?}", command);
         }
-        Commands::Filter {
+        Commands::VariantFilter {
             acmgfile,
             tsvfile,
             variant,
@@ -43,7 +43,7 @@ fn main() {
             let command = variantanalyzer(acmgfile, tsvfile, variant).unwrap();
             println!("The filtered variant file has been written:{}", command);
         }
-        Commands::Database {
+        Commands::VariantDatabase {
             acmgfile,
             tsvfile,
             databasename,

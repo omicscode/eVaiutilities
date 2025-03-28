@@ -7,15 +7,16 @@
  cargo build
  ```
 
+
  ```
  variantannotator
 
  Usage: eVaianalyzer <COMMAND>
 
  Commands:
-  analyzer          analyzer for the variants
-  filter            filter the variants
-  database          create variant database
+  variant-analyzer  analyzer for the variants
+  variant-filter    filter the variants
+  variant-database  create variant database
   gtf-analyze       analyze the corresponding gtf
   variant-seq       prepare the variant seq annotation
   download-genome   download the human genome
@@ -32,8 +33,8 @@
  - variantfiler 
  
  ```
- ibch/eVai-analyzer » ./target/debug/eVaianalyzer analyzer ./data-repo/sample1.tsv ./data-repo/sampletest.tsv
- ibch/eVai-analyzer » ./target/debug/eVaianalyzer filter ./data-repo/sample1.tsv ./data-repo/sampletest.tsv TTT
+ ibch/eVai-analyzer » ./target/debug/eVaianalyzer variant-analyzer ./data-repo/sample1.tsv ./data-repo/sampletest.tsv
+ ibch/eVai-analyzer » ./target/debug/eVaianalyzer variant-filter ./data-repo/sample1.tsv ./data-repo/sampletest.tsv TTT
  ibch/eVai-analyzer » ./target/debug/eVaianalyzer acmg-transcript ./data-repo/sample1.tsv 
  ibch/eVai-analyzer » ./target/debug/eVaianalyzer gtf-analyze ./data-repo/samplegtf.gtf
  ibch/eVai-analyzer » ./target/debug/eVaianalyzer download-genome yes

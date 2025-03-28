@@ -1,6 +1,6 @@
-use crate::structfile::Combiner;
 use crate::structfile::Genomeanalyzer;
 use crate::structfile::Genomecapture;
+use crate::structfile::VariantCombine;
 use std::collections::HashSet;
 use std::error::Error;
 use std::fs::File;
@@ -159,16 +159,18 @@ pub fn genomemap(path1: &str, path2: &str) -> Result<String, Box<dyn Error>> {
         }
     }
 
-    let mut combineanalyzer: Vec<Combiner> = Vec::new();
+    let mut combineanalyzer: Vec<VariantCombine> = Vec::new();
 
     for hashid in hashids.iter() {
         for j in filesplit.iter() {
             for genomeiter in genomecapture.iter() {
                 if *hashid == j.priortranscript && genomeiter.othertranscripts.contains(hashid) {
-                    combineanalyzer.push(Combiner {
+                    combineanalyzer.push(VariantCombine {
                         chrom: j.chrom.clone(),
                         start: j.start.clone(),
                         stop: j.stop.clone(),
+                        alt: j.alt.clone(),
+                        generef: j.generef.clone(),
                         priortranscript: j.priortranscript.clone(),
                         hgvpc: j.hgvpc.clone(),
                         cannonical: j.cannonical.clone(),

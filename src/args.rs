@@ -10,14 +10,14 @@ pub struct CommandParse {
 #[derive(Subcommand, Debug)]
 pub enum Commands {
     /// analyzer for the variants
-    Analyzer {
+    VariantAnalyzer {
         /// provide the path to the acmg file
         acmgfile: String,
         /// provide the path to the tsv file
         tsvfile: String,
     },
     /// filter the variants
-    Filter {
+    VariantFilter {
         /// provides the path to the acmg file
         acmgfile: String,
         /// provides the path to the tsv file
@@ -26,7 +26,7 @@ pub enum Commands {
         variant: String,
     },
     /// create variant database
-    Database {
+    VariantDatabase {
         /// please provide the path to the acmg file
         acmgfile: String,
         /// please provide the path to the tsv file

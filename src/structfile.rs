@@ -132,10 +132,12 @@ pub struct Genomecapture {
 
 #[derive(Debug, Clone, PartialOrd, PartialEq)]
 
-pub struct Combiner {
+pub struct VariantCombine {
     pub chrom: String,
     pub start: String,
     pub stop: String,
+    pub generef: String,
+    pub alt: String,
     pub priortranscript: String,
     pub hgvpc: String,
     pub cannonical: String,
@@ -279,7 +281,7 @@ pub struct Transcript {
 
 #[derive(Debug, Clone, PartialOrd, PartialEq)]
 pub struct TranscriptEval {
-  pub transcript: String, 
-  pub start: usize, 
-  pub end: usize, 
+    pub transcript: String,
+    pub start: usize,
+    pub end: usize,
 }
