@@ -62,4 +62,27 @@ pub enum Commands {
         /// downstream location
         downstream: usize,
     },
+    /// search for the variant across population
+    PopulationVariantSearch {
+        /// provide the acmg directory
+        acmgdir: String,
+        /// provide the variant
+        variant: String,
+    },
+    /// search according to coordinates
+    CoordinateSearch {
+        /// provide the acmg file
+        acmgfile: String,
+        /// provide the coordinate
+        start: usize,
+        /// provide the end coordinate
+        end: usize,
+    },
+    /// search according to annotation
+    AnnotationSearch {
+        /// provide the path to acmg file
+        acmgfile: String,
+        /// search the annotation
+        genename: String,
+    },
 }

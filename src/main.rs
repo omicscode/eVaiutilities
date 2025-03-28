@@ -1,20 +1,26 @@
 mod acmgtranscript;
+mod annotation;
 mod args;
+mod coordinate;
 mod fastanalyzer;
 mod genomeanalyzer;
 mod genomedownload;
 mod gtfanalyzer;
+mod populationvariant;
 mod sequenceprofile;
 mod structfile;
 mod variantdatabase;
 mod variantfilter;
 use crate::acmgtranscript::acmgannotate;
+use crate::annotation::annotationsearch;
 use crate::args::CommandParse;
 use crate::args::Commands;
+use crate::coordinate::coordinatesearch;
 use crate::fastanalyzer::fastagtf;
 use crate::genomeanalyzer::genomemap;
 use crate::genomedownload::downloadgenome;
 use crate::gtfanalyzer::analyzegtf;
+use crate::populationvariant::population;
 use crate::sequenceprofile::sequence;
 use crate::variantdatabase::variantdatabase;
 use crate::variantfilter::variantanalyzer;
@@ -74,6 +80,22 @@ fn main() {
         } => {
             let command = sequence(acmgfile, fastafile, *upstream, *downstream).unwrap();
             println!("The sequences have been written:{:?}", command);
+        }
+        Commands::PopulationVariantSearch { acmgdir, variant } => {
+            let command = population(acmgdir, variant).unwrap();
+            println!("The command has finished:{}", command);
+        }
+        Commands::CoordinateSearch {
+            acmgfile,
+            start,
+            end,
+        } => {
+            let command = coordinatesearch(acmgfile, *start, *end).unwrap();
+            println!("The command has been finished:{}", command);
+        }
+        Commands::AnnotationSearch { acmgfile, genename } => {
+            let command = annotationsearch(acmgfile, genename).unwrap();
+            println!("The command has been finished:{}", command);
         }
     }
 }
