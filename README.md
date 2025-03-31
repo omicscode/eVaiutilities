@@ -9,9 +9,9 @@
  ```
  variantannotator
 
- Usage: eVaianalyzer <COMMAND>
+Usage: eVaianalyzer <COMMAND>
 
- Commands:
+Commands:
   variant-analyzer           analyzer for the variants
   variant-filter             filter the variants
   variant-database           create variant database
@@ -23,12 +23,12 @@
   population-variant-search  search for the variant across population
   coordinate-search          search according to coordinates
   annotation-search          search according to annotation
+  pathogenicity-filter       pathogenicity filter
   help                       Print this message or the help of the given subcommand(s)
 
- Options:
+Options:
   -h, --help     Print help
   -V, --version  Print version
-
  
  ibch/eVai-analyzer » ./target/debug/eVaianalyzer variant-analyzer ./data-repo/sample1.tsv ./data-repo/sampletest.tsv
  ibch/eVai-analyzer » ./target/debug/eVaianalyzer variant-filter ./data-repo/sample1.tsv ./data-repo/sampletest.tsv TTT

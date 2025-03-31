@@ -6,6 +6,7 @@ mod fastanalyzer;
 mod genomeanalyzer;
 mod genomedownload;
 mod gtfanalyzer;
+mod pathogenicity;
 mod populationvariant;
 mod sequenceprofile;
 mod structfile;
@@ -20,6 +21,7 @@ use crate::fastanalyzer::fastagtf;
 use crate::genomeanalyzer::genomemap;
 use crate::genomedownload::downloadgenome;
 use crate::gtfanalyzer::analyzegtf;
+use crate::pathogenicity::pathogenicityscore;
 use crate::populationvariant::population;
 use crate::sequenceprofile::sequence;
 use crate::variantdatabase::variantdatabase;
@@ -96,6 +98,10 @@ fn main() {
         Commands::AnnotationSearch { acmgfile, genename } => {
             let command = annotationsearch(acmgfile, genename).unwrap();
             println!("The command has been finished:{}", command);
+        }
+        Commands::PathogenicityFilter { acmgfile, value } => {
+            let command = pathogenicityscore(acmgfile, *value).unwrap();
+            println!("The command has completed:{}", command);
         }
     }
 }

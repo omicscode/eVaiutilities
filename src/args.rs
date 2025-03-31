@@ -85,4 +85,11 @@ pub enum Commands {
         /// search the annotation
         genename: String,
     },
+    /// pathogenicity filter
+    PathogenicityFilter {
+        /// provide the acmg file
+        acmgfile: String,
+        /// value
+        value: f32,
+    },
 }

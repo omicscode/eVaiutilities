@@ -275,6 +275,9 @@ pub struct FastaUpdown {
 
 pub struct Transcript {
     pub variant: String,
+    pub alt_allele: String,
+    pub start: usize,
+    pub end: usize,
     pub id: Vec<String>,
     pub additional: String,
 }
