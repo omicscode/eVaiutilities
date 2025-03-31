@@ -1,8 +1,7 @@
 # eVai-analyzer
  - eVai-analyzer for open genomics.
  - It analyzes the eVai output files for variant annotation to filtering, preparating user reports and database and annotator.
- - **new version coming with lots of new features**
- 
+
  ```
  cargo build
  ```
