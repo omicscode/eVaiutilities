@@ -61,6 +61,8 @@ pub enum Commands {
         upstream: usize,
         /// downstream location
         downstream: usize,
+        /// variant
+        variant: String,
     },
     /// search for the variant across population
     PopulationVariantSearch {

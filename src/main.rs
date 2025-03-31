@@ -79,8 +79,9 @@ fn main() {
             fastafile,
             upstream,
             downstream,
+            variant,
         } => {
-            let command = sequence(acmgfile, fastafile, *upstream, *downstream).unwrap();
+            let command = sequence(acmgfile, fastafile, *upstream, *downstream, variant).unwrap();
             println!("The sequences have been written:{:?}", command);
         }
         Commands::PopulationVariantSearch { acmgdir, variant } => {

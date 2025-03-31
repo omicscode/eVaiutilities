@@ -264,6 +264,16 @@ pub struct PriorTranscript {
 }
 
 #[derive(Debug, Clone, PartialOrd, PartialEq)]
+pub struct TranscriptExtract {
+    pub refallele: String,
+    pub altallele: String,
+    pub start: String,
+    pub end: String,
+    pub prior: String,
+    pub alternate: Vec<String>,
+}
+
+#[derive(Debug, Clone, PartialOrd, PartialEq)]
 pub struct FastaUpdown {
     pub header: String,
     pub sequence: String,

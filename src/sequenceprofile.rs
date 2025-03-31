@@ -1,7 +1,7 @@
 use crate::structfile::Fasta;
 use crate::structfile::FastaUpdown;
-use crate::structfile::PriorTranscript;
 use crate::structfile::TranscriptEval;
+use crate::structfile::TranscriptExtract;
 use std::error::Error;
 use std::fs::File;
 use std::io::{BufRead, BufReader, Write};
@@ -19,6 +19,7 @@ pub fn sequence(
     pathfasta: &str,
     upstream: usize,
     downstream: usize,
+    variant: &str,
 ) -> Result<String, Box<dyn Error>> {
     let fastafile = File::open(pathfasta).expect("file not present");
     let fastaread = BufReader::new(fastafile);
@@ -43,7 +44,7 @@ pub fn sequence(
 
     let acmgopen = File::open(pathacmg).expect("file not present");
     let acmgread = BufReader::new(acmgopen);
-    let mut priortranscript: Vec<PriorTranscript> = Vec::new();
+    let mut priortranscript: Vec<TranscriptExtract> = Vec::new();
     let mut priortranscripteval: Vec<TranscriptEval> = Vec::new();
 
     for i in acmgread.lines() {
@@ -58,15 +59,21 @@ pub fn sequence(
                 .into_iter()
                 .map(|x| x.replace(":null", ""))
                 .collect::<Vec<_>>();
-            priortranscript.push(PriorTranscript {
-                prior: linecut[5].clone(),
-                alternate: linegenome,
-            });
-            priortranscripteval.push(TranscriptEval {
-                transcript: linecut[5].clone(),
-                start: linecut[3].parse::<usize>().unwrap(),
-                end: linecut[4].parse::<usize>().unwrap(),
-            })
+            if linegenome[3] == variant {
+                priortranscript.push(TranscriptExtract {
+                    start: linecut[1].clone(),
+                    end: linecut[2].clone(),
+                    refallele: linecut[3].clone(),
+                    altallele: linecut[4].clone(),
+                    prior: linecut[5].clone(),
+                    alternate: linegenome,
+                });
+                priortranscripteval.push(TranscriptEval {
+                    transcript: linecut[5].clone(),
+                    start: linecut[3].parse::<usize>().unwrap(),
+                    end: linecut[4].parse::<usize>().unwrap(),
+                });
+            }
         }
     }
 
@@ -123,6 +130,17 @@ pub fn sequence(
 
     for i in alternatesequencewrite.iter() {
         writeln!(alternatesequenceout, ">{}\n{}", i.header, i.sequence).expect("line not present");
+    }
+
+    let mut transcriptall =
+        File::create("annotated-transcript-variant.txt").expect("file not found");
+    for i in priortranscript.iter() {
+        writeln!(
+            transcriptall,
+            "{}\t{}\t{}\t{}\t{}\t{:?}",
+            i.refallele, i.altallele, i.start, i.end, i.prior, i.alternate
+        )
+        .expect("file not present");
     }
 
     Ok("The sequences have been written".to_string())
