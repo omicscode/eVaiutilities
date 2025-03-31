@@ -1,10 +1,10 @@
 use crate::structfile::Genomeanalyzer;
 use std::error::Error;
+use std::fs;
 use std::fs::File;
 use std::io::BufRead;
 use std::io::BufReader;
 use std::io::Write;
-use walkdir::WalkDir;
 
 /*
 
@@ -22,9 +22,10 @@ pub fn annotationsearch(path1: &str, genename: &str) -> Result<String, Box<dyn E
     let filename: Vec<_> = binding.split(".").collect::<Vec<_>>();
     let filenamewrite: String = format!("{}-{}", filename[0].to_string(), "variantfilter.txt");
 
-    for i in WalkDir::new(path1) {
-        let openfile = i?.file_name().to_string_lossy();
-        let fileopen = File::open(openfile).expect("file not found");
+    for i in fs::read_dir(path1)? {
+        let openfile = i?.path();
+        let path_str = openfile.to_str().unwrap();
+        let fileopen = File::open(path_str).expect("file not found");
         let fileread = BufReader::new(fileopen);
 
         for i in fileread.lines() {
@@ -201,7 +202,7 @@ pub fn annotationsearch(path1: &str, genename: &str) -> Result<String, Box<dyn E
             i.bp6,
             i.bp7,
             i.bp8
-        );
+        ).expect("the file not present");
     }
 
     Ok("The result has been written".to_string())

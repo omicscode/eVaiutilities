@@ -13,19 +13,23 @@
  Usage: eVaianalyzer <COMMAND>
 
  Commands:
-  variant-analyzer  analyzer for the variants
-  variant-filter    filter the variants
-  variant-database  create variant database
-  gtf-analyze       analyze the corresponding gtf
-  variant-seq       prepare the variant seq annotation
-  download-genome   download the human genome
-  acmg-transcript   variant-transcriptids
-  sequence-profile  sequence profiling
-  help              Print this message or the help of the given subcommand(s)
+  variant-analyzer           analyzer for the variants
+  variant-filter             filter the variants
+  variant-database           create variant database
+  gtf-analyze                analyze the corresponding gtf
+  variant-seq                prepare the variant seq annotation
+  download-genome            download the human genome
+  acmg-transcript            variant-transcriptids
+  sequence-profile           sequence profiling
+  population-variant-search  search for the variant across population
+  coordinate-search          search according to coordinates
+  annotation-search          search according to annotation
+  help                       Print this message or the help of the given subcommand(s)
 
  Options:
   -h, --help     Print help
   -V, --version  Print version
+
  
  ibch/eVai-analyzer » ./target/debug/eVaianalyzer variant-analyzer ./data-repo/sample1.tsv ./data-repo/sampletest.tsv
  ibch/eVai-analyzer » ./target/debug/eVaianalyzer variant-filter ./data-repo/sample1.tsv ./data-repo/sampletest.tsv TTT
