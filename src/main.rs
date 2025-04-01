@@ -84,20 +84,21 @@ fn main() {
             let command = sequence(acmgfile, fastafile, *upstream, *downstream, variant).unwrap();
             println!("The sequences have been written:{:?}", command);
         }
-        Commands::PopulationVariantSearch { acmgdir, variant } => {
-            let command = population(acmgdir, variant).unwrap();
+        Commands::PopulationVariantSearch { acmgdir, variant, name } => {
+            let command = population(acmgdir, variant, name.to_string()).unwrap();
             println!("The command has finished:{}", command);
         }
         Commands::CoordinateSearch {
             acmgfile,
             start,
             end,
+            name,
         } => {
-            let command = coordinatesearch(acmgfile, *start, *end).unwrap();
+            let command = coordinatesearch(acmgfile, *start, *end, name).unwrap();
             println!("The command has been finished:{}", command);
         }
-        Commands::AnnotationSearch { acmgfile, genename } => {
-            let command = annotationsearch(acmgfile, genename).unwrap();
+        Commands::AnnotationSearch { acmgfile, genename, name } => {
+            let command = annotationsearch(acmgfile, genename, name).unwrap();
             println!("The command has been finished:{}", command);
         }
         Commands::PathogenicityFilter { acmgfile, value } => {

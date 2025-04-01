@@ -70,6 +70,8 @@ pub enum Commands {
         acmgdir: String,
         /// provide the variant
         variant: String,
+        /// analysis name
+        name: String, 
     },
     /// search according to coordinates
     CoordinateSearch {
@@ -79,6 +81,8 @@ pub enum Commands {
         start: usize,
         /// provide the end coordinate
         end: usize,
+        /// analysis name
+        name: String,
     },
     /// search according to annotation
     AnnotationSearch {
@@ -86,6 +90,8 @@ pub enum Commands {
         acmgfile: String,
         /// search the annotation
         genename: String,
+        /// analysis name
+        name: String, 
     },
     /// pathogenicity filter
     PathogenicityFilter {

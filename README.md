@@ -39,6 +39,7 @@ Options:
  ibch/eVai-analyzer » ./target/debug/eVaianalyzer download-genome yes
  ibch/eVai-analyzer » ./target/debug/eVaianalyzer sequence-profile ./data-repo/sample1.tsv ./data-repo/sample.fasta 10 10
  ibch/eVai-analyzer » ./target/debug/eVaianalyzer variant-seq ./data-repo/sample1.tsv ./data-repo/sample.fasta
+ ibch/eVai-analyzer » ./target/debug/eVaianalyzer population-variant-search ./population-analysis G samplename
  ```
 
  Gaurav Sablok \

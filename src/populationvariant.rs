@@ -1,3 +1,4 @@
+use crate::structfile::PopulationFilter;
 use crate::structfile::Genomeanalyzer;
 use std::error::Error;
 use std::fs;
@@ -16,12 +17,10 @@ use std::io::Write;
 
 */
 
-pub fn population(path1: &str, variant: &str) -> Result<String, Box<dyn Error>> {
+pub fn population(path1: &str, variant: &str, analysisname: String) -> Result<String, Box<dyn Error>> {
     let mut filesplit: Vec<Genomeanalyzer> = Vec::new();
-    let binding = path1.to_string();
-    let filename: Vec<_> = binding.split(".").collect::<Vec<_>>();
-    let filenamewrite: String = format!("{}-{}", filename[0].to_string(), "variantfilter.txt");
-
+    let mut samplestring: Vec<_> = Vec::new();
+    
     for i in fs::read_dir(path1)? {
         let openfile = i?.path();
         let path_str = openfile.to_str().unwrap();
@@ -29,10 +28,12 @@ pub fn population(path1: &str, variant: &str) -> Result<String, Box<dyn Error>> 
         let fileread = BufReader::new(fileopen);
         for i in fileread.lines() {
             let line = i.expect("line not present");
-            if line.starts_with("#") {
-                continue;
+            if line.starts_with("#") && line.contains("SAMPLE"){
+                let new = line.split("\t").collect::<Vec<_>>().into_iter().map(|x|x.replace("#","")).collect::<Vec<_>>()[0].to_string();
+                samplestring.push(new);
             }
-            if !line.starts_with("#") {
+             if !line.starts_with("#") 
+             {
                 let linevec = line.split("\t").collect::<Vec<_>>();
                 filesplit.push(Genomeanalyzer {
                     chrom: linevec[0].to_string(),
@@ -88,12 +89,14 @@ pub fn population(path1: &str, variant: &str) -> Result<String, Box<dyn Error>> 
             }
         }
     }
-
-    let mut filtervariant: Vec<Genomeanalyzer> = Vec::new();
+    
+    let mut filtervariant: Vec<PopulationFilter> = Vec::new();
 
     for i in filesplit.iter() {
+        for j in samplestring.iter() {
         if i.generef == variant {
-            filtervariant.push(Genomeanalyzer {
+            filtervariant.push(PopulationFilter {
+                sample: j.clone(),
                 chrom: i.chrom.clone(),
                 start: i.start.clone(),
                 stop: i.stop.clone(),
@@ -146,13 +149,19 @@ pub fn population(path1: &str, variant: &str) -> Result<String, Box<dyn Error>> 
             });
         }
     }
+    }
 
-    let mut filewrite = File::create(filenamewrite).expect("file not present");
+    let mut filewrite = File::create(analysisname).expect("file not present");
+    writeln!(
+            filewrite,
+            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}", "sample", "chrom", "start", "stop", "generef", "alt", "priortranscript", "hgvsp", "hgvpc", "cannonical", "othertranscript", "genotype", "gene", "phenotype", "medgencui", "inheritance", "finalclass", "score_pathogen", "flag", "note", "vcforig", "pvs1", "ps1", "ps2", "ps3", "ps4", "pm1", "pm2", "pm3", "pm4", "pm5", "pm6", "pp1", "pp2", "pp3", "pp4", "pp5", "ba1", "bs1", "bs2", "bs3", "bs4", "bp1", "bp2", "bp3", "bp4", "bp5", "bp6", "bp7", "bp8").expect("file not present");
+
 
     for i in filtervariant.iter() {
         writeln!(
             filewrite,
-            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}",
+            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}",
+            i.sample,
             i.chrom,
             i.start,
             i.stop,
