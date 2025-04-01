@@ -17,23 +17,31 @@ use std::io::Write;
 
 */
 
-pub fn population(path1: &str, variant: &str, analysisname: String) -> Result<String, Box<dyn Error>> {
+pub fn population(
+    path1: &str,
+    variant: &str,
+    analysisname: String,
+) -> Result<String, Box<dyn Error>> {
     let mut filesplit: Vec<Genomeanalyzer> = Vec::new();
-    let mut samplestring: Vec<_> = Vec::new();
-    
+    let mut fileid: Vec<_> = Vec::new();
     for i in fs::read_dir(path1)? {
         let openfile = i?.path();
         let path_str = openfile.to_str().unwrap();
         let fileopen = File::open(path_str).expect("file not found");
         let fileread = BufReader::new(fileopen);
-        for i in fileread.lines() {
+            for i in fileread.lines() {
             let line = i.expect("line not present");
-            if line.starts_with("#") && line.contains("SAMPLE"){
-                let new = line.split("\t").collect::<Vec<_>>().into_iter().map(|x|x.replace("#","")).collect::<Vec<_>>()[0].to_string();
-                samplestring.push(new);
+                if line.starts_with("#") && line.contains("SAMPLE") {
+                let stringclone = line
+                    .split("\t")
+                    .collect::<Vec<_>>()
+                    .into_iter()
+                    .map(|x| x.replace("#", ""))
+                    .collect::<Vec<_>>()[0]
+                    .to_string();
+                fileid.push(stringclone);
             }
-             if !line.starts_with("#") 
-             {
+            if !line.starts_with("#") {
                 let linevec = line.split("\t").collect::<Vec<_>>();
                 filesplit.push(Genomeanalyzer {
                     chrom: linevec[0].to_string(),
@@ -86,82 +94,133 @@ pub fn population(path1: &str, variant: &str, analysisname: String) -> Result<St
                     bp7: linevec[45].to_string(),
                     bp8: linevec[46].to_string(),
                 });
+                }
             }
         }
-    }
-    
+
     let mut filtervariant: Vec<PopulationFilter> = Vec::new();
 
-    for i in filesplit.iter() {
-        for j in samplestring.iter() {
-        if i.generef == variant {
-            filtervariant.push(PopulationFilter {
-                sample: j.clone(),
-                chrom: i.chrom.clone(),
-                start: i.start.clone(),
-                stop: i.stop.clone(),
-                generef: i.generef.clone(),
-                alt: i.alt.clone(),
-                priortranscript: i.priortranscript.clone(),
-                hgvsp: i.hgvsp.clone(),
-                hgvpc: i.hgvpc.clone(),
-                cannonical: i.cannonical.clone(),
-                othertranscript: i.othertranscript.clone(),
-                genotype: i.genotype.clone(),
-                gene: i.gene.clone(),
-                phenotype: i.phenotype.clone(),
-                medgencui: i.medgencui.clone(),
-                inheritance: i.inheritance.clone(),
-                finalclass: i.finalclass.clone(),
-                score_pathogen: i.score_pathogen.clone(),
-                flag: i.flag.clone(),
-                note: i.note.clone(),
-                vcforig: i.vcforig.clone(),
-                pvs1: i.pvs1.clone(),
-                ps1: i.ps1.clone(),
-                ps2: i.ps2.clone(),
-                ps3: i.ps3.clone(),
-                ps4: i.ps4.clone(),
-                pm1: i.pm1.clone(),
-                pm2: i.pm2.clone(),
-                pm3: i.pm3.clone(),
-                pm4: i.pm4.clone(),
-                pm5: i.pm5.clone(),
-                pm6: i.pm6.clone(),
-                pp1: i.pp1.clone(),
-                pp2: i.pp2.clone(),
-                pp3: i.pp3.clone(),
-                pp4: i.pp4.clone(),
-                pp5: i.pp5.clone(),
-                ba1: i.ba1.clone(),
-                bs1: i.bs1.clone(),
-                bs2: i.bs2.clone(),
-                bs3: i.bs3.clone(),
-                bs4: i.bs4.clone(),
-                bp1: i.bp1.clone(),
-                bp2: i.bp2.clone(),
-                bp3: i.bp3.clone(),
-                bp4: i.bp4.clone(),
-                bp5: i.bp5.clone(),
-                bp6: i.bp6.clone(),
-                bp7: i.bp7.clone(),
-                bp8: i.bp8.clone(),
-            });
+        for j in filesplit.iter() {
+        filtervariant.push(PopulationFilter{
+            chrom: j.chrom.clone(),
+                start: j.start.clone(),
+                stop: j.stop.clone(),
+                generef: j.generef.clone(),
+                alt: j.alt.clone(),
+                priortranscript: j.priortranscript.clone(),
+                hgvsp: j.hgvsp.clone(),
+                hgvpc: j.hgvpc.clone(),
+                cannonical: j.cannonical.clone(),
+                othertranscript: j.othertranscript.clone(),
+                genotype: j.genotype.clone(),
+                gene: j.gene.clone(),
+                phenotype: j.phenotype.clone(),
+                medgencui: j.medgencui.clone(),
+                inheritance: j.inheritance.clone(),
+                finalclass: j.finalclass.clone(),
+                score_pathogen: j.score_pathogen.clone(),
+                flag: j.flag.clone(),
+                note: j.note.clone(),
+                vcforig: j.vcforig.clone(),
+                pvs1: j.pvs1.clone(),
+                ps1: j.ps1.clone(),
+                ps2: j.ps2.clone(),
+                ps3: j.ps3.clone(),
+                ps4: j.ps4.clone(),
+                pm1: j.pm1.clone(),
+                pm2: j.pm2.clone(),
+                pm3: j.pm3.clone(),
+                pm4: j.pm4.clone(),
+                pm5: j.pm5.clone(),
+                pm6: j.pm6.clone(),
+                pp1: j.pp1.clone(),
+                pp2: j.pp2.clone(),
+                pp3: j.pp3.clone(),
+                pp4: j.pp4.clone(),
+                pp5: j.pp5.clone(),
+                ba1: j.ba1.clone(),
+                bs1: j.bs1.clone(),
+                bs2: j.bs2.clone(),
+                bs3: j.bs3.clone(),
+                bs4: j.bs4.clone(),
+                bp1: j.bp1.clone(),
+                bp2: j.bp2.clone(),
+                bp3: j.bp3.clone(),
+                bp4: j.bp4.clone(),
+                bp5: j.bp5.clone(),
+                bp6: j.bp6.clone(),
+                bp7: j.bp7.clone(),
+                bp8: j.bp8.clone(),
+        });
+    }
+
+   let mut variantwrite:Vec<PopulationFilter> = Vec::new();
+    
+    for i in filtervariant.iter() {
+            if i.generef == variant {
+                variantwrite.push(PopulationFilter {
+                    chrom: i.chrom.clone(),
+                    start: i.start.clone(),
+                    stop: i.stop.clone(),
+                    generef: i.generef.clone(),
+                    alt: i.alt.clone(),
+                    priortranscript: i.priortranscript.clone(),
+                    hgvsp: i.hgvsp.clone(),
+                    hgvpc: i.hgvpc.clone(),
+                    cannonical: i.cannonical.clone(),
+                    othertranscript: i.othertranscript.clone(),
+                    genotype: i.genotype.clone(),
+                    gene: i.gene.clone(),
+                    phenotype: i.phenotype.clone(),
+                    medgencui: i.medgencui.clone(),
+                    inheritance: i.inheritance.clone(),
+                    finalclass: i.finalclass.clone(),
+                    score_pathogen: i.score_pathogen.clone(),
+                    flag: i.flag.clone(),
+                    note: i.note.clone(),
+                    vcforig: i.vcforig.clone(),
+                    pvs1: i.pvs1.clone(),
+                    ps1: i.ps1.clone(),
+                    ps2: i.ps2.clone(),
+                    ps3: i.ps3.clone(),
+                    ps4: i.ps4.clone(),
+                    pm1: i.pm1.clone(),
+                    pm2: i.pm2.clone(),
+                    pm3: i.pm3.clone(),
+                    pm4: i.pm4.clone(),
+                    pm5: i.pm5.clone(),
+                    pm6: i.pm6.clone(),
+                    pp1: i.pp1.clone(),
+                    pp2: i.pp2.clone(),
+                    pp3: i.pp3.clone(),
+                    pp4: i.pp4.clone(),
+                    pp5: i.pp5.clone(),
+                    ba1: i.ba1.clone(),
+                    bs1: i.bs1.clone(),
+                    bs2: i.bs2.clone(),
+                    bs3: i.bs3.clone(),
+                    bs4: i.bs4.clone(),
+                    bp1: i.bp1.clone(),
+                    bp2: i.bp2.clone(),
+                    bp3: i.bp3.clone(),
+                    bp4: i.bp4.clone(),
+                    bp5: i.bp5.clone(),
+                    bp6: i.bp6.clone(),
+                    bp7: i.bp7.clone(),
+                    bp8: i.bp8.clone(),
+                });
+            }
         }
-    }
-    }
 
     let mut filewrite = File::create(analysisname).expect("file not present");
     writeln!(
             filewrite,
-            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}", "sample", "chrom", "start", "stop", "generef", "alt", "priortranscript", "hgvsp", "hgvpc", "cannonical", "othertranscript", "genotype", "gene", "phenotype", "medgencui", "inheritance", "finalclass", "score_pathogen", "flag", "note", "vcforig", "pvs1", "ps1", "ps2", "ps3", "ps4", "pm1", "pm2", "pm3", "pm4", "pm5", "pm6", "pp1", "pp2", "pp3", "pp4", "pp5", "ba1", "bs1", "bs2", "bs3", "bs4", "bp1", "bp2", "bp3", "bp4", "bp5", "bp6", "bp7", "bp8").expect("file not present");
+            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}", "chrom", "start", "stop", "generef", "alt", "priortranscript", "hgvsp", "hgvpc", "cannonical", "othertranscript", "genotype", "gene", "phenotype", "medgencui", "inheritance", "finalclass", "score_pathogen", "flag", "note", "vcforig", "pvs1", "ps1", "ps2", "ps3", "ps4", "pm1", "pm2", "pm3", "pm4", "pm5", "pm6", "pp1", "pp2", "pp3", "pp4", "pp5", "ba1", "bs1", "bs2", "bs3", "bs4", "bp1", "bp2", "bp3", "bp4", "bp5", "bp6", "bp7", "bp8").expect("file not present");
 
-
-    for i in filtervariant.iter() {
+    for i in variantwrite.iter() {
         writeln!(
             filewrite,
-            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}",
-            i.sample,
+            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}",
             i.chrom,
             i.start,
             i.stop,

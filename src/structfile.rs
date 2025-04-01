@@ -70,7 +70,6 @@ pub struct Genomeanalyzer {
 #[derive(Debug, Clone, PartialOrd, PartialEq)]
 
 pub struct PopulationFilter {
-    pub sample: String, 
     pub chrom: String,
     pub start: String,
     pub stop: String,
