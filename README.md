@@ -2,7 +2,9 @@
  - eVai-analyzer for open genomics.
  - It supports all versions of eVai.
  - It analyzes the eVai output files for variant annotation to filtering, preparating user reports and database and annotator and more.
- - It analyses the data from both older and newer version. See the example folder for the older and the newer version files. 
+ - It analyses the data from both older and newer version. See the example folder for the older and the newer version files.
+ - It provides the population scale variant searching given a folder according to the variant, annotation, transcript, gene, and coordinates.
+ - In a new release you will have Fst, population maps and all integrated in the single RUST code. 
 
  ```
  cargo build
