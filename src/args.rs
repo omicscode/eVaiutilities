@@ -1,6 +1,16 @@
 use clap::{Parser, Subcommand};
 #[derive(Debug, Parser)]
-#[command(name = "variantannotator", version = "1.0", about = "variantannotator")]
+#[command(
+    name = "variantannotator",
+    version = "1.0",
+    about = "annotating and analyzing eVai results.
+
+      ************************************************
+      Gaurav Sablok, IBCH, PAN, Poznan, Poland,
+      https://portal.ichb.pl/laboratory-of-genomics/.
+      Email: gsablok@ibch.poznan.pl
+     **************************************************"
+)]
 pub struct CommandParse {
     /// subcommands for the specific actions
     #[command(subcommand)]
@@ -142,6 +152,15 @@ pub enum Commands {
     },
     /// search by the specific transcript
     TranscriptSearch {
+        /// provide the acmg directory
+        acmgdir: String,
+        /// provide the transcript name
+        transcript: String,
+        /// name of the analysis
+        name: String,
+    },
+    /// search by the specific transcript older
+    TranscriptSearcholder {
         /// provide the acmg directory
         acmgdir: String,
         /// provide the transcript name

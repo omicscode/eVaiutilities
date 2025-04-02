@@ -12,21 +12,22 @@ use std::io::Write;
  Instytut Chemii Bioorganicznej
  Polskiej Akademii Nauk
  ul. Noskowskiego 12/14 | 61-704, Poznań
- Date: 2025-3-31
-
+ Date: 2025-4-2
 */
 
-pub fn pathogenicityscoreolder(
+pub fn transcriptsearcholder(
     path1: &str,
-    value: f32,
-    dirname: &str,
+    transcriptname: &str,
+    analysisname: &str,
 ) -> Result<String, Box<dyn Error>> {
     let mut filesplit: Vec<GenomeanalyzerOlder> = Vec::new();
+
     for i in fs::read_dir(path1)? {
         let openfile = i?.path();
         let path_str = openfile.to_str().unwrap();
         let fileopen = File::open(path_str).expect("file not found");
         let fileread = BufReader::new(fileopen);
+
         for i in fileread.lines() {
             let line = i.expect("line not present");
             if line.starts_with("#") {
@@ -91,10 +92,7 @@ pub fn pathogenicityscoreolder(
     let mut filtervariant: Vec<GenomeanalyzerOlder> = Vec::new();
 
     for i in filesplit.iter() {
-        if i.score_pathogen == "n.a" {
-            continue;
-        } else if i.score_pathogen.parse::<f32>().unwrap().abs() == value.abs() {
-            println!("{}", i.score_pathogen.parse::<f64>().unwrap());
+        if i.priortranscript == transcriptname {
             filtervariant.push(GenomeanalyzerOlder {
                 chrom: i.chrom.clone(),
                 start: i.start.clone(),
@@ -147,10 +145,11 @@ pub fn pathogenicityscoreolder(
             });
         }
     }
-    let mut filewrite = File::create(dirname).expect("file not present");
+    let mut filewrite = File::create(analysisname).expect("file not present");
     writeln!(
             filewrite,
             "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}", "sample", "chrom", "start", "stop", "generef", "alt", "priortranscript", "hgvsp", "hgvpc", "cannonical", "othertranscript", "genotype", "gene", "phenotype", "medgencui", "inheritance", "finalclass", "score_pathogen", "flag", "note", "pvs1", "ps1", "ps2", "ps3", "ps4", "pm1", "pm2", "pm3", "pm4", "pm5", "pm6", "pp1", "pp2", "pp3", "pp4", "pp5", "ba1", "bs1", "bs2", "bs3", "bs4", "bp1", "bp2", "bp3", "bp4", "bp5", "bp6", "bp7", "bp8").expect("file not present");
+
     for i in filtervariant.iter() {
         writeln!(
             filewrite,
@@ -203,7 +202,7 @@ pub fn pathogenicityscoreolder(
             i.bp6,
             i.bp7,
             i.bp8
-        ).expect("file not present");
+        ).expect("the file not present");
     }
 
     Ok("The result has been written".to_string())

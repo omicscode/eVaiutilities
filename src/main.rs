@@ -15,6 +15,7 @@ mod populationvariantolder;
 mod sequenceprofile;
 mod structfile;
 mod transcript;
+mod transcriptolder;
 mod variantdatabase;
 mod variantfilter;
 use crate::acmgtranscript::acmgannotate;
@@ -34,6 +35,7 @@ use crate::populationvariant::population;
 use crate::populationvariantolder::populationolder;
 use crate::sequenceprofile::sequence;
 use crate::transcript::transcriptsearch;
+use crate::transcriptolder::transcriptsearcholder;
 use crate::variantdatabase::variantdatabase;
 use crate::variantfilter::variantanalyzer;
 use clap::Parser;
@@ -167,6 +169,17 @@ fn main() {
         } => {
             let command = transcriptsearch(acmgdir, transcript, name).unwrap();
             println!("The command has been completed:{}", command);
+        }
+        Commands::TranscriptSearcholder {
+            acmgdir,
+            transcript,
+            name,
+        } => {
+            let command = transcriptsearcholder(acmgdir, transcript, name).unwrap();
+            println!(
+                "The command has finished and the files have been written:{}",
+                command
+            );
         }
     }
 }
