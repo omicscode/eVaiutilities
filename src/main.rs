@@ -89,20 +89,20 @@ fn main() {
             println!("The command has finished:{}", command);
         }
         Commands::CoordinateSearch {
-            acmgfile,
+            acmgdir,
             start,
             end,
             name,
         } => {
-            let command = coordinatesearch(acmgfile, *start, *end, name).unwrap();
+            let command = coordinatesearch(acmgdir, *start, *end, name).unwrap();
             println!("The command has been finished:{}", command);
         }
-        Commands::AnnotationSearch { acmgfile, genename, name } => {
-            let command = annotationsearch(acmgfile, genename, name).unwrap();
+        Commands::AnnotationSearch { acmgdir, genename, name } => {
+            let command = annotationsearch(acmgdir, genename, name).unwrap();
             println!("The command has been finished:{}", command);
         }
-        Commands::PathogenicityFilter { acmgfile, value } => {
-            let command = pathogenicityscore(acmgfile, *value).unwrap();
+        Commands::PathogenicityFilter { acmgdir, value, name } => {
+            let command = pathogenicityscore(acmgdir, *value, name).unwrap();
             println!("The command has completed:{}", command);
         }
     }

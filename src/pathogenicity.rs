@@ -16,12 +16,8 @@ use std::io::Write;
 
 */
 
-pub fn pathogenicityscore(path1: &str, value: f32) -> Result<String, Box<dyn Error>> {
+pub fn pathogenicityscore(path1: &str, value: f32, dirname: &str) -> Result<String, Box<dyn Error>> {
     let mut filesplit: Vec<Genomeanalyzer> = Vec::new();
-    let binding = path1.to_string();
-    let filename: Vec<_> = binding.split(".").collect::<Vec<_>>();
-    let filenamewrite: String = format!("{}-{}", filename[0].to_string(), "variantfilter.txt");
-
     for i in fs::read_dir(path1)? {
         let openfile = i?.path();
         let path_str = openfile.to_str().unwrap();
@@ -47,52 +43,57 @@ pub fn pathogenicityscore(path1: &str, value: f32) -> Result<String, Box<dyn Err
                     othertranscript: linevec[9].to_string(),
                     genotype: linevec[10].to_string(),
                     gene: linevec[11].to_string(),
-                    phenotype: linevec[11].to_string(),
-                    medgencui: linevec[12].to_string(),
-                    inheritance: linevec[13].to_string(),
-                    finalclass: linevec[14].to_string(),
-                    score_pathogen: linevec[15].to_string(),
-                    flag: linevec[16].to_string(),
-                    note: linevec[17].to_string(),
-                    vcforig: linevec[18].to_string(),
-                    pvs1: linevec[19].to_string(),
-                    ps1: linevec[20].to_string(),
-                    ps2: linevec[21].to_string(),
-                    ps3: linevec[22].to_string(),
-                    ps4: linevec[23].to_string(),
-                    pm1: linevec[23].to_string(),
-                    pm2: linevec[24].to_string(),
-                    pm3: linevec[25].to_string(),
-                    pm4: linevec[26].to_string(),
-                    pm5: linevec[27].to_string(),
-                    pm6: linevec[28].to_string(),
-                    pp1: linevec[29].to_string(),
-                    pp2: linevec[30].to_string(),
-                    pp3: linevec[31].to_string(),
-                    pp4: linevec[32].to_string(),
-                    pp5: linevec[33].to_string(),
-                    ba1: linevec[34].to_string(),
-                    bs1: linevec[35].to_string(),
-                    bs2: linevec[36].to_string(),
-                    bs3: linevec[37].to_string(),
-                    bs4: linevec[38].to_string(),
-                    bp1: linevec[39].to_string(),
-                    bp2: linevec[40].to_string(),
-                    bp3: linevec[41].to_string(),
-                    bp4: linevec[42].to_string(),
-                    bp5: linevec[43].to_string(),
-                    bp6: linevec[44].to_string(),
-                    bp7: linevec[45].to_string(),
-                    bp8: linevec[46].to_string(),
+                    phenotype: linevec[12].to_string(),
+                    medgencui: linevec[13].to_string(),
+                    inheritance: linevec[14].to_string(),
+                    finalclass: linevec[15].to_string(),
+                    score_pathogen: linevec[16].to_string(),
+                    flag: linevec[17].to_string(),
+                    note: linevec[18].to_string(),
+                    vcforig: linevec[19].to_string(),
+                    pvs1: linevec[20].to_string(),
+                    ps1: linevec[21].to_string(),
+                    ps2: linevec[22].to_string(),
+                    ps3: linevec[23].to_string(),
+                    ps4: linevec[24].to_string(),
+                    pm1: linevec[25].to_string(),
+                    pm2: linevec[26].to_string(),
+                    pm3: linevec[27].to_string(),
+                    pm4: linevec[28].to_string(),
+                    pm5: linevec[29].to_string(),
+                    pm6: linevec[30].to_string(),
+                    pp1: linevec[31].to_string(),
+                    pp2: linevec[32].to_string(),
+                    pp3: linevec[33].to_string(),
+                    pp4: linevec[34].to_string(),
+                    pp5: linevec[35].to_string(),
+                    ba1: linevec[36].to_string(),
+                    bs1: linevec[37].to_string(),
+                    bs2: linevec[38].to_string(),
+                    bs3: linevec[39].to_string(),
+                    bs4: linevec[40].to_string(),
+                    bp1: linevec[41].to_string(),
+                    bp2: linevec[42].to_string(),
+                    bp3: linevec[43].to_string(),
+                    bp4: linevec[44].to_string(),
+                    bp5: linevec[45].to_string(),
+                    bp6: linevec[46].to_string(),
+                    bp7: linevec[47].to_string(),
+                    bp8: linevec[48].to_string(),
                 });
             }
         }
     }
 
+    println!("{:?}", filesplit);
+
     let mut filtervariant: Vec<Genomeanalyzer> = Vec::new();
 
     for i in filesplit.iter() {
-        if i.score_pathogen.parse::<f32>().unwrap().abs() == value.abs() {
+        if i.score_pathogen == "n.a" {
+            continue;
+        } else if i.score_pathogen.parse::<f32>().unwrap().abs() == value.abs() {
+            println!("{}", i.score_pathogen.parse::<f64>().unwrap());
             filtervariant.push(Genomeanalyzer {
                 chrom: i.chrom.clone(),
                 start: i.start.clone(),
@@ -146,7 +147,7 @@ pub fn pathogenicityscore(path1: &str, value: f32) -> Result<String, Box<dyn Err
             });
         }
     }
-    let mut filewrite = File::create(filenamewrite).expect("file not present");
+    let mut filewrite = File::create(dirname).expect("file not present");
 
     for i in filtervariant.iter() {
         writeln!(

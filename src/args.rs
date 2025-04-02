@@ -75,8 +75,8 @@ pub enum Commands {
     },
     /// search according to coordinates
     CoordinateSearch {
-        /// provide the acmg file
-        acmgfile: String,
+        /// provide the acmg directory
+        acmgdir: String,
         /// provide the coordinate
         start: usize,
         /// provide the end coordinate
@@ -86,8 +86,8 @@ pub enum Commands {
     },
     /// search according to annotation
     AnnotationSearch {
-        /// provide the path to acmg file
-        acmgfile: String,
+        /// provide the acmg directory
+        acmgdir: String,
         /// search the annotation
         genename: String,
         /// analysis name
@@ -95,9 +95,11 @@ pub enum Commands {
     },
     /// pathogenicity filter
     PathogenicityFilter {
-        /// provide the acmg file
-        acmgfile: String,
+        /// provide the acmg dir
+        acmgdir: String,
         /// value
         value: f32,
+        /// analysis name
+        name: String,
     },
 }
