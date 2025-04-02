@@ -30,17 +30,17 @@ Options:
   -h, --help     Print help
   -V, --version  Print version
  
- ibch/eVai-analyzer » ./target/debug/eVaianalyzer variant-analyzer ./data-repo/sample1.tsv ./data-repo/sampletest.tsv
- ibch/eVai-analyzer » ./target/debug/eVaianalyzer variant-filter ./data-repo/sample1.tsv ./data-repo/sampletest.tsv TTT
- ibch/eVai-analyzer » ./target/debug/eVaianalyzer analyzer ./data-repo/sample1.tsv ./data-repo/sampletest.tsv
- ibch/eVai-analyzer » ./target/debug/eVaianalyzer filter ./data-repo/sample1.tsv ./data-repo/sampletest.tsv TTT
- ibch/eVai-analyzer » ./target/debug/eVaianalyzer acmg-transcript ./data-repo/sample1.tsv 
- ibch/eVai-analyzer » ./target/debug/eVaianalyzer gtf-analyze ./data-repo/samplegtf.gtf
- ibch/eVai-analyzer » ./target/debug/eVaianalyzer download-genome yes
- ibch/eVai-analyzer » ./target/debug/eVaianalyzer sequence-profile ./data-repo/sample1.tsv ./data-repo/sample.fasta 10 10
- ibch/eVai-analyzer » ./target/debug/eVaianalyzer variant-seq ./data-repo/sample1.tsv ./data-repo/sample.fasta
- ibch/eVai-analyzer » ./target/debug/eVaianalyzer population-variant-search ./population-analysis G samplename
- ibch/eVai-analyzer » ./target/debug/eVaianalyzer coordinate-search ./population 14464 16495 samplename 
+ ibch/eVai-analyzer » eVaianalyzer variant-analyzer ./data-repo/sample1.tsv ./single/sampletest.tsv
+ ibch/eVai-analyzer » eVaianalyzer variant-filter ./data-repo/sample1.tsv ./single/sampletest.tsv TTT
+ ibch/eVai-analyzer » eVaianalyzer analyzer ./data-repo/sample1.tsv ./single/sampletest.tsv
+ ibch/eVai-analyzer » eVaianalyzer filter ./data-repo/sample1.tsv ./single/sampletest.tsv TTT
+ ibch/eVai-analyzer » eVaianalyzer acmg-transcript ./single/sample1.tsv 
+ ibch/eVai-analyzer » eVaianalyzer gtf-analyze ./single/samplegtf.gtf
+ ibch/eVai-analyzer » eVaianalyzer download-genome yes
+ ibch/eVai-analyzer » eVaianalyzer sequence-profile ./single/sample1.tsv ./data-repo/sample.fasta 10 10
+ ibch/eVai-analyzer » eVaianalyzer variant-seq ./single/sample1.tsv ./single/sample.fasta
+ ibch/eVai-analyzer » eVaianalyzer population-variant-search ./population G samplename
+ ibch/eVai-analyzer » eVaianalyzer coordinate-search ./population 14464 16495 samplename 
 ```
 
  Gaurav Sablok \
