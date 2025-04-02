@@ -71,7 +71,7 @@ pub enum Commands {
         /// provide the variant
         variant: String,
         /// analysis name
-        name: String, 
+        name: String,
     },
     /// search according to coordinates
     CoordinateSearch {
@@ -91,10 +91,48 @@ pub enum Commands {
         /// search the annotation
         genename: String,
         /// analysis name
-        name: String, 
+        name: String,
     },
     /// pathogenicity filter
     PathogenicityFilter {
+        /// provide the acmg dir
+        acmgdir: String,
+        /// value
+        value: f32,
+        /// analysis name
+        name: String,
+    },
+    /// search for the variant across population older version
+    PopulationVariantSearcholder {
+        /// provide the acmg directory
+        acmgdir: String,
+        /// provide the variant
+        variant: String,
+        /// analysis name
+        name: String,
+    },
+    /// search according to coordinates older version
+    CoordinateSearcholder {
+        /// provide the acmg directory
+        acmgdir: String,
+        /// provide the coordinate
+        start: usize,
+        /// provide the end coordinate
+        end: usize,
+        /// analysis name
+        name: String,
+    },
+    /// search according to annotation older version
+    AnnotationSearcholder {
+        /// provide the acmg directory
+        acmgdir: String,
+        /// search the annotation
+        genename: String,
+        /// analysis name
+        name: String,
+    },
+    /// pathogenicity filter older version
+    PathogenicityFilterolder {
         /// provide the acmg dir
         acmgdir: String,
         /// value

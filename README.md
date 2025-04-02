@@ -9,24 +9,28 @@
  ```
  variantannotator
 
-Usage: eVaianalyzer <COMMAND>
+ Usage: eVaianalyzer <COMMAND>
 
-Commands:
-  variant-analyzer           analyzer for the variants
-  variant-filter             filter the variants
-  variant-database           create variant database
-  gtf-analyze                analyze the corresponding gtf
-  variant-seq                prepare the variant seq annotation
-  download-genome            download the human genome
-  acmg-transcript            variant-transcriptids
-  sequence-profile           sequence profiling
-  population-variant-search  search for the variant across population
-  coordinate-search          search according to coordinates
-  annotation-search          search according to annotation
-  pathogenicity-filter       pathogenicity filter
-  help                       Print this message or the help of the given subcommand(s)
+ Commands:
+  variant-analyzer                analyzer for the variants
+  variant-filter                  filter the variants
+  variant-database                create variant database
+  gtf-analyze                     analyze the corresponding gtf
+  variant-seq                     prepare the variant seq annotation
+  download-genome                 download the human genome
+  acmg-transcript                 variant-transcriptids
+  sequence-profile                sequence profiling
+  population-variant-search       search for the variant across population
+  coordinate-search               search according to coordinates
+  annotation-search               search according to annotation
+  pathogenicity-filter            pathogenicity filter
+  population-variant-searcholder  search for the variant across population older version
+  coordinate-searcholder          search according to coordinates older version
+  annotation-searcholder          search according to annotation older version
+  pathogenicity-filterolder       pathogenicity filter older version
+  help                            Print this message or the help of the given subcommand(s)
 
-Options:
+ Options:
   -h, --help     Print help
   -V, --version  Print version
  
