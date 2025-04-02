@@ -1,6 +1,6 @@
 # eVai-analyzer
  - eVai-analyzer for open genomics.
- - It analyzes the eVai output files for variant annotation to filtering, preparating user reports and database and annotator.
+ - It analyzes the eVai output files for variant annotation to filtering, preparating user reports and database and annotator and more.
 
  ```
  cargo build
@@ -28,12 +28,15 @@
   coordinate-searcholder          search according to coordinates older version
   annotation-searcholder          search according to annotation older version
   pathogenicity-filterolder       pathogenicity filter older version
+  transcript-search               search by the specific transcript
   help                            Print this message or the help of the given subcommand(s)
 
  Options:
   -h, --help     Print help
   -V, --version  Print version
- 
+```
+
+```
  ibch/eVai-analyzer » eVaianalyzer variant-analyzer ./data-repo/sample1.tsv ./single/sampletest.tsv
  ibch/eVai-analyzer » eVaianalyzer variant-filter ./data-repo/sample1.tsv ./single/sampletest.tsv TTT
  ibch/eVai-analyzer » eVaianalyzer analyzer ./data-repo/sample1.tsv ./single/sampletest.tsv

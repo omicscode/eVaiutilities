@@ -16,7 +16,11 @@ use std::io::Write;
 
 */
 
-pub fn pathogenicityscore(path1: &str, value: f32, dirname: &str) -> Result<String, Box<dyn Error>> {
+pub fn pathogenicityscore(
+    path1: &str,
+    value: f32,
+    dirname: &str,
+) -> Result<String, Box<dyn Error>> {
     let mut filesplit: Vec<Genomeanalyzer> = Vec::new();
     for i in fs::read_dir(path1)? {
         let openfile = i?.path();
@@ -84,8 +88,6 @@ pub fn pathogenicityscore(path1: &str, value: f32, dirname: &str) -> Result<Stri
             }
         }
     }
-
-    println!("{:?}", filesplit);
 
     let mut filtervariant: Vec<Genomeanalyzer> = Vec::new();
 

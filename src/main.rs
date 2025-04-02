@@ -14,6 +14,7 @@ mod populationvariant;
 mod populationvariantolder;
 mod sequenceprofile;
 mod structfile;
+mod transcript;
 mod variantdatabase;
 mod variantfilter;
 use crate::acmgtranscript::acmgannotate;
@@ -32,6 +33,7 @@ use crate::pathogenicityolder::pathogenicityscoreolder;
 use crate::populationvariant::population;
 use crate::populationvariantolder::populationolder;
 use crate::sequenceprofile::sequence;
+use crate::transcript::transcriptsearch;
 use crate::variantdatabase::variantdatabase;
 use crate::variantfilter::variantanalyzer;
 use clap::Parser;
@@ -157,6 +159,14 @@ fn main() {
         } => {
             let command = pathogenicityscoreolder(acmgdir, *value, name).unwrap();
             println!("The command has completed:{}", command);
+        }
+        Commands::TranscriptSearch {
+            acmgdir,
+            transcript,
+            name,
+        } => {
+            let command = transcriptsearch(acmgdir, transcript, name).unwrap();
+            println!("The command has been completed:{}", command);
         }
     }
 }

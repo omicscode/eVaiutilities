@@ -140,4 +140,13 @@ pub enum Commands {
         /// analysis name
         name: String,
     },
+    /// search by the specific transcript
+    TranscriptSearch {
+        /// provide the acmg directory
+        acmgdir: String,
+        /// provide the transcript name
+        transcript: String,
+        /// name of the analysis
+        name: String,
+    },
 }

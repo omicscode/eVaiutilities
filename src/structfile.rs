@@ -66,10 +66,9 @@ pub struct Genomeanalyzer {
     pub bp8: String,
 }
 
-
 #[derive(Debug, Clone, PartialOrd, PartialEq)]
 
-pub struct PopulationFilter {
+pub struct GenomeanalyzerOlder {
     pub chrom: String,
     pub start: String,
     pub stop: String,
@@ -89,7 +88,6 @@ pub struct PopulationFilter {
     pub score_pathogen: String,
     pub flag: String,
     pub note: String,
-    pub vcforig: String,
     pub pvs1: String,
     pub ps1: String,
     pub ps2: String,
