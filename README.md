@@ -6,7 +6,7 @@
  - It provides the population scale variant searching given a folder according to the variant, annotation, transcript, gene, and coordinates.
  - In a new release you will have Fst, population maps and all integrated in the single RUST code.
 
-**NEW VERSION COMING NEXT WEEK**.
+**NEW VERSION COMING NEXT WEEK STABLE RELEASE**.
 
  ```
  cargo build
