@@ -1,4 +1,6 @@
 mod acmgtranscript;
+mod altallele;
+mod altalleleolder;
 mod annotation;
 mod annotationolder;
 mod args;
@@ -14,6 +16,8 @@ mod pathogenicity;
 mod pathogenicityolder;
 mod populationvariant;
 mod populationvariantolder;
+mod refallele;
+mod refalleleolder;
 mod sequenceprofile;
 mod structfile;
 mod transcript;
@@ -21,6 +25,8 @@ mod transcriptolder;
 mod variantdatabase;
 mod variantfilter;
 use crate::acmgtranscript::acmgannotate;
+use crate::altallele::altrefallelesearch;
+use crate::altalleleolder::altrefalleleoldersearch;
 use crate::annotation::annotationsearch;
 use crate::annotationolder::annotationsearcholder;
 use crate::args::CommandParse;
@@ -37,6 +43,8 @@ use crate::pathogenicity::pathogenicityscore;
 use crate::pathogenicityolder::pathogenicityscoreolder;
 use crate::populationvariant::population;
 use crate::populationvariantolder::populationolder;
+use crate::refallele::altallelesearch;
+use crate::refalleleolder::altalleleoldersearch;
 use crate::sequenceprofile::sequence;
 use crate::transcript::transcriptsearch;
 use crate::transcriptolder::transcriptsearcholder;
@@ -208,6 +216,42 @@ fn main() {
                 "The command has finished and the files have been written:{}",
                 command
             );
+        }
+        Commands::AltAllele {
+            acmgdir,
+            refallele,
+            name,
+        } => {
+            let command = altallelesearch(acmgdir, refallele, name.to_string()).unwrap();
+            println!("The command has finished:{}", command);
+        }
+        Commands::AltRefAllele {
+            acmgdir,
+            refallele,
+            altallele,
+            name,
+        } => {
+            let command =
+                altrefallelesearch(acmgdir, refallele, altallele, name.to_string()).unwrap();
+            println!("The command has finished:{}", command);
+        }
+        Commands::AltAlleleOlder {
+            acmgdir,
+            refallele,
+            name,
+        } => {
+            let command = altalleleoldersearch(acmgdir, refallele, name.to_string()).unwrap();
+            println!("The command has finished:{}", command);
+        }
+        Commands::AltRefAlleleOlder {
+            acmgdir,
+            refallele,
+            altallele,
+            name,
+        } => {
+            let command =
+                altrefalleleoldersearch(acmgdir, refallele, altallele, name.to_string()).unwrap();
+            println!("The command has finished:{}", command);
         }
     }
 }

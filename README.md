@@ -40,11 +40,16 @@ Commands:
   pathogenicity-filterolder       pathogenicity filter older version
   transcript-search               search by the specific transcript
   transcript-searcholder          search by the specific transcript older
+  alt-allele                      search for the ref allele
+  alt-ref-allele                  search according to ref allele and alt allele
+  alt-allele-older                search for the ref allele older version
+  alt-ref-allele-older            search according to ref allele and alt allele older version
   help                            Print this message or the help of the given subcommand(s)
 
 Options:
   -h, --help     Print help
   -V, --version  Print version
+
 ```
 
 ```

@@ -198,4 +198,44 @@ pub enum Commands {
         /// name of the analysis
         name: String,
     },
+    /// search for the ref allele
+    AltAllele {
+        /// provide the acmg directory
+        acmgdir: String,
+        /// provide the alt allele
+        refallele: String,
+        /// provide the analysis name
+        name: String,
+    },
+    /// search according to ref allele and alt allele
+    AltRefAllele {
+        /// provide the acmd directory
+        acmgdir: String,
+        /// provide the ref allele
+        refallele: String,
+        /// provide the alt allele
+        altallele: String,
+        /// provide the analysis name
+        name: String,
+    },
+    /// search for the ref allele older version
+    AltAlleleOlder {
+        /// provide the acmg directory
+        acmgdir: String,
+        /// provide the alt allele
+        refallele: String,
+        /// provide the analysis name
+        name: String,
+    },
+    /// search according to ref allele and alt allele older version
+    AltRefAlleleOlder {
+        /// provide the acmd directory
+        acmgdir: String,
+        /// provide the ref allele
+        refallele: String,
+        /// provide the alt allele
+        altallele: String,
+        /// provide the analysis name
+        name: String,
+    },
 }
