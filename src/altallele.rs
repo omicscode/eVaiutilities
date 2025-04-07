@@ -99,7 +99,7 @@ pub fn altrefallelesearch(
 
     for j in fileid.iter() {
         for i in filesplit.iter() {
-            if i.generef == variant || i.alt == altallele {
+            if i.generef == variant && i.alt == altallele {
                 filtervariant.push(GenomeanalyzerFinal {
                     sample: j.clone(),
                     chrom: i.chrom.clone(),

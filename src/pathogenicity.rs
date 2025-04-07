@@ -98,7 +98,6 @@ pub fn pathogenicityscore(
         } else if i.score_pathogen.parse::<f32>().unwrap().abs() == value.abs()
             || i.score_pathogen.parse::<f32>().unwrap().abs() <= valuend.abs()
         {
-            println!("{}", i.score_pathogen.parse::<f64>().unwrap());
             filtervariant.push(Genomeanalyzer {
                 chrom: i.chrom.clone(),
                 start: i.start.clone(),

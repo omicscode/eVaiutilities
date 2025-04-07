@@ -1,5 +1,5 @@
-use crate::structfile::Genomeanalyzer;
-use crate::structfile::GenomeanalyzerFinal;
+use crate::structfile::GenomeanalyzerOlder;
+use crate::structfile::GenomeanalyzerOlderFinal;
 use std::error::Error;
 use std::fs;
 use std::fs::File;
@@ -23,7 +23,7 @@ pub fn altrefalleleoldersearch(
     altallele: &str,
     analysisname: String,
 ) -> Result<String, Box<dyn Error>> {
-    let mut filesplit: Vec<Genomeanalyzer> = Vec::new();
+    let mut filesplit: Vec<GenomeanalyzerOlder> = Vec::new();
     let mut fileid: Vec<_> = Vec::new();
     for i in fs::read_dir(path1)? {
         let openfile = i?.path();
@@ -40,7 +40,7 @@ pub fn altrefalleleoldersearch(
             let line = i.expect("line not present");
             if !line.starts_with("#") {
                 let linevec = line.split("\t").collect::<Vec<_>>();
-                filesplit.push(Genomeanalyzer {
+                filesplit.push(GenomeanalyzerOlder {
                     chrom: linevec[0].to_string(),
                     start: linevec[1].to_string(),
                     stop: linevec[2].to_string(),
@@ -60,47 +60,46 @@ pub fn altrefalleleoldersearch(
                     score_pathogen: linevec[16].to_string(),
                     flag: linevec[17].to_string(),
                     note: linevec[18].to_string(),
-                    vcforig: linevec[19].to_string(),
-                    pvs1: linevec[20].to_string(),
-                    ps1: linevec[21].to_string(),
-                    ps2: linevec[22].to_string(),
-                    ps3: linevec[23].to_string(),
-                    ps4: linevec[24].to_string(),
-                    pm1: linevec[25].to_string(),
-                    pm2: linevec[26].to_string(),
-                    pm3: linevec[27].to_string(),
-                    pm4: linevec[28].to_string(),
-                    pm5: linevec[29].to_string(),
-                    pm6: linevec[30].to_string(),
-                    pp1: linevec[31].to_string(),
-                    pp2: linevec[32].to_string(),
-                    pp3: linevec[33].to_string(),
-                    pp4: linevec[34].to_string(),
-                    pp5: linevec[35].to_string(),
-                    ba1: linevec[36].to_string(),
-                    bs1: linevec[37].to_string(),
-                    bs2: linevec[38].to_string(),
-                    bs3: linevec[39].to_string(),
-                    bs4: linevec[40].to_string(),
-                    bp1: linevec[41].to_string(),
-                    bp2: linevec[42].to_string(),
-                    bp3: linevec[43].to_string(),
-                    bp4: linevec[44].to_string(),
-                    bp5: linevec[45].to_string(),
-                    bp6: linevec[46].to_string(),
-                    bp7: linevec[47].to_string(),
-                    bp8: linevec[48].to_string(),
+                    pvs1: linevec[19].to_string(),
+                    ps1: linevec[20].to_string(),
+                    ps2: linevec[21].to_string(),
+                    ps3: linevec[22].to_string(),
+                    ps4: linevec[23].to_string(),
+                    pm1: linevec[24].to_string(),
+                    pm2: linevec[25].to_string(),
+                    pm3: linevec[26].to_string(),
+                    pm4: linevec[27].to_string(),
+                    pm5: linevec[28].to_string(),
+                    pm6: linevec[29].to_string(),
+                    pp1: linevec[30].to_string(),
+                    pp2: linevec[31].to_string(),
+                    pp3: linevec[32].to_string(),
+                    pp4: linevec[33].to_string(),
+                    pp5: linevec[34].to_string(),
+                    ba1: linevec[35].to_string(),
+                    bs1: linevec[36].to_string(),
+                    bs2: linevec[37].to_string(),
+                    bs3: linevec[38].to_string(),
+                    bs4: linevec[39].to_string(),
+                    bp1: linevec[40].to_string(),
+                    bp2: linevec[41].to_string(),
+                    bp3: linevec[42].to_string(),
+                    bp4: linevec[43].to_string(),
+                    bp5: linevec[44].to_string(),
+                    bp6: linevec[45].to_string(),
+                    bp7: linevec[46].to_string(),
+                    bp8: linevec[47].to_string(),
                 });
             }
         }
     }
 
-    let mut filtervariant: Vec<GenomeanalyzerFinal> = Vec::new();
+    let mut filtervariant: Vec<GenomeanalyzerOlderFinal> = Vec::new();
 
     for j in fileid.iter() {
         for i in filesplit.iter() {
-            if i.generef == variant || i.alt == altallele {
-                filtervariant.push(GenomeanalyzerFinal {
+            if i.generef == variant && i.alt == altallele {
+                filtervariant.push(GenomeanalyzerOlderFinal {
                     sample: j.clone(),
                     chrom: i.chrom.clone(),
                     start: i.start.clone(),
@@ -121,7 +120,6 @@ pub fn altrefalleleoldersearch(
                     score_pathogen: i.score_pathogen.clone(),
                     flag: i.flag.clone(),
                     note: i.note.clone(),
-                    vcforig: i.vcforig.clone(),
                     pvs1: i.pvs1.clone(),
                     ps1: i.ps1.clone(),
                     ps2: i.ps2.clone(),
@@ -159,12 +157,12 @@ pub fn altrefalleleoldersearch(
     let mut filewrite = File::create(analysisname).expect("file not present");
     writeln!(
             filewrite,
-            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}", "sampleid", "chrom", "start", "stop", "generef", "alt", "priortranscript", "hgvsp", "hgvpc", "cannonical", "othertranscript", "genotype", "gene", "phenotype", "medgencui", "inheritance", "finalclass", "score_pathogen", "flag", "note", "vcforig", "pvs1", "ps1", "ps2", "ps3", "ps4", "pm1", "pm2", "pm3", "pm4", "pm5", "pm6", "pp1", "pp2", "pp3", "pp4", "pp5", "ba1", "bs1", "bs2", "bs3", "bs4", "bp1", "bp2", "bp3", "bp4", "bp5", "bp6", "bp7", "bp8").expect("file not present");
+            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}", "sampleid", "chrom", "start", "stop", "generef", "alt", "priortranscript", "hgvsp", "hgvpc", "cannonical", "othertranscript", "genotype", "gene", "phenotype", "medgencui", "inheritance", "finalclass", "score_pathogen", "flag", "note", "pvs1", "ps1", "ps2", "ps3", "ps4", "pm1", "pm2", "pm3", "pm4", "pm5", "pm6", "pp1", "pp2", "pp3", "pp4", "pp5", "ba1", "bs1", "bs2", "bs3", "bs4", "bp1", "bp2", "bp3", "bp4", "bp5", "bp6", "bp7", "bp8").expect("file not present");
 
     for i in filtervariant.iter() {
         writeln!(
             filewrite,
-            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}",
+            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}",
             i.sample,
             i.chrom,
             i.start,
@@ -185,7 +183,6 @@ pub fn altrefalleleoldersearch(
             i.score_pathogen,
             i.flag,
             i.note,
-            i.vcforig,
             i.pvs1,
             i.ps1,
             i.ps2,

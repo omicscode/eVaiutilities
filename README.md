@@ -63,12 +63,16 @@ Options:
  population-variant-search newversion-population G samplename
  coordinate-search newversion-population 14464 16495 samplename 
  annotation-search newversion-population AL645608.6 samplename
- pathogenicity-filter newversion-population 1.5 samplename
+ pathogenicity-filter newversion-population 0.0 1.5 samplename
  population-variant-searcholder oldversion-population G samplename
  coordinate-searcholder oldversion-population 14464 16495 samplename
  annotation-searcholder oldversion-population WASH7P samplename
- pathogenicity-filterolder oldversion-population 1.5 samplename
+ pathogenicity-filterolder oldversion-population 0 1.5 samplename
  transcript-search newversion-population ENST00000635509.2 samplename
+ alt-allele newversion-population T samplename
+ alt-allele-older oldversion-population T samplename
+ alt-ref-allele newversion-population A T samplename
+ alt-ref-allele-older oldversion-population A T samplename
 ```
 
  Gaurav Sablok \

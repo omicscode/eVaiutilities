@@ -97,7 +97,6 @@ pub fn pathogenicityscoreolder(
         } else if i.score_pathogen.parse::<f32>().unwrap().abs() == value.abs()
             || i.score_pathogen.parse::<f32>().unwrap().abs() <= valueend.abs()
         {
-            println!("{}", i.score_pathogen.parse::<f64>().unwrap());
             filtervariant.push(GenomeanalyzerOlder {
                 chrom: i.chrom.clone(),
                 start: i.start.clone(),
