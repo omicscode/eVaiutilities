@@ -94,6 +94,19 @@ pub enum Commands {
         /// analysis name
         name: String,
     },
+    /// search according to coordinates and variant
+    CoordinateSearchVariant {
+        /// provide the acmg directory
+        acmgdir: String,
+        /// provide the coordinate
+        start: usize,
+        /// provide the end coordinate
+        end: usize,
+        /// variant type
+        variant: String,
+        /// analysis name
+        name: String,
+    },
     /// search according to annotation
     AnnotationSearch {
         /// provide the acmg directory
@@ -129,6 +142,19 @@ pub enum Commands {
         start: usize,
         /// provide the end coordinate
         end: usize,
+        /// analysis name
+        name: String,
+    },
+    /// search according to coordinates and variant older version
+    CoordinateSearcVariantholder {
+        /// provide the acmg directory
+        acmgdir: String,
+        /// provide the coordinate
+        start: usize,
+        /// provide the end coordinate
+        end: usize,
+        /// variant type
+        variant: String,
         /// analysis name
         name: String,
     },

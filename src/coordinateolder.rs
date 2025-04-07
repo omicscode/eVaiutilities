@@ -1,4 +1,5 @@
 use crate::structfile::GenomeanalyzerOlder;
+use crate::structfile::GenomeanalyzerOlderFinal;
 use std::error::Error;
 use std::fs;
 use std::fs::File;
@@ -23,11 +24,18 @@ pub fn coordinatesearcholder(
     analysisname: &str,
 ) -> Result<String, Box<dyn Error>> {
     let mut filesplit: Vec<GenomeanalyzerOlder> = Vec::new();
+    let mut fileid: Vec<_> = Vec::new();
     for i in fs::read_dir(path1)? {
         let openfile = i?.path();
         let path_str = openfile.to_str().unwrap();
         let fileopen = File::open(path_str).expect("file not found");
         let fileread = BufReader::new(fileopen);
+        fileid.push(
+            path_str.split("/").collect::<Vec<_>>()[1]
+                .split(".")
+                .collect::<Vec<_>>()[0]
+                .to_string(),
+        );
         for i in fileread.lines() {
             let line = i.expect("line not present");
             if line.starts_with("#") {
@@ -88,61 +96,67 @@ pub fn coordinatesearcholder(
             }
         }
     }
-    let mut filtervariant: Vec<GenomeanalyzerOlder> = Vec::new();
-    for i in filesplit.iter() {
-        if i.start.parse::<usize>().unwrap() == start || i.stop.parse::<usize>().unwrap() <= end {
-            filtervariant.push(GenomeanalyzerOlder {
-                chrom: i.chrom.clone(),
-                start: i.start.clone(),
-                stop: i.stop.clone(),
-                generef: i.generef.clone(),
-                alt: i.alt.clone(),
-                priortranscript: i.priortranscript.clone(),
-                hgvsp: i.hgvsp.clone(),
-                hgvpc: i.hgvpc.clone(),
-                cannonical: i.cannonical.clone(),
-                othertranscript: i.othertranscript.clone(),
-                genotype: i.genotype.clone(),
-                gene: i.gene.clone(),
-                phenotype: i.phenotype.clone(),
-                medgencui: i.medgencui.clone(),
-                inheritance: i.inheritance.clone(),
-                finalclass: i.finalclass.clone(),
-                score_pathogen: i.score_pathogen.clone(),
-                flag: i.flag.clone(),
-                note: i.note.clone(),
-                pvs1: i.pvs1.clone(),
-                ps1: i.ps1.clone(),
-                ps2: i.ps2.clone(),
-                ps3: i.ps3.clone(),
-                ps4: i.ps4.clone(),
-                pm1: i.pm1.clone(),
-                pm2: i.pm2.clone(),
-                pm3: i.pm3.clone(),
-                pm4: i.pm4.clone(),
-                pm5: i.pm5.clone(),
-                pm6: i.pm6.clone(),
-                pp1: i.pp1.clone(),
-                pp2: i.pp2.clone(),
-                pp3: i.pp3.clone(),
-                pp4: i.pp4.clone(),
-                pp5: i.pp5.clone(),
-                ba1: i.ba1.clone(),
-                bs1: i.bs1.clone(),
-                bs2: i.bs2.clone(),
-                bs3: i.bs3.clone(),
-                bs4: i.bs4.clone(),
-                bp1: i.bp1.clone(),
-                bp2: i.bp2.clone(),
-                bp3: i.bp3.clone(),
-                bp4: i.bp4.clone(),
-                bp5: i.bp5.clone(),
-                bp6: i.bp6.clone(),
-                bp7: i.bp7.clone(),
-                bp8: i.bp8.clone(),
-            });
+    let mut filtervariant: Vec<GenomeanalyzerOlderFinal> = Vec::new();
+
+    for j in fileid.iter() {
+        for i in filesplit.iter() {
+            if i.start.parse::<usize>().unwrap() == start || i.stop.parse::<usize>().unwrap() <= end
+            {
+                filtervariant.push(GenomeanalyzerOlderFinal {
+                    sample: j.to_string().clone(),
+                    chrom: i.chrom.clone(),
+                    start: i.start.clone(),
+                    stop: i.stop.clone(),
+                    generef: i.generef.clone(),
+                    alt: i.alt.clone(),
+                    priortranscript: i.priortranscript.clone(),
+                    hgvsp: i.hgvsp.clone(),
+                    hgvpc: i.hgvpc.clone(),
+                    cannonical: i.cannonical.clone(),
+                    othertranscript: i.othertranscript.clone(),
+                    genotype: i.genotype.clone(),
+                    gene: i.gene.clone(),
+                    phenotype: i.phenotype.clone(),
+                    medgencui: i.medgencui.clone(),
+                    inheritance: i.inheritance.clone(),
+                    finalclass: i.finalclass.clone(),
+                    score_pathogen: i.score_pathogen.clone(),
+                    flag: i.flag.clone(),
+                    note: i.note.clone(),
+                    pvs1: i.pvs1.clone(),
+                    ps1: i.ps1.clone(),
+                    ps2: i.ps2.clone(),
+                    ps3: i.ps3.clone(),
+                    ps4: i.ps4.clone(),
+                    pm1: i.pm1.clone(),
+                    pm2: i.pm2.clone(),
+                    pm3: i.pm3.clone(),
+                    pm4: i.pm4.clone(),
+                    pm5: i.pm5.clone(),
+                    pm6: i.pm6.clone(),
+                    pp1: i.pp1.clone(),
+                    pp2: i.pp2.clone(),
+                    pp3: i.pp3.clone(),
+                    pp4: i.pp4.clone(),
+                    pp5: i.pp5.clone(),
+                    ba1: i.ba1.clone(),
+                    bs1: i.bs1.clone(),
+                    bs2: i.bs2.clone(),
+                    bs3: i.bs3.clone(),
+                    bs4: i.bs4.clone(),
+                    bp1: i.bp1.clone(),
+                    bp2: i.bp2.clone(),
+                    bp3: i.bp3.clone(),
+                    bp4: i.bp4.clone(),
+                    bp5: i.bp5.clone(),
+                    bp6: i.bp6.clone(),
+                    bp7: i.bp7.clone(),
+                    bp8: i.bp8.clone(),
+                });
+            }
         }
     }
+
     let mut filewrite = File::create(analysisname).expect("file not present");
 
     writeln!(
@@ -151,7 +165,8 @@ pub fn coordinatesearcholder(
     for i in filtervariant.iter() {
         writeln!(
             filewrite,
-            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}",
+            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}",
+            i.sample,
             i.chrom,
             i.start,
             i.stop,

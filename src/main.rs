@@ -4,6 +4,8 @@ mod annotationolder;
 mod args;
 mod coordinate;
 mod coordinateolder;
+mod coordinatevariant;
+mod coordinatevariantolder;
 mod fastanalyzer;
 mod genomeanalyzer;
 mod genomedownload;
@@ -25,6 +27,8 @@ use crate::args::CommandParse;
 use crate::args::Commands;
 use crate::coordinate::coordinatesearch;
 use crate::coordinateolder::coordinatesearcholder;
+use crate::coordinatevariant::coordinatevariantsearch;
+use crate::coordinatevariantolder::coordinatevariantsearcholder;
 use crate::fastanalyzer::fastagtf;
 use crate::genomeanalyzer::genomemap;
 use crate::genomedownload::downloadgenome;
@@ -113,6 +117,16 @@ fn main() {
             let command = coordinatesearch(acmgdir, *start, *end, name).unwrap();
             println!("The command has been finished:{}", command);
         }
+        Commands::CoordinateSearchVariant {
+            acmgdir,
+            start,
+            end,
+            variant,
+            name,
+        } => {
+            let command = coordinatevariantsearch(acmgdir, *start, *end, variant, name).unwrap();
+            println!("The command has finished:{}", command);
+        }
         Commands::AnnotationSearch {
             acmgdir,
             genename,
@@ -146,6 +160,18 @@ fn main() {
             let command = coordinatesearcholder(acmgdir, *start, *end, name).unwrap();
             println!("The command has been finished:{}", command);
         }
+        Commands::CoordinateSearcVariantholder {
+            acmgdir,
+            start,
+            end,
+            variant,
+            name,
+        } => {
+            let command =
+                coordinatevariantsearcholder(acmgdir, *start, *end, variant, name).unwrap();
+            println!("The command has finished:{}", command);
+        }
+
         Commands::AnnotationSearcholder {
             acmgdir,
             genename,
