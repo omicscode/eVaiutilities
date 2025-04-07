@@ -137,10 +137,11 @@ fn main() {
         }
         Commands::PathogenicityFilter {
             acmgdir,
-            value,
+            start,
+            end,
             name,
         } => {
-            let command = pathogenicityscore(acmgdir, *value, name).unwrap();
+            let command = pathogenicityscore(acmgdir, *start, *end, name).unwrap();
             println!("The command has completed:{}", command);
         }
         Commands::PopulationVariantSearcholder {
@@ -182,10 +183,11 @@ fn main() {
         }
         Commands::PathogenicityFilterolder {
             acmgdir,
-            value,
+            start,
+            end,
             name,
         } => {
-            let command = pathogenicityscoreolder(acmgdir, *value, name).unwrap();
+            let command = pathogenicityscoreolder(acmgdir, *start, *end, name).unwrap();
             println!("The command has completed:{}", command);
         }
         Commands::TranscriptSearch {

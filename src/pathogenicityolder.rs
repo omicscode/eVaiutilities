@@ -19,6 +19,7 @@ use std::io::Write;
 pub fn pathogenicityscoreolder(
     path1: &str,
     value: f32,
+    valueend: f32,
     dirname: &str,
 ) -> Result<String, Box<dyn Error>> {
     let mut filesplit: Vec<GenomeanalyzerOlder> = Vec::new();
@@ -93,7 +94,9 @@ pub fn pathogenicityscoreolder(
     for i in filesplit.iter() {
         if i.score_pathogen == "n.a" {
             continue;
-        } else if i.score_pathogen.parse::<f32>().unwrap().abs() == value.abs() {
+        } else if i.score_pathogen.parse::<f32>().unwrap().abs() == value.abs()
+            || i.score_pathogen.parse::<f32>().unwrap().abs() <= valueend.abs()
+        {
             println!("{}", i.score_pathogen.parse::<f64>().unwrap());
             filtervariant.push(GenomeanalyzerOlder {
                 chrom: i.chrom.clone(),

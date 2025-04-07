@@ -120,8 +120,10 @@ pub enum Commands {
     PathogenicityFilter {
         /// provide the acmg dir
         acmgdir: String,
-        /// value
-        value: f32,
+        /// start value
+        start: f32,
+        /// end value
+        end: f32,
         /// analysis name
         name: String,
     },
@@ -171,8 +173,10 @@ pub enum Commands {
     PathogenicityFilterolder {
         /// provide the acmg dir
         acmgdir: String,
-        /// value
-        value: f32,
+        /// start
+        start: f32,
+        /// end
+        end: f32,
         /// analysis name
         name: String,
     },

@@ -19,6 +19,7 @@ use std::io::Write;
 pub fn pathogenicityscore(
     path1: &str,
     value: f32,
+    valuend: f32,
     dirname: &str,
 ) -> Result<String, Box<dyn Error>> {
     let mut filesplit: Vec<Genomeanalyzer> = Vec::new();
@@ -94,7 +95,9 @@ pub fn pathogenicityscore(
     for i in filesplit.iter() {
         if i.score_pathogen == "n.a" {
             continue;
-        } else if i.score_pathogen.parse::<f32>().unwrap().abs() == value.abs() {
+        } else if i.score_pathogen.parse::<f32>().unwrap().abs() == value.abs()
+            || i.score_pathogen.parse::<f32>().unwrap().abs() <= valuend.abs()
+        {
             println!("{}", i.score_pathogen.parse::<f64>().unwrap());
             filtervariant.push(Genomeanalyzer {
                 chrom: i.chrom.clone(),
