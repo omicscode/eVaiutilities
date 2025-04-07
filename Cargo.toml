@@ -1,18 +1,22 @@
 [package]
-name = "eVaianalyzer"
+name = "eVaiutilities"
 version = "0.1.0"
 edition = "2024"
 readme = "README.md"
 license = "MIT"
-authors = [ "Gaurav Sablok <gsablok@ibch.poznan.pl>"]
+authors = ["Gaurav Sablok <gsablok@ibch.poznan.pl>"]
 description = "variant analyzer for human genomics"
-homepage = "https://github.com/IBCHgenomic/eVai-analyzer"
-repository = "https://github.com/IBCHgenomic/eVai-analyzer"
+homepage = "https://github.com/IBCHgenomic/eVai-utilities"
+repository = "https://github.com/IBCHgenomic/eVai-utilities"
 
 [dependencies]
 clap = { version = "4.5.32", features = ["derive"] }
 cmd_lib = "1.9.5"
+plotlib = "0.5.1"
+plotpy = "1.13.0"
+plotters = "0.3.7"
 rusqlite = "0.34.0"
+rustplotlib = "0.0.4"
 serde = "1.0.219"
 
 [package.metadata.docs.rs]
