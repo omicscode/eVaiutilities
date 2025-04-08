@@ -1,4 +1,3 @@
-use crate::structfile::GenomeanalyzerOlder;
 use crate::structfile::GenomeanalyzerOlderFinal;
 use std::error::Error;
 use std::fs;
@@ -22,24 +21,22 @@ pub fn populationolder(
     variant: &str,
     analysisname: String,
 ) -> Result<String, Box<dyn Error>> {
-    let mut filesplit: Vec<GenomeanalyzerOlder> = Vec::new();
-    let mut fileid: Vec<_> = Vec::new();
+    let mut filesplit: Vec<GenomeanalyzerOlderFinal> = Vec::new();
     for i in fs::read_dir(path1)? {
         let openfile = i?.path();
         let path_str = openfile.to_str().unwrap();
         let fileopen = File::open(path_str).expect("file not found");
-        fileid.push(
-            path_str.split("/").collect::<Vec<_>>()[1]
-                .split(".")
-                .collect::<Vec<_>>()[0]
-                .to_string(),
-        );
+        let filerename = path_str.split("/").collect::<Vec<_>>()[1]
+            .split(".")
+            .collect::<Vec<_>>()[0]
+            .to_string();
         let fileread = BufReader::new(fileopen);
         for i in fileread.lines() {
             let line = i.expect("line not present");
             if !line.starts_with("#") {
                 let linevec = line.split("\t").collect::<Vec<_>>();
-                filesplit.push(GenomeanalyzerOlder {
+                filesplit.push(GenomeanalyzerOlderFinal {
+                    sample: filerename.clone(),
                     chrom: linevec[0].to_string(),
                     start: linevec[1].to_string(),
                     stop: linevec[2].to_string(),
@@ -92,63 +89,62 @@ pub fn populationolder(
             }
         }
     }
+
     let mut filtervariant: Vec<GenomeanalyzerOlderFinal> = Vec::new();
 
-    for i in fileid.iter() {
-        for j in filesplit.iter() {
-            if j.generef == variant {
-                filtervariant.push(GenomeanalyzerOlderFinal {
-                    sample: i.to_string().clone(),
-                    chrom: j.chrom.clone(),
-                    start: j.start.clone(),
-                    stop: j.stop.clone(),
-                    generef: j.generef.clone(),
-                    alt: j.alt.clone(),
-                    priortranscript: j.priortranscript.clone(),
-                    hgvsp: j.hgvsp.clone(),
-                    hgvpc: j.hgvpc.clone(),
-                    cannonical: j.cannonical.clone(),
-                    othertranscript: j.othertranscript.clone(),
-                    genotype: j.genotype.clone(),
-                    gene: j.gene.clone(),
-                    phenotype: j.phenotype.clone(),
-                    medgencui: j.medgencui.clone(),
-                    inheritance: j.inheritance.clone(),
-                    finalclass: j.finalclass.clone(),
-                    score_pathogen: j.score_pathogen.clone(),
-                    flag: j.flag.clone(),
-                    note: j.note.clone(),
-                    pvs1: j.pvs1.clone(),
-                    ps1: j.ps1.clone(),
-                    ps2: j.ps2.clone(),
-                    ps3: j.ps3.clone(),
-                    ps4: j.ps4.clone(),
-                    pm1: j.pm1.clone(),
-                    pm2: j.pm2.clone(),
-                    pm3: j.pm3.clone(),
-                    pm4: j.pm4.clone(),
-                    pm5: j.pm5.clone(),
-                    pm6: j.pm6.clone(),
-                    pp1: j.pp1.clone(),
-                    pp2: j.pp2.clone(),
-                    pp3: j.pp3.clone(),
-                    pp4: j.pp4.clone(),
-                    pp5: j.pp5.clone(),
-                    ba1: j.ba1.clone(),
-                    bs1: j.bs1.clone(),
-                    bs2: j.bs2.clone(),
-                    bs3: j.bs3.clone(),
-                    bs4: j.bs4.clone(),
-                    bp1: j.bp1.clone(),
-                    bp2: j.bp2.clone(),
-                    bp3: j.bp3.clone(),
-                    bp4: j.bp4.clone(),
-                    bp5: j.bp5.clone(),
-                    bp6: j.bp6.clone(),
-                    bp7: j.bp7.clone(),
-                    bp8: j.bp8.clone(),
-                });
-            }
+    for j in filesplit.iter() {
+        if j.generef == variant {
+            filtervariant.push(GenomeanalyzerOlderFinal {
+                sample: j.sample.clone(),
+                chrom: j.chrom.clone(),
+                start: j.start.clone(),
+                stop: j.stop.clone(),
+                generef: j.generef.clone(),
+                alt: j.alt.clone(),
+                priortranscript: j.priortranscript.clone(),
+                hgvsp: j.hgvsp.clone(),
+                hgvpc: j.hgvpc.clone(),
+                cannonical: j.cannonical.clone(),
+                othertranscript: j.othertranscript.clone(),
+                genotype: j.genotype.clone(),
+                gene: j.gene.clone(),
+                phenotype: j.phenotype.clone(),
+                medgencui: j.medgencui.clone(),
+                inheritance: j.inheritance.clone(),
+                finalclass: j.finalclass.clone(),
+                score_pathogen: j.score_pathogen.clone(),
+                flag: j.flag.clone(),
+                note: j.note.clone(),
+                pvs1: j.pvs1.clone(),
+                ps1: j.ps1.clone(),
+                ps2: j.ps2.clone(),
+                ps3: j.ps3.clone(),
+                ps4: j.ps4.clone(),
+                pm1: j.pm1.clone(),
+                pm2: j.pm2.clone(),
+                pm3: j.pm3.clone(),
+                pm4: j.pm4.clone(),
+                pm5: j.pm5.clone(),
+                pm6: j.pm6.clone(),
+                pp1: j.pp1.clone(),
+                pp2: j.pp2.clone(),
+                pp3: j.pp3.clone(),
+                pp4: j.pp4.clone(),
+                pp5: j.pp5.clone(),
+                ba1: j.ba1.clone(),
+                bs1: j.bs1.clone(),
+                bs2: j.bs2.clone(),
+                bs3: j.bs3.clone(),
+                bs4: j.bs4.clone(),
+                bp1: j.bp1.clone(),
+                bp2: j.bp2.clone(),
+                bp3: j.bp3.clone(),
+                bp4: j.bp4.clone(),
+                bp5: j.bp5.clone(),
+                bp6: j.bp6.clone(),
+                bp7: j.bp7.clone(),
+                bp8: j.bp8.clone(),
+            });
         }
     }
 
