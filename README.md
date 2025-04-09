@@ -79,7 +79,9 @@ Options:
  alt-ref-allele-older oldversion-population A T samplename
 ```
 
- - Acknowledgements: Funded through Development of a universal fast-response platform, based on RNA technology,ensuring the national drug and epidemiological safety. 2021/ABM/05/00004-00 to Prof. Luiza Handschuh: luizahan@ibch.poznan.pl.
+ - Acknowledgements: Funded through Development of a universal fast-response platform, based on RNA technology,ensuring the national drug and epidemiological safety. 2021/ABM/05/00004-00
+ - Project PI and Informal queries: Prof. Luiza Handschuh: luizahan@ibch.poznan.pl.
+ - eVaiultities code related queries: Dr. Gaurav Sablok: gsablok@ibch.poznan.pl.
 
  Gaurav Sablok \
  Instytut Chemii Bioorganicznej \
