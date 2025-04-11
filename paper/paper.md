@@ -1,33 +1,34 @@
 ---
-title: 'eVaiutilities: Data management utilities for eVai'
+title: "eVaiutilities: Data management utilities for eVai"
 tags:
-   - RUST
-   - human genomics
-   - variant analysis
-   - varaint annotation
-   - population disease managemant
-   - human disease management
-   - variant search
- authors:
-   - name: Gaurav Sablok
-     orcid: 0000-0002-4157-9405
-     affiliation: 1
-   - name:  Małgorzata Marcinkowska-Swojak,
-     orcid: 0000-0001-8809-335X
-     affiliation: 1
-   - name: Sylwia Nawrocka,
-     affiliation: 1
-   - name: Paweł Wojciechowski,
-     orcid: 0000-0001-8020-9493 
-     affiliation: 1
-   - name: Luiza Handschuh 
-     orcid: 0000-0001-9803-6877
-     affiliation: 1
- affiliations:
-   - name: Institute of Bioorganic Chemistry, Polish Academy of Sciences, Noskowskiego 12/14, 61-704, Poznan, Poland
-     index: 1
- date: 10 April 2025
- bibliography: paper.bib
+  - RUST
+  - human genomics
+  - variant analysis
+  - varaint annotation
+  - population disease managemant
+  - human disease management
+  - variant search
+authors:
+  - name: Gaurav Sablok
+    orcid: 0000-0002-4157-9405
+    affiliation: 1
+  - name: Małgorzata Marcinkowska-Swojak,
+    orcid: 0000-0001-8809-335X
+    affiliation: 1
+  - name: Sylwia Nawrocka,
+    affiliation: 1
+  - name: Paweł Wojciechowski,
+    orcid: 0000-0001-8020-9493
+    affiliation: 1
+  - name: Luiza Handschuh
+    orcid: 0000-0001-9803-6877
+    affiliation: 1
+affiliations:
+  - name: Institute of Bioorganic Chemistry, Polish Academy of Sciences,
+      Noskowskiego 12/14, 61-704, Poznan, Poland
+    index: 1
+date: 10 April 2025
+bibliography: paper.bib
 ---
 
 # Summary
