@@ -1,6 +1,7 @@
 ---
 title: 'eVaiutilities: Data management utilities for eVai'
 tags:
+   - RUST
    - human genomics
    - variant analysis
    - varaint annotation
@@ -23,8 +24,8 @@ tags:
      orcid: 0000-0001-9803-6877
      affiliation: 1
  affiliations:
-   - name: Institute of Bioorganic Chemistry, Polish Academy of Sciences,  Noskowskiego 12/14, 61-704, Poznan, Poland
-   index: 1
+   - name: Institute of Bioorganic Chemistry, Polish Academy of Sciences, Noskowskiego 12/14, 61-704, Poznan, Poland
+     index: 1
  date: 10 April 2025
  bibliography: paper.bib
 ---
