@@ -1,4 +1,4 @@
-use crate::structfile::GenomeanalyzerOlder;
+use crate::structfile::GenomeanalyzerOlderFinal;
 use std::error::Error;
 use std::fs;
 use std::fs::File;
@@ -22,12 +22,16 @@ pub fn pathogenicityscoreolder(
     valueend: f32,
     dirname: &str,
 ) -> Result<String, Box<dyn Error>> {
-    let mut filesplit: Vec<GenomeanalyzerOlder> = Vec::new();
+    let mut filesplit: Vec<GenomeanalyzerOlderFinal> = Vec::new();
     for i in fs::read_dir(path1)? {
         let openfile = i?.path();
         let path_str = openfile.to_str().unwrap();
         let fileopen = File::open(path_str).expect("file not found");
         let fileread = BufReader::new(fileopen);
+        let filerename = path_str.split("/").collect::<Vec<_>>()[1]
+            .split(".")
+            .collect::<Vec<_>>()[0]
+            .to_string();
         for i in fileread.lines() {
             let line = i.expect("line not present");
             if line.starts_with("#") {
@@ -35,7 +39,8 @@ pub fn pathogenicityscoreolder(
             }
             if !line.starts_with("#") {
                 let linevec = line.split("\t").collect::<Vec<_>>();
-                filesplit.push(GenomeanalyzerOlder {
+                filesplit.push(GenomeanalyzerOlderFinal {
+                    sample: filerename.clone(),
                     chrom: linevec[0].to_string(),
                     start: linevec[1].to_string(),
                     stop: linevec[2].to_string(),
@@ -89,7 +94,7 @@ pub fn pathogenicityscoreolder(
         }
     }
 
-    let mut filtervariant: Vec<GenomeanalyzerOlder> = Vec::new();
+    let mut filtervariant: Vec<GenomeanalyzerOlderFinal> = Vec::new();
 
     for i in filesplit.iter() {
         if i.score_pathogen == "n.a" {
@@ -97,7 +102,8 @@ pub fn pathogenicityscoreolder(
         } else if i.score_pathogen.parse::<f32>().unwrap().abs() == value.abs()
             || i.score_pathogen.parse::<f32>().unwrap().abs() <= valueend.abs()
         {
-            filtervariant.push(GenomeanalyzerOlder {
+            filtervariant.push(GenomeanalyzerOlderFinal {
+                sample: i.sample.clone(),
                 chrom: i.chrom.clone(),
                 start: i.start.clone(),
                 stop: i.stop.clone(),
@@ -156,7 +162,8 @@ pub fn pathogenicityscoreolder(
     for i in filtervariant.iter() {
         writeln!(
             filewrite,
-            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}",
+            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}",
+            i.sample,
             i.chrom,
             i.start,
             i.stop,
