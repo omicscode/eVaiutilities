@@ -1,12 +1,13 @@
-# eVaiutilities
- - eVai-utilities for data management of the eVai results. It supports all versions of eVai.
- - It analyzes the eVai output files for variant annotation to filtering, preparating user reports and database and annotator and more. See the example folder for the older and the newer version files.
- - It provides the population scale variant searching given a folder according to the variant, annotation, transcript, gene, and coordinates.
+# eVaiutilities: 
+Analyzing and identifying genomic variants is particularly helpful in case of linking the disease onset to the genomic predictions. Genomic variants play a key role in the identifcation and characterization of the disease onset and also allow for interlinking genomic variability and hypothesis testing. eVai, which is a variant annotation platform provides annotation of the genomic variants using several backhand open source databases and tools. eVaiutilities proposed in this paper, is a data management software for the analysis of the eVai output files. It allows the analysis of the genomic variants further such as analyzing the multiple genomic anntoated variants, reference and alternate allele, enabling cocordinate search, coordinate search with specificed variants and annotation search across a large number of population. The availability of the command line parameters allows for a large scale analysis across the several population files. 
 
+- eVai-utilities for data management of the eVai results. It supports all versions of eVai.
+- It analyzes the eVai output files for variant annotation to filtering, preparating user reports and database and annotator and more. See the example folder for the older and the newer version files.
+- It provides the population scale variant searching given a folder according to the variant, annotation, transcript, gene, and coordinates.
 
- ```
+```
  cargo build
- ```
+```
 
 ```
  annotating and analyzing eVai results.
