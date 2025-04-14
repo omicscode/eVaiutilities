@@ -1,4 +1,4 @@
-# eVai-utilities
+# eVaiutilities
  - eVai-utilities for data management of the eVai results. It supports all versions of eVai.
  - It analyzes the eVai output files for variant annotation to filtering, preparating user reports and database and annotator and more. See the example folder for the older and the newer version files.
  - It provides the population scale variant searching given a folder according to the variant, annotation, transcript, gene, and coordinates.
