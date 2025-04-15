@@ -23,7 +23,7 @@ pub fn annotationsearch(
     analysisname: &str,
 ) -> Result<String, Box<dyn Error>> {
     let mut filesplit: Vec<GenomeanalyzerFinal> = Vec::new();
-    let mut fileversion: HashSet>String> = HashSet::new();
+    let mut fileversion: HashSet<String> = HashSet::new();
     for i in fs::read_dir(path1)? {
         let openfile = i?.path();
         let path_str = openfile.to_str().unwrap();
@@ -37,12 +37,14 @@ pub fn annotationsearch(
             let line = i.expect("line not present");
             if line.starts_with("#") && line.contains("eVAI-version") {
                 let version = line.replace("#", "");
-                fileversion.push(version);
+                fileversion.insert(version);
             }
             if !line.starts_with("#") {
                 let linevec = line.split("\t").collect::<Vec<_>>();
                 filesplit.push(GenomeanalyzerFinal {
-                    version: fileversion.to_string().clone(),
+                    version: fileversion.iter().collect::<Vec<_>>()[0]
+                        .to_string()
+                        .clone(),
                     sample: filerename.clone(),
                     chrom: linevec[0].to_string(),
                     start: linevec[1].to_string(),
