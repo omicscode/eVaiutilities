@@ -12,12 +12,12 @@ authors:
   - name: Gaurav Sablok
     orcid: 0000-0002-4157-9405
     affiliation: 1
-  - name: Małgorzata Marcinkowska-Swojak,
+  - name: Malgorzata Marcinkowska-Swojak,
     orcid: 0000-0001-8809-335X
     affiliation: 1
   - name: Sylwia Nawrocka,
     affiliation: 1
-  - name: Paweł Wojciechowski,
+  - name: Pawel Wojciechowski,
     orcid: 0000-0001-8020-9493
     affiliation: "1,2"
   - name: Luiza Handschuh
