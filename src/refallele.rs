@@ -1,4 +1,5 @@
 use crate::structfile::GenomeanalyzerFinal;
+use std::collections::HashSet;
 use std::error::Error;
 use std::fs;
 use std::fs::File;

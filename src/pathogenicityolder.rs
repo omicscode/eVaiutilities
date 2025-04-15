@@ -1,4 +1,5 @@
 use crate::structfile::GenomeanalyzerOlderFinal;
+use std::collections::HashSet;
 use std::error::Error;
 use std::fs;
 use std::fs::File;
@@ -23,6 +24,7 @@ pub fn pathogenicityscoreolder(
     dirname: &str,
 ) -> Result<String, Box<dyn Error>> {
     let mut filesplit: Vec<GenomeanalyzerOlderFinal> = Vec::new();
+    let mut filversion: HashSet<String> = HashSet::new();
     for i in fs::read_dir(path1)? {
         let openfile = i?.path();
         let path_str = openfile.to_str().unwrap();
@@ -34,12 +36,17 @@ pub fn pathogenicityscoreolder(
             .to_string();
         for i in fileread.lines() {
             let line = i.expect("line not present");
+            if line.starts_with("#") && line.contains("eVAI-version") {
+                let version = line.replace("#", "");
+                fileversion.push(version);
+            }
             if line.starts_with("#") {
                 continue;
             }
             if !line.starts_with("#") {
                 let linevec = line.split("\t").collect::<Vec<_>>();
                 filesplit.push(GenomeanalyzerOlderFinal {
+                    version: fileversion.to_string().clone(),
                     sample: filerename.clone(),
                     chrom: linevec[0].to_string(),
                     start: linevec[1].to_string(),
@@ -103,6 +110,7 @@ pub fn pathogenicityscoreolder(
             || i.score_pathogen.parse::<f32>().unwrap().abs() <= valueend.abs()
         {
             filtervariant.push(GenomeanalyzerOlderFinal {
+                version: fileversion.to_string().clone(),
                 sample: i.sample.clone(),
                 chrom: i.chrom.clone(),
                 start: i.start.clone(),
@@ -158,11 +166,12 @@ pub fn pathogenicityscoreolder(
     let mut filewrite = File::create(dirname).expect("file not present");
     writeln!(
             filewrite,
-            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}", "sample", "chrom", "start", "stop", "generef", "alt", "priortranscript", "hgvsp", "hgvpc", "cannonical", "othertranscript", "genotype", "gene", "phenotype", "medgencui", "inheritance", "finalclass", "score_pathogen", "flag", "note", "pvs1", "ps1", "ps2", "ps3", "ps4", "pm1", "pm2", "pm3", "pm4", "pm5", "pm6", "pp1", "pp2", "pp3", "pp4", "pp5", "ba1", "bs1", "bs2", "bs3", "bs4", "bp1", "bp2", "bp3", "bp4", "bp5", "bp6", "bp7", "bp8").expect("file not present");
+            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}", "version", "sample", "chrom", "start", "stop", "generef", "alt", "priortranscript", "hgvsp", "hgvpc", "cannonical", "othertranscript", "genotype", "gene", "phenotype", "medgencui", "inheritance", "finalclass", "score_pathogen", "flag", "note", "pvs1", "ps1", "ps2", "ps3", "ps4", "pm1", "pm2", "pm3", "pm4", "pm5", "pm6", "pp1", "pp2", "pp3", "pp4", "pp5", "ba1", "bs1", "bs2", "bs3", "bs4", "bp1", "bp2", "bp3", "bp4", "bp5", "bp6", "bp7", "bp8").expect("file not present");
     for i in filtervariant.iter() {
         writeln!(
             filewrite,
-            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}",
+            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}",
+            i.version,
             i.sample,
             i.chrom,
             i.start,
