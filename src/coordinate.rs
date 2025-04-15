@@ -38,7 +38,7 @@ pub fn coordinatesearch(
             let line = i.expect("line not present");
             if line.starts_with("#") && line.contains("eVAI-version") {
                 let version = line.replace("#", "");
-                fileversion.push(version);
+                fileversion.insert(version);
             }
             if line.starts_with("#") {
                 continue;
@@ -46,7 +46,9 @@ pub fn coordinatesearch(
             if !line.starts_with("#") {
                 let linevec = line.split("\t").collect::<Vec<_>>();
                 filesplit.push(GenomeanalyzerFinal {
-                    version: fileversion.to_string(),
+                    version: fileversion.iter().collect::<Vec<_>>()[0]
+                        .to_string()
+                        .clone(),
                     sample: filerename.clone(),
                     chrom: linevec[0].to_string(),
                     start: linevec[1].to_string(),
@@ -106,7 +108,7 @@ pub fn coordinatesearch(
     for i in filesplit.iter() {
         if i.start.parse::<usize>().unwrap() == start || i.stop.parse::<usize>().unwrap() <= end {
             filtervariant.push(GenomeanalyzerFinal {
-                version: i.version,
+                version: i.version.clone(),
                 sample: i.sample.clone(),
                 chrom: i.chrom.clone(),
                 start: i.start.clone(),
@@ -165,7 +167,7 @@ pub fn coordinatesearch(
 
     writeln!(
             filewrite,
-            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}", "version","sample", "chrom", "start", "stop", "generef", "alt", "priortranscript", "hgvsp", "hgvpc", "cannonical", "othertranscript", "genotype", "gene", "phenotype", "medgencui", "inheritance", "finalclass", "score_pathogen", "flag", "note", "vcforig", "pvs1", "ps1", "ps2", "ps3", "ps4", "pm1", "pm2", "pm3", "pm4", "pm5", "pm6", "pp1", "pp2", "pp3", "pp4", "pp5", "ba1", "bs1", "bs2", "bs3", "bs4", "bp1", "bp2", "bp3", "bp4", "bp5", "bp6", "bp7", "bp8").expect("file not present");
+            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}", "version","sample", "chrom", "start", "stop", "generef", "alt", "priortranscript", "hgvsp", "hgvpc", "cannonical", "othertranscript", "genotype", "gene", "phenotype", "medgencui", "inheritance", "finalclass", "score_pathogen", "flag", "note", "vcforig", "pvs1", "ps1", "ps2", "ps3", "ps4", "pm1", "pm2", "pm3", "pm4", "pm5", "pm6", "pp1", "pp2", "pp3", "pp4", "pp5", "ba1", "bs1", "bs2", "bs3", "bs4", "bp1", "bp2", "bp3", "bp4", "bp5", "bp6", "bp7", "bp8").expect("file not present");
     for i in filtervariant.iter() {
         writeln!(
             filewrite,

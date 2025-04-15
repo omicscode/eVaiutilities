@@ -38,12 +38,14 @@ pub fn altrefallelesearch(
             let line = i.expect("line not present");
             if line.starts_with("#") && line.contains("eVAI-version") {
                 let version = line.replace("#", "");
-                fileversion.push(version);
+                fileversion.insert(version);
             }
             if !line.starts_with("#") {
                 let linevec = line.split("\t").collect::<Vec<_>>();
                 filesplit.push(GenomeanalyzerFinal {
-                    version: fileversion.to_string().clone(),
+                    version: fileversion.iter().collect::<Vec<_>>()[0]
+                        .to_string()
+                        .clone(),
                     sample: filerename.clone(),
                     chrom: linevec[0].to_string(),
                     start: linevec[1].to_string(),
