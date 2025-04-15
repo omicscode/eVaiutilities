@@ -121,6 +121,7 @@ pub struct Genomeanalyzer {
 
 #[derive(Debug, Clone, PartialOrd, PartialEq)]
 pub struct GenomeanalyzerFinal {
+    pub version: String,
     pub sample: String,
     pub chrom: String,
     pub start: String,
@@ -175,6 +176,7 @@ pub struct GenomeanalyzerFinal {
 
 #[derive(Debug, Clone, PartialOrd, PartialEq)]
 pub struct GenomeanalyzerOlderFinal {
+    pub version: String,
     pub sample: String,
     pub chrom: String,
     pub start: String,

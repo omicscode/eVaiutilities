@@ -1,4 +1,5 @@
 use crate::structfile::GenomeanalyzerFinal;
+use std::collections::HashSet;
 use std::error::Error;
 use std::fs;
 use std::fs::File;
@@ -24,6 +25,7 @@ pub fn coordinatevariantsearcholder(
     analysisname: &str,
 ) -> Result<String, Box<dyn Error>> {
     let mut filesplit: Vec<GenomeanalyzerFinal> = Vec::new();
+    let mut fileversion: HashSet<String> = HashSet::new();
     for i in fs::read_dir(path1)? {
         let openfile = i?.path();
         let path_str = openfile.to_str().unwrap();
@@ -35,12 +37,17 @@ pub fn coordinatevariantsearcholder(
             .to_string();
         for i in fileread.lines() {
             let line = i.expect("line not present");
+            if line.starts_with("#") && line.contains("eVAI-version") {
+                let version = line.replace("#", "");
+                fileversion.push(version);
+            }
             if line.starts_with("#") {
                 continue;
             }
             if !line.starts_with("#") {
                 let linevec = line.split("\t").collect::<Vec<_>>();
                 filesplit.push(GenomeanalyzerFinal {
+                    version: fileversion.to_string(),
                     sample: filerename.clone(),
                     chrom: linevec[0].to_string(),
                     start: linevec[1].to_string(),
@@ -104,6 +111,7 @@ pub fn coordinatevariantsearcholder(
             || i.generef == variant
         {
             filtervariant.push(GenomeanalyzerFinal {
+                version: i.version.clone(),
                 sample: i.sample.clone(),
                 chrom: i.chrom.clone(),
                 start: i.start.clone(),
@@ -162,11 +170,12 @@ pub fn coordinatevariantsearcholder(
 
     writeln!(
             filewrite,
-            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}", "sample", "chrom", "start", "stop", "generef", "alt", "priortranscript", "hgvsp", "hgvpc", "cannonical", "othertranscript", "genotype", "gene", "phenotype", "medgencui", "inheritance", "finalclass", "score_pathogen", "flag", "note", "vcforig", "pvs1", "ps1", "ps2", "ps3", "ps4", "pm1", "pm2", "pm3", "pm4", "pm5", "pm6", "pp1", "pp2", "pp3", "pp4", "pp5", "ba1", "bs1", "bs2", "bs3", "bs4", "bp1", "bp2", "bp3", "bp4", "bp5", "bp6", "bp7", "bp8").expect("file not present");
+            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}", "version","sample", "chrom", "start", "stop", "generef", "alt", "priortranscript", "hgvsp", "hgvpc", "cannonical", "othertranscript", "genotype", "gene", "phenotype", "medgencui", "inheritance", "finalclass", "score_pathogen", "flag", "note", "vcforig", "pvs1", "ps1", "ps2", "ps3", "ps4", "pm1", "pm2", "pm3", "pm4", "pm5", "pm6", "pp1", "pp2", "pp3", "pp4", "pp5", "ba1", "bs1", "bs2", "bs3", "bs4", "bp1", "bp2", "bp3", "bp4", "bp5", "bp6", "bp7", "bp8").expect("file not present");
     for i in filtervariant.iter() {
         writeln!(
             filewrite,
-            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}",
+            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}",
+            i.version,
             i.sample,
             i.chrom,
             i.start,
