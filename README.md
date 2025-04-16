@@ -80,7 +80,7 @@ Options:
  alt-ref-allele-older oldversion-population A T samplename
 ```
 
- - Acknowledgements: Funded through Development of a universal fast-response platform, based on RNA technology,ensuring the national drug and epidemiological safety. 2021/ABM/05/00004-00
+ - Acknowledgements: MOSAIC platform, developed as part of the ECBiG-MOSAIC project (POIR.04.02.00-00-D017/20), co-financed by the European Regional Development Fund (ERDF) under the Smart Growth Operational Programme 2014-2020, Measure 4.2 for the development of modern research infrastructure in the science sector. 
  - Project PI and Informal queries: Prof. Luiza Handschuh: luizahan@ibch.poznan.pl.
  - eVaiultities code related queries: Dr. Gaurav Sablok: gsablok@ibch.poznan.pl.
 
