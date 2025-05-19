@@ -7,7 +7,7 @@ Analyzing and identifying genomic variants is particularly helpful in case of li
 - eVai-utilities for data management of the eVai results. It supports all versions of eVai.
 - It analyzes the eVai output files for variant annotation to filtering, preparating user reports and database and annotator and more. See the example folder for the older and the newer version files.
 - It provides the population scale variant searching given a folder according to the variant, annotation, transcript, gene, and coordinates.
-- It uses this version of the human genome from GENCODE: ![](https://www.gencodegenes.org/human/).
+- It uses this version of the human genome from [GENCODE](https://www.gencodegenes.org/human/).
 
 ```
 git clone https://github.com/IBCHgenomic/eVaiutilities.git
