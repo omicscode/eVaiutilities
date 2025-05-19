@@ -148,17 +148,18 @@ pub fn genomemap(path1: &str, path2: &str) -> Result<String, Box<dyn Error>> {
                 clinvar_rcv: linevec[45].to_string(),
                 clinvar_clinical_significance: linevec[46].to_string(),
                 clinvar_rev_status: linevec[47].to_string(),
-                clinvar_traitsclinvar_pmids: linevec[48].to_string(),
-                diseases: linevec[49].to_string(),
-                disease_ids: linevec[50].to_string(),
-                aml_0156_dna131_geno: linevec[51].to_string(),
-                aml_0156_dna131_qual: linevec[52].to_string(),
-                aml_0156_dna131_geno_qual: linevec[53].to_string(),
-                aml_0156_dna131_filter: linevec[54].to_string(),
-                aml_0156_dna131_af: linevec[55].to_string(),
-                aml_0156_dna131_ao: linevec[56].to_string(),
-                aml_0156_dna131_ro: linevec[57].to_string(),
-                aml_0156_dna131_co: linevec[58].to_string(),
+                clinical_trials: linevec[48].to_string(),
+                clinvar_traitsclinvar_pmids: linevec[49].to_string(),
+                diseases: linevec[50].to_string(),
+                disease_ids: linevec[51].to_string(),
+                aml_0156_dna131_geno: linevec[52].to_string(),
+                aml_0156_dna131_qual: linevec[53].to_string(),
+                aml_0156_dna131_geno_qual: linevec[54].to_string(),
+                aml_0156_dna131_filter: linevec[55].to_string(),
+                aml_0156_dna131_af: linevec[56].to_string(),
+                aml_0156_dna131_ao: linevec[57].to_string(),
+                aml_0156_dna131_ro: linevec[58].to_string(),
+                aml_0156_dna131_co: linevec[59].to_string(),
             })
         }
     }
@@ -260,6 +261,7 @@ pub fn genomemap(path1: &str, path2: &str) -> Result<String, Box<dyn Error>> {
                             .clinvar_clinical_significance
                             .clone(),
                         clinvar_rev_status: genomeiter.clinvar_rev_status.clone(),
+                        clinical_trials: genomeiter.clinical_trials.clone(),
                         clinvar_traitsclinvar_pmids: genomeiter.clinvar_traitsclinvar_pmids.clone(),
                         diseases: genomeiter.diseases.clone(),
                         disease_ids: genomeiter.disease_ids.clone(),
@@ -280,7 +282,7 @@ pub fn genomemap(path1: &str, path2: &str) -> Result<String, Box<dyn Error>> {
     let mut variantgenome = File::create(filenamewrite).expect("file not present");
     writeln!(
         variantgenome,
-        "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}",
+        "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}",
         "chrom",
         "start",
         "stop",
@@ -369,6 +371,7 @@ pub fn genomemap(path1: &str, path2: &str) -> Result<String, Box<dyn Error>> {
         "clinvar_rcv",
         "clinvar_clinical_significance",
         "clinvar_rev_status",
+        "clinical_trails",
         "clinvar_traitsclinvar_pmids",
         "diseases",
         "disease_ids",
@@ -382,7 +385,7 @@ pub fn genomemap(path1: &str, path2: &str) -> Result<String, Box<dyn Error>> {
         "aml_0156_dna131_co",
     ).expect("line not present");
     for i in combineanalyzer.iter() {
-        writeln!(variantgenome, "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t
+        writeln!(variantgenome, "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t
                 {}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}", i.chrom, i.start, i.stop, i.priortranscript, i.hgvpc, i.cannonical, i.othertranscript, i.genotype, i.phenotype, i.medgencui, i.inheritance,i.finalclass, i.score_pathogen, i.flag, i.note, i.vcforig,
                         i.pvs1,
                         i.ps1,
@@ -454,6 +457,7 @@ pub fn genomemap(path1: &str, path2: &str) -> Result<String, Box<dyn Error>> {
                         i.clinvar_rcv,
                         i.clinvar_clinical_significance,
                         i.clinvar_rev_status,
+                        i.clinical_trials,
                         i.clinvar_traitsclinvar_pmids,
                         i.diseases,
                         i.disease_ids,
