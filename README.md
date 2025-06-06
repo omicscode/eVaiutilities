@@ -9,6 +9,8 @@ Analyzing and identifying genomic variants is particularly helpful in case of li
 - It provides the population scale variant searching given a folder according to the variant, annotation, transcript, gene, and coordinates.
 - It uses this version of the human genome from [GENCODE](https://www.gencodegenes.org/human/).
 
+- [Scientific Rust](https://www.youtube.com/watch?app=desktop&v=dru-2Cn-RTQ)
+
 ```
 git clone https://github.com/IBCHgenomic/eVaiutilities.git
 tar xvf eVaiutilities-conda-version.tar
