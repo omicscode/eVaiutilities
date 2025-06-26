@@ -1,6 +1,6 @@
 # eVaiutilities: 
 
-<img src="https://github.com/IBCHgenomic/eVaiutilities/blob/main/evaiUtilitieslogo.png" width="300" />
+<img src="https://github.com/IBCHgenomic/eVaiutilities/blob/main/evaiUtilitieslogo.png" width="350" />
 
 ![](https://github.com/IBCHgenomic/eVaiutilities/blob/main/logo.png)
 
