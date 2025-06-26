@@ -1,5 +1,7 @@
 # eVaiutilities: 
 
+![](https://github.com/IBCHgenomic/eVaiutilities/blob/main/evaiUtilitieslogo.png)
+
 ![](https://github.com/IBCHgenomic/eVaiutilities/blob/main/logo.png)
 
 Analyzing and identifying genomic variants is particularly helpful in case of linking the disease onset to the genomic predictions. Genomic variants play a key role in the identification and characterization of the disease onset and also allow for interlinking genomic variability and hypothesis testing. eVai, which is a variant annotation platform provides annotation of the genomic variants using several backhand open source databases and tools. eVaiutilities proposed in this paper, is a data management software for the analysis of the eVai output files. It allows the analysis of the genomic variants further such as analyzing the multiple genomic annotated variants, reference and alternate allele, enabling coordinate search, coordinate search with specified variants and annotation search across a large number of population. The availability of the command line parameters allows for a large scale analysis across the several population files. 
