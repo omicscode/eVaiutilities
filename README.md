@@ -14,16 +14,6 @@ Analyzing and identifying genomic variants is particularly helpful in case of li
 - [Scientific Rust](https://www.youtube.com/watch?app=desktop&v=dru-2Cn-RTQ)
 
 ```
-git clone https://github.com/IBCHgenomic/eVaiutilities.git
-tar xvf eVaiutilities-conda-version.tar
-cd eVaiutilities-conda-version
-conda env create -n rust4 -f condaeVaiutilities.yaml
-conda activate rusteVai
-cargo build
-./target/debug/eVaiutilities
-```
-
-```
  cargo build
 ```
 
