@@ -77,6 +77,7 @@ Options:
  alt-allele-older oldversion-population T samplename
  alt-ref-allele newversion-population A T samplename
  alt-ref-allele-older oldversion-population A T samplename
+```
 
 - To install windows version:
 
