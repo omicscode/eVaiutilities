@@ -13,8 +13,8 @@ use std::process::Command;
  ul. Noskowskiego 12/14 | 61-704, Poznań
  Date: 2025-3-27
 */
-
-pub fn sequence(
+#[tokio::main]
+pub async fn sequence(
     pathacmg: &str,
     pathfasta: &str,
     upstream: usize,

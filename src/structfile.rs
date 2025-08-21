@@ -461,3 +461,11 @@ pub struct TranscriptEval {
     pub start: usize,
     pub end: usize,
 }
+
+#[derive(Debug, Clone, PartialOrd, PartialEq)]
+pub struct VariantAccumulate {
+    pub refallele: String,
+    pub altallele: String,
+    pub effect: String,
+    pub gene: String,
+}

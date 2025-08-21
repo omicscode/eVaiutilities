@@ -57,26 +57,27 @@ Options:
 
 ```
 ```
- variant-analyzer ./data-repo/sample1.tsv ./single/sampletest.tsv
- variant-filter ./data-repo/sample1.tsv ./single/sampletest.tsv TTT
- gtf-analyze ./single/samplegtf.gtf
- variant-seq ./single/sample1.tsv ./single/sample.fasta
+ variant-analyzer ./single-population/sample1.tsv ./single/sampletest.tsv
+ variant-filter ./single-population/sample1.tsv ./single/sampletest.tsv TTT
+ gtf-analyze ./single-population/samplegtf.gtf
+ variant-seq ./single-population/sample1.tsv ./single/sample.fasta
  download-genome yes
- acmg-transcript ./single/sample1.tsv
- sequence-profile ./single/sample1.tsv ./data-repo/sample.fasta 10 10
- population-variant-search newversion-population G samplename
- coordinate-search newversion-population 14464 16495 samplename
- annotation-search newversion-population AL645608.6 samplename
- pathogenicity-filter newversion-population 0.0 1.5 samplename
- population-variant-searcholder oldversion-population G samplename
- coordinate-searcholder oldversion-population 14464 16495 samplename
- annotation-searcholder oldversion-population WASH7P samplename
- pathogenicity-filterolder oldversion-population 0 1.5 samplename
- transcript-search newversion-population ENST00000635509.2 samplename
- alt-allele newversion-population T samplename
- alt-allele-older oldversion-population T samplename
- alt-ref-allele newversion-population A T samplename
- alt-ref-allele-older oldversion-population A T samplename
+ acmg-transcript ./single-population/sample1.tsv
+ sequence-profile ./single-population/sample1.tsv ./data-repo/sample.fasta 10 10
+ population-variant-search ./testfiles/newversion-population G samplename
+ coordinate-search ./testfiles/newversion-population 14464 16495 samplename
+ annotation-search ./testfiles/newversion-population AL645608.6 samplename
+ pathogenicity-filter ./testfiles/newversion-population 0.0 1.5 samplename
+ population-variant-searcholder ./testfiles/oldversion-population G samplename
+ coordinate-searcholder ./testfiles/oldversion-population 14464 16495 samplename
+ annotation-searcholder ./testfiles/oldversion-population WASH7P samplename
+ pathogenicity-filterolder ./testfiles/oldversion-population 0 1.5 samplename
+ transcript-search ./testfiles/newversion-population ENST00000635509.2 samplename
+ alt-allele ./testfiles/newversion-population T samplename
+ alt-allele-older ./testfiles/oldversion-population T samplename
+ alt-ref-allele ./testfiles/newversion-population A T samplename
+ alt-ref-allele-older ./testfiles/oldversion-population A T samplename
+ variant-plotter ./testfiles/variant-accumulation
 ```
 
 - To install windows version:

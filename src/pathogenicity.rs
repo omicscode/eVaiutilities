@@ -16,8 +16,8 @@ use std::io::Write;
  Date: 2025-3-31
 
 */
-
-pub fn pathogenicityscore(
+#[tokio::main]
+pub async fn pathogenicityscore(
     path1: &str,
     value: f32,
     valuend: f32,

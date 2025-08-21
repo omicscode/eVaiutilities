@@ -14,8 +14,8 @@ use std::io::Write;
  ul. Noskowskiego 12/14 | 61-704, Poznań
  Date: 2025-4-2
 */
-
-pub fn transcriptsearcholder(
+#[tokio::main]
+pub async fn transcriptsearcholder(
     path1: &str,
     transcriptname: &str,
     analysisname: &str,

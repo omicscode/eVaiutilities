@@ -16,8 +16,8 @@ use std::io::Write;
  Date: 2025-3-28
 
 */
-
-pub fn population(
+#[tokio::main]
+pub async fn population(
     path1: &str,
     variant: &str,
     analysisname: String,

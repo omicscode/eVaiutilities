@@ -16,8 +16,8 @@ use std::io::Write;
  Date: 2025-3-28
 
 */
-
-pub fn altallelesearch(
+#[tokio::main]
+pub async fn altallelesearch(
     path1: &str,
     variant: &str,
     analysisname: String,

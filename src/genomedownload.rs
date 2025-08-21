@@ -11,8 +11,8 @@ use std::process::Command;
  ul. Noskowskiego 12/14 | 61-704, Poznań
  Date: 2025-3-19
 */
-
-pub fn downloadgenome(input: &str) -> Result<String, Box<dyn Error>> {
+#[tokio::main]
+pub async fn downloadgenome(input: &str) -> Result<String, Box<dyn Error>> {
     if input == "yes" {
         let _ = fs::create_dir("./download").unwrap();
         let newpath = Path::new("./download");

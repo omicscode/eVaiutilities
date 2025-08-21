@@ -240,4 +240,9 @@ pub enum Commands {
         /// provide the analysis name
         name: String,
     },
+    /// accumulate all variants for the plots
+    VariantPlotter {
+        /// provide the path to the folder
+        pathfolder: String,
+    },
 }

@@ -16,8 +16,8 @@ use std::io::Write;
  Date: 2025-3-12
 
 */
-
-pub fn genomemap(path1: &str, path2: &str) -> Result<String, Box<dyn Error>> {
+#[tokio::main]
+pub async fn genomemap(path1: &str, path2: &str) -> Result<String, Box<dyn Error>> {
     let fileopen = File::open(path1).expect("file not found");
     let fileread = BufReader::new(fileopen);
     let mut filesplit: Vec<Genomeanalyzer> = Vec::new();

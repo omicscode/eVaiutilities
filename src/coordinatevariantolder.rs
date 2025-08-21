@@ -16,8 +16,8 @@ use std::io::Write;
  Date: 2025-3-28
 
 */
-
-pub fn coordinatevariantsearcholder(
+#[tokio::main]
+pub async fn coordinatevariantsearcholder(
     path1: &str,
     start: usize,
     end: usize,

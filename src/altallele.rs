@@ -16,8 +16,8 @@ use std::io::Write;
  Date: 2025-3-28
 
 */
-
-pub fn altrefallelesearch(
+#[tokio::main]
+pub async fn altrefallelesearch(
     path1: &str,
     variant: &str,
     altallele: &str,

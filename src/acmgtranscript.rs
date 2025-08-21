@@ -13,8 +13,8 @@ use std::io::{BufRead, BufReader};
 */
 
 // This functions allows you to build all the transcript for the associated variant whether it is prior transcript or the cannonical transcript.
-
-pub fn acmgannotate(pathacmg: &str) -> Result<String, Box<dyn Error>> {
+#[tokio::main]
+pub async fn acmgannotate(pathacmg: &str) -> Result<String, Box<dyn Error>> {
     let acmgopen = File::open(pathacmg).expect("file not present");
     let acmgread = BufReader::new(acmgopen);
     let mut priortranscript: Vec<Transcript> = Vec::new();

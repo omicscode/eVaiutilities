@@ -22,6 +22,7 @@ mod sequenceprofile;
 mod structfile;
 mod transcript;
 mod transcriptolder;
+mod variantaccumulate;
 mod variantdatabase;
 mod variantfilter;
 use crate::acmgtranscript::acmgannotate;
@@ -48,6 +49,7 @@ use crate::refalleleolder::altalleleoldersearch;
 use crate::sequenceprofile::sequence;
 use crate::transcript::transcriptsearch;
 use crate::transcriptolder::transcriptsearcholder;
+use crate::variantaccumulate::variantaccumulateplot;
 use crate::variantdatabase::variantdatabase;
 use crate::variantfilter::variantanalyzer;
 use clap::Parser;
@@ -256,6 +258,10 @@ fn main() {
             let command =
                 altrefalleleoldersearch(acmgdir, refallele, altallele, name.to_string()).unwrap();
             println!("The command has finished:{}", command);
+        }
+        Commands::VariantPlotter { pathfolder } => {
+            let command = variantaccumulateplot(pathfolder).unwrap();
+            println!("The command has finished: {}", command);
         }
     }
 }

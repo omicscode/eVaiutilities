@@ -16,8 +16,8 @@ use std::io::Write;
  Date: 2025-3-28
 
 */
-
-pub fn annotationsearch(
+#[tokio::main]
+pub async fn annotationsearch(
     path1: &str,
     genename: &str,
     analysisname: &str,

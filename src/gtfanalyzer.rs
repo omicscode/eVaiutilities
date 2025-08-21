@@ -12,8 +12,8 @@ use std::io::{BufRead, BufReader, Write};
  ul. Noskowskiego 12/14 | 61-704, Poznań
  Date: 2025-3-12
 */
-
-pub fn analyzegtf(pathgtf: &str) -> Result<String, Box<dyn Error>> {
+#[tokio::main]
+pub async fn analyzegtf(pathgtf: &str) -> Result<String, Box<dyn Error>> {
     let fileread = File::open(pathgtf).expect("file not found");
     let fileread = BufReader::new(fileread);
 

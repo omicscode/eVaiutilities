@@ -11,8 +11,8 @@ use std::process::Command;
  ul. Noskowskiego 12/14 | 61-704, Poznań
  Date: 2025-3-18
 */
-
-pub fn fastagtf(pathacmg: &str, pathfasta: &str) -> Result<String, Box<dyn Error>> {
+#[tokio::main]
+pub async fn fastagtf(pathacmg: &str, pathfasta: &str) -> Result<String, Box<dyn Error>> {
     let fastafile = File::open(pathfasta).expect("file not present");
     let fastaread = BufReader::new(fastafile);
     let mut vecfastaid: Vec<String> = Vec::new();

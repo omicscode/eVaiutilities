@@ -16,8 +16,8 @@ use std::io::Write;
  Date: 2025-3-28
 
 */
-
-pub fn populationolder(
+#[tokio::main]
+pub async fn populationolder(
     path1: &str,
     variant: &str,
     analysisname: String,

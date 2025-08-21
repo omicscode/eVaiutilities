@@ -16,8 +16,8 @@ use std::io::Write;
  Date: 2025-3-28
 
 */
-
-pub fn coordinatesearch(
+#[tokio::main]
+pub async fn coordinatesearch(
     path1: &str,
     start: usize,
     end: usize,
