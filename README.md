@@ -79,14 +79,13 @@ Options:
  alt-ref-allele-older oldversion-population A T samplename
 
 - To install windows version:
+
 ```
 rustup component add llvm-tools
 rustup target add x86_64-pc-windows-msvc
 git clone https://github.com/IBCHgenomic/eVaiutilities.git
 cd ensemblcov
 cargo xwin build --target x86_64-pc-windows-msvc
-```
-
 ```
 
  Gaurav Sablok \
