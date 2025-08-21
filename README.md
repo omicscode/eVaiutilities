@@ -1,8 +1,8 @@
-# eVaiutilities: 
+# eVaiutilities:
 
-Analyzing and identifying genomic variants is particularly helpful in case of linking the disease onset to the genomic predictions. Genomic variants play a key role in the identification and characterization of the disease onset and also allow for interlinking genomic variability and hypothesis testing. eVai, which is a variant annotation platform provides annotation of the genomic variants using several backhand open source databases and tools. eVaiutilities proposed in this paper, is a data management software for the analysis of the eVai output files. It allows the analysis of the genomic variants further such as analyzing the multiple genomic annotated variants, reference and alternate allele, enabling coordinate search, coordinate search with specified variants and annotation search across a large number of population. The availability of the command line parameters allows for a large scale analysis across the several population files. 
+Analyzing and identifying genomic variants is particularly helpful in case of linking the disease onset to the genomic predictions. Genomic variants play a key role in the identification and characterization of the disease onset and also allow for interlinking genomic variability and hypothesis testing. eVai, which is a variant annotation platform provides annotation of the genomic variants using several backhand open source databases and tools. eVaiutilities proposed in this paper, is a data management software for the analysis of the eVai output files. It allows the analysis of the genomic variants further such as analyzing the multiple genomic annotated variants, reference and alternate allele, enabling coordinate search, coordinate search with specified variants and annotation search across a large number of population. The availability of the command line parameters allows for a large scale analysis across the several population files.
 
-- eVai-utilities for data management of the eVai results. It supports all versions of eVai. 
+- eVaiutilities for data management of the eVai results. It supports all versions of eVai.
 - It analyzes the eVai output files for variant annotation to filtering, preparating user reports and database and annotator and more. See the example folder for the older and the newer version files.
 - It provides the population scale variant searching given a folder according to the variant, annotation, transcript, gene, and coordinates.
 - It uses this version of the human genome from [GENCODE](https://www.gencodegenes.org/human/)
@@ -20,10 +20,6 @@ Analyzing and identifying genomic variants is particularly helpful in case of li
       Gaurav Sablok, IBCH, PAN, Poznan, Poland,
       https://portal.ichb.pl/laboratory-of-genomics/.
       Email: gsablok@ibch.poznan.pl
-      Funded through Development of a universal fast-response platform,
-      based on RNA technology,ensuring the national drug and epidemiological safety.
-      2021/ABM/05/00004-00 to
-      Prof. Luiza Handschuh: luizahan@ibch.poznan.pl.
       *************************************************
 
 Usage: eVaiutilities <COMMAND>
@@ -69,7 +65,7 @@ Options:
  acmg-transcript ./single/sample1.tsv
  sequence-profile ./single/sample1.tsv ./data-repo/sample.fasta 10 10
  population-variant-search newversion-population G samplename
- coordinate-search newversion-population 14464 16495 samplename 
+ coordinate-search newversion-population 14464 16495 samplename
  annotation-search newversion-population AL645608.6 samplename
  pathogenicity-filter newversion-population 0.0 1.5 samplename
  population-variant-searcholder oldversion-population G samplename
@@ -98,4 +94,3 @@ cargo xwin build --target x86_64-pc-windows-msvc
  Polskiej Akademii Nauk \
  ul. Noskowskiego 12/14 | 61-704, Poznań \
  Poland
-

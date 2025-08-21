@@ -1,22 +1,23 @@
 [package]
 name = "eVaiutilities"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2024"
 readme = "README.md"
 license = "MIT"
 authors = ["Gaurav Sablok <gsablok@ibch.poznan.pl>"]
 description = "variant analyzer for human genomics"
-homepage = "https://github.com/IBCHgenomic/eVai-utilities"
-repository = "https://github.com/IBCHgenomic/eVai-utilities"
+homepage = "https://github.com/genomicssport/eVai-utilities"
+repository = "https://github.com/genomicssport/eVai-utilities"
 
 [dependencies]
 clap = { version = "4.5.32", features = ["derive"] }
 cmd_lib = "1.9.5"
 plotpy = "1.13.0"
 plotters = "0.3.7"
-rusqlite = "0.34.0"
 rustplotlib = "0.0.4"
 serde = "1.0.219"
+sqlx = { version = "0.6", features = ["postgres", "runtime-tokio-native-tls"] }
+tokio = { version = "1.47.1", features = ["full"] }
 
 [package.metadata.docs.rs]
 cargo-args = ["-Zunstable-options", "-Zrustdoc-scrape-examples"]
