@@ -1,4 +1,5 @@
 use crate::structfile::VariantAccumulate;
+use plotpy::{Barplot, Plot};
 use std::collections::HashSet;
 use std::error::Error;
 use std::fs;
@@ -6,7 +7,6 @@ use std::fs::File;
 use std::io::BufRead;
 use std::io::BufReader;
 use std::io::Write;
-
 /*
 
  Author Gaurav Sablok
@@ -63,10 +63,39 @@ pub async fn variantaccumulateplot(path1: &str) -> Result<String, Box<dyn Error>
         countmatrix.push(countinsert);
     }
 
-    println!("{:?}", effect);
     let mut filecount = File::create("variantplot.txt").expect("file not present");
     for i in countmatrix.iter() {
-        writeln!(filecount, "{}\t{}", i.0, i.1).expect("file not found");
+        if i.0 == "EFFECT" {
+            continue;
+        } else {
+            writeln!(filecount, "{}\t{}", i.0, i.1).expect("file not found");
+        }
     }
+
+    let mut namevector: Vec<_> = Vec::new();
+    let mut namedata: Vec<usize> = Vec::new();
+
+    for i in countmatrix.iter() {
+        if i.0 == "EFFECT" {
+            continue;
+        } else {
+            namevector.push(i.0.as_str());
+            namedata.push(i.1)
+        }
+    }
+
+    let mut bar = Barplot::new();
+    bar.set_horizontal(true)
+        .set_with_text("edge")
+        .draw_with_str(namevector.as_slice(), &namedata);
+
+    let mut plot = Plot::new();
+    plot.set_inv_y()
+        .add(&bar)
+        .set_title("Annotate Variant Frequency")
+        .set_label_x("Variant Count");
+
+    plot.save("barplot.svg")?;
+
     Ok("The file has been written to string".to_string())
 }
