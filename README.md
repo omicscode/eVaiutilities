@@ -11,7 +11,7 @@
 
 - In this new version, it plots the variants accumulated also.
 
-[](https://github.com/genomicssport/eVaiutilities/blob/main/testfiles/barplot.svg)
+<img src="https://github.com/genomicssport/eVaiutilities/blob/main/testfiles/barplot.svg" >
 
 ```
  cargo build
