@@ -9,6 +9,10 @@
 
 - [Scientific Rust](https://www.youtube.com/watch?app=desktop&v=dru-2Cn-RTQ)
 
+- In this new version, it plots the variants accumulated also.
+
+[](https://github.com/genomicssport/eVaiutilities/blob/main/testfiles/barplot.svg)
+
 ```
  cargo build
 ```
