@@ -53,6 +53,7 @@ use crate::variantaccumulate::variantaccumulateplot;
 use crate::variantdatabase::variantdatabase;
 use crate::variantfilter::variantanalyzer;
 use clap::Parser;
+use figlet_rs::FIGfont;
 
 /*
  Authom Gaurav Sablok
@@ -63,6 +64,10 @@ use clap::Parser;
 */
 
 fn main() {
+    let standard_font = FIGfont::standard().unwrap();
+    let figure = standard_font.convert("eVaiUtilities");
+    assert!(figure.is_some());
+    println!("{}", figure.unwrap());
     let argsparse = CommandParse::parse();
     match &argsparse.command {
         Commands::VariantAnalyzer { acmgfile, tsvfile } => {

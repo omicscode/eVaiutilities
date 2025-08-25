@@ -12,6 +12,7 @@ repository = "https://github.com/genomicssport/eVai-utilities"
 [dependencies]
 clap = { version = "4.5.32", features = ["derive"] }
 cmd_lib = "1.9.5"
+figlet-rs = "0.1.5"
 plotpy = "1.13.0"
 plotters = "0.3.7"
 rustplotlib = "0.0.4"

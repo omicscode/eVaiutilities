@@ -14,46 +14,54 @@
 ```
 
 ```
- annotating and analyzing eVai results.
+__     __          _   _   _   _     _   _   _   _     _
+___  \ \   / /   __ _  (_) | | | | | |_  (_) | | (_) | |_  (_)   ___   ___
+/ _ \  \ \ / /   / _` | | | | | | | | __| | | | | | | | __| | |  / _ \ / __|
+|  __/   \ V /   | (_| | | | | |_| | | |_  | | | | | | | |_  | | |  __/ \__ \
+\___|    \_/     \__,_| |_|  \___/   \__| |_| |_| |_|  \__| |_|  \___| |___/
 
-      ************************************************
-      Gaurav Sablok, IBCH, PAN, Poznan, Poland,
-      https://portal.ichb.pl/laboratory-of-genomics/.
-      Email: gsablok@ibch.poznan.pl
-      *************************************************
+
+annotating and analyzing eVai results.
+
+************************************************
+Gaurav Sablok, IBCH, PAN, Poznan, Poland,
+https://portal.ichb.pl/laboratory-of-genomics/.
+Email: gsablok@ibch.poznan.pl
+************************************************
 
 Usage: eVaiutilities <COMMAND>
 
 Commands:
-  variant-analyzer                analyzer for the variants
-  variant-filter                  filter the variants
-  variant-database                create variant database
-  gtf-analyze                     analyze the corresponding gtf
-  variant-seq                     prepare the variant seq annotation
-  download-genome                 download the human genome
-  acmg-transcript                 variant-transcriptids
-  sequence-profile                sequence profiling
-  population-variant-search       search for the variant across population
-  coordinate-search               search according to coordinates
-  coordinate-search-variant       search according to coordinates and variant
-  annotation-search               search according to annotation
-  pathogenicity-filter            pathogenicity filter
-  population-variant-searcholder  search for the variant across population older version
-  coordinate-searcholder          search according to coordinates older version
-  coordinate-searc-variantholder  search according to coordinates and variant older version
-  annotation-searcholder          search according to annotation older version
-  pathogenicity-filterolder       pathogenicity filter older version
-  transcript-search               search by the specific transcript
-  transcript-searcholder          search by the specific transcript older
-  alt-allele                      search for the ref allele
-  alt-ref-allele                  search according to ref allele and alt allele
-  alt-allele-older                search for the ref allele older version
-  alt-ref-allele-older            search according to ref allele and alt allele older version
-  help                            Print this message or the help of the given subcommand(s)
+variant-analyzer                analyzer for the variants
+variant-filter                  filter the variants
+variant-database                create variant database
+gtf-analyze                     analyze the corresponding gtf
+variant-seq                     prepare the variant seq annotation
+download-genome                 download the human genome
+acmg-transcript                 variant-transcriptids
+sequence-profile                sequence profiling
+population-variant-search       search for the variant across population
+coordinate-search               search according to coordinates
+coordinate-search-variant       search according to coordinates and variant
+annotation-search               search according to annotation
+pathogenicity-filter            pathogenicity filter
+population-variant-searcholder  search for the variant across population older version
+coordinate-searcholder          search according to coordinates older version
+coordinate-searc-variantholder  search according to coordinates and variant older version
+annotation-searcholder          search according to annotation older version
+pathogenicity-filterolder       pathogenicity filter older version
+transcript-search               search by the specific transcript
+transcript-searcholder          search by the specific transcript older
+alt-allele                      search for the ref allele
+alt-ref-allele                  search according to ref allele and alt allele
+alt-allele-older                search for the ref allele older version
+alt-ref-allele-older            search according to ref allele and alt allele older version
+variant-plotter                 accumulate all variants for the plots
+help                            Print this message or the help of the given subcommand(s)
 
 Options:
-  -h, --help     Print help
-  -V, --version  Print version
+-h, --help     Print help
+-V, --version  Print version
 
 ```
 ```
@@ -81,6 +89,7 @@ Options:
 ```
 
 - To install windows version:
+
 
 ```
 rustup component add llvm-tools
