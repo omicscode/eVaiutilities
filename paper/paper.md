@@ -1,5 +1,5 @@
 ---
-title: "eVaiutilities: Data management utilities for eVai"
+title: "eVaiutilities: Genomics population scale utilities for eVai"
 tags:
   - RUST
   - human genomics
@@ -33,7 +33,7 @@ bibliography: paper.bib
 ---
 
 # Summary
-Analyzing and identifying genomic variants is particularly helpful in case of linking the disease onset to the genomic predictions. Genomic variants play a key role in the identification and characterization of the disease onset and also allow for interlinking genomic variability and hypothesis testing. eVai, which is a variant annotation platform provides annotation of the genomic variants using several backend open source databases and tools. eVaiutilities proposed in this paper, is a data management software for the analysis of the eVai output files. It allows the analysis of the genomic variants further such as analyzing the multiple genomic annotated variants, reference and alternate allele, enabling coordinate search, coordinate search with specified variants and annotation search across a large number of population. The availability of the command line parameters allows for a large scale analysis across the several population files. eVAI has been used by many people and has been very well cited, so the lack of the use of the command line for the high-throughput analysis promoted to develop eVaiutilities. Email: luizahan@ibch.poznan.pl
+Analyzing and identifying genomic variants is particularly helpful in case of linking the disease onset to the genomic predictions. Genomic variants play a key role in the identification and characterization of the disease onset and also allow for interlinking genomic variability and hypothesis testing. eVai, which is a variant annotation platform provides annotation of the genomic variants using several backend open source databases and tools. eVaiutilities proposed in this paper, is a post-eVAI analyzer for population scale analysis for eVAI variant annotation. It allows the analysis of the genomic variants further such as analyzing the multiple genomic annotated variants, reference and alternate allele, enabling coordinate search, coordinate search with specified variants and annotation search across a large number of population. The availability of the command line parameters allows for a large scale analysis across the several population files. eVAI has been used by many people and has been very well cited, so the lack of the use of the command line for the high-throughput analysis promoted to develop eVaiutilities. Email: luizahan@ibch.poznan.pl
 
 # Statement of need
 
