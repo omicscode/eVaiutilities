@@ -40,7 +40,7 @@ Analyzing and identifying genomic variants is particularly helpful in case of li
 Human genomics has always been an intriguing and gleaming topic of interest. Many efforts have been laid for understanding and identifying variants. Apart from the open source genomics efforts, proprietary efforts have been developed for the identification and annotation of the variants. The identified variants have been classified and linked to genetic and metabolic disorders, with severity ranging from pathogenic to highly pathogenic. One such effort is the eVai https://www.engenome.com/product/, which is a high throughput variant annotator, and provides the hierarchical classification of the genomic variants. However, the limitation of the eVai output files is the information spanning across the multiple files and the missing of the genome information and sub-sequence analysis on the annotated variants. eVaiutilities allows, you to use the output from the eVai and performs genome scale analysis of the eVai annotated variants. It allows you to search across populations, variants and spanning information across multiple samples. It is encoded in RUST, which is a memory safe language and provides scalability. 
 
 # Figures
-![Interface of evaiUtilities](eVaiutilities.png)
+![Interface of eVaiutilities](eVaiutilities.png)
 
 # eVaiutilities
 
