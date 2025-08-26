@@ -92,6 +92,35 @@ Options:
  variant-plotter ./testfiles/variant-accumulation
 ```
 
+- A detailed readme documentaiton as to understand the eVAiutilities.
+```
+variant-analyzer: analyzer for the variants and create a common variant file, so that you don't have duplicated information coming from the variant annotation. 
+variant-filter:filter the variant according to the user specified criteria. 
+variant-database:create variant database for all the annotation files. 
+gtf-analyze:analyze the corresponding gtf annotation for the variants.
+variant-seq:prepare the variant seq annotation for the identified variants. 
+download-genome:download the human genome and prepare for the annotations.
+acmg-transcript:single sample analysis according to variant-transcriptids
+sequence-profile:Single sample analysis according for sequence profiling
+population-variant-search:: Search for a specific variant across population.
+coordinate-search:Filter the single sample analysis according to coordinates.
+coordinate-search-variant:Filter the single sample analysis according to coordinates and variant.
+annotation-search: Filter the single sample analysis according to annotation.
+pathogenicity-filter: Filter the single sample analysis according to pathogenicity.
+population-variant-searcholder: Scan the entire population for the specified variant.Here older version means the older version of eVAI. 
+coordinate-searcholder:search for the population according to coordinates.Here older version means the older version of eVAI. 
+coordinate-searc-variantholder:search for the population according to coordinates and variant.Here older version means the older version of eVAI. 
+annotation-searcholder:search for the population for annotation.Here older version means the older version of eVAI. 
+pathogenicity-filterolder:Filter the entire population for pathogenicity.Here older version means the older version of eVAI. 
+transcript-search:search for the population for a specific transcript.This supports new version. 
+transcript-searcholder:search for the population for a specific transcript.Here older version means the older version of eVAI. 
+alt-allele:search for the population according to ref allele.
+alt-ref-allele:search for the population according to ref allele and alt allele 
+alt-allele-older:search for the population according to ref allele. Here older version means the older version of eVAI. 
+alt-ref-allele-older:search the population according to ref allele and alt allele. Here older version means the older version of eVAI. 
+variant-plotter: population scale variant summarizer, which accumulate all variants annotated and prepares a plot for the variant annotation.
+```
+
 - To install windows version:
 
 
