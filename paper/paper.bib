@@ -19,7 +19,8 @@
   month    =  jun,
   year     =  2016,
   keywords = "Genome; NGS; SNP; Variant annotation",
-  language = "en"
+  language = "en",
+  doi = {10.1186/s13059-016-0974-4}
 }
 
 @ARTICLE{Wang2010-mh,
@@ -56,7 +57,8 @@
   month     =  sep,
   year      =  2010,
   copyright = "http://creativecommons.org/licenses/by-nc/2.5",
-  language  = "en"
+  language  = "en",
+  doi = {10.1093/nar/gkq603}
 }
 
 @ARTICLE{Obenchain2014-jj,
@@ -85,23 +87,38 @@
   pages     = "2076--2078",
   month     =  jul,
   year      =  2014,
-  language  = "en"
+  language  = "en",
+  doi ={ 10.18129/B9.bioc.VariantAnnotation }
 }
 
-@article{Pedersen2022Echtvar,
-	journal = {Nucleic Acids Research},
-	doi = {10.1093/nar/gkac931},
-	issn = {0305-1048},
-	number = {1},
-	language = {en},
-	publisher = {Oxford University Press (OUP)},
-	title = {Echtvar: compressed variant representation for rapid annotation and filtering of SNPs and indels},
-	url = {http://dx.doi.org/10.1093/nar/gkac931},
-	volume = {51},
-	author = {Pedersen, Brent S and de Ridder, Jeroen},
-	pages = {e3--e3},
-	date = {2022-10-27},
-	year = {2022},
-	month = {10},
-	day = {27},
+@ARTICLE{Pedersen2023-co,
+  title    = "Echtvar: compressed variant representation for rapid annotation
+              and filtering of {SNPs} and indels",
+  author   = "Pedersen, Brent S and de Ridder, Jeroen",
+  abstract = "Germline and somatic variants within an individual or cohort are
+              interpreted with information from large cohorts. Annotation with
+              this information becomes a computational bottleneck as population
+              sets grow to terabytes of data. Here, we introduce echtvar, which
+              efficiently encodes population variants and annotation fields
+              into a compressed archive that can be used for rapid variant
+              annotation and filtering. Most variants, represented by
+              chromosome, position and alleles are encoded into 32-bits-half
+              the size of previous encoding schemes and at least 4 times
+              smaller than a naive encoding. The annotations, stored separately
+              within the same archive, are also encoded and compressed. We show
+              that echtvar is faster and uses less space than existing tools
+              and that it can effectively reduce the number of candidate
+              variants. We give examples on germ-line and somatic variants to
+              document how echtvar can facilitate exploratory data analysis on
+              genetic variants. Echtvar is available at
+              https://github.com/brentp/echtvar under an MIT license.",
+  journal  = "Nucleic Acids Res",
+  volume   =  51,
+  number   =  1,
+  pages    = "e3",
+  month    =  jan,
+  year     =  2023,
+  address  = "England",
+  language = "en",
+  doi = {10.1093/nar/gkac931}
 }
