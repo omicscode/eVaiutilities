@@ -69,13 +69,13 @@ Options:
 
 ```
 ```
- variant-analyzer ./single-population/sample1.tsv ./single/sampletest.tsv
- variant-filter ./single-population/sample1.tsv ./single/sampletest.tsv TTT
- gtf-analyze ./single-population/samplegtf.gtf
- variant-seq ./single-population/sample1.tsv ./single/sample.fasta
+ variant-analyzer ./testfiles/single-population/sample1.tsv ./single/sampletest.tsv
+ variant-filter ./testfiles/single-population/sample1.tsv ./single/sampletest.tsv TTT
+ gtf-analyze ./testfiles/single-population/samplegtf.gtf
+ variant-seq ./testfiles/single-population/sample1.tsv ./single/sample.fasta
  download-genome yes
- acmg-transcript ./single-population/sample1.tsv
- sequence-profile ./single-population/sample1.tsv ./data-repo/sample.fasta 10 10
+ acmg-transcript ./testfiles/single-population/sample1.tsv
+ sequence-profile ./testfiles/single-population/sample1.tsv ./data-repo/sample.fasta 10 10
  population-variant-search ./testfiles/newversion-population G samplename
  coordinate-search ./testfiles/newversion-population 14464 16495 samplename
  annotation-search ./testfiles/newversion-population AL645608.6 samplename
