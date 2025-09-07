@@ -5,7 +5,7 @@
 - eVaiutilities for data management of the eVai results. It supports all versions of eVai and uses RUSt version rustc 1.89.0 (29483883e 2025-08-04).
 - It analyzes the eVai output files for variant annotation to filtering, preparating user reports and database and annotator and more. See the example folder for the older and the newer version files.
 - It provides the population scale variant searching given a folder according to the variant, annotation, transcript, gene, and coordinates.
-- It uses this version of the human genome from [GENCODE](https://www.gencodegenes.org/human/)
+- It uses this version of the human genome from [GENCODE](https://www.gencodegenes.org/human/) 
 
 - [Scientific Rust](https://www.youtube.com/watch?app=desktop&v=dru-2Cn-RTQ)
 
