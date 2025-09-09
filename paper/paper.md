@@ -46,6 +46,6 @@ Variant identification and annotation across the human genome has wide biologica
 
 # Acknowledgements
 
-I thank Julia Romanowska for working on the text revisions of the paper, which has significantly improved trhe reading content of the eVaiutilties. 
+I thank Julia Romanowska for working on the text revisions of the paper, which has significantly improved the reading content of the eVaiutilties. 
 
 # References
