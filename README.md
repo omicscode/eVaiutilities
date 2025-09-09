@@ -2,10 +2,14 @@
 
 - Analyzing and identifying genomic variants is particularly helpful in case of linking the disease onset to the genomic predictions. Genomic variants play a key role in the identification and characterization of the disease onset and also allow for interlinking genomic variability and hypothesis testing. eVai, which is a variant annotation platform provides annotation of the genomic variants using several backhand open source databases and tools. eVaiutilities proposed in this paper, is a data management software for the analysis of the eVai output files. It allows the analysis of the genomic variants further such as analyzing the multiple genomic annotated variants, reference and alternate allele, enabling coordinate search, coordinate search with specified variants and annotation search across a large number of population. The availability of the command line parameters allows for a large scale analysis across the several population files.
 
-- eVaiutilities for data management of the eVai results. It supports all versions of eVai and uses RUSt version rustc 1.89.0 (29483883e 2025-08-04).
+# Role of eVaiutilities:
+- eVaiutilities is used for the population scale analysis the eVai results. It supports all versions of eVai and uses RUST version rustc 1.89.0 (29483883e 2025-08-04).
 - It analyzes the eVai output files for variant annotation to filtering, preparating user reports and database and annotator and more. See the example folder for the older and the newer version files.
 - It provides the population scale variant searching given a folder according to the variant, annotation, transcript, gene, and coordinates.
-- It uses this version of the human genome from [GENCODE](https://www.gencodegenes.org/human/) 
+- It uses this version of the human genome from [GENCODE](https://www.gencodegenes.org/human/)
+- It summaries several stats and plots figures for the variant analysis. 
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17083829.svg)](https://doi.org/10.5281/zenodo.17083829)
 
 - [Scientific Rust](https://www.youtube.com/watch?app=desktop&v=dru-2Cn-RTQ)
 
