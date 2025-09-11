@@ -15,8 +15,8 @@ bibliography: paper.bib
 
 # Summary
 
-[eVai](https://www.engenome.com/product/) is a variant annotation platform that leverages multiple open-source databases and tools to annotate genomic variants. It has been widely adopted in both industry and academic research (https://www.engenome.com/resources/?category=our-publications
-). However, because eVai lacks native command-line support for high-throughput, large-scale population analyses, its use in population-scale studies can be limited. To address this limitation, we developed eVaiutilities, a command-line tool that processes annotations produced by eVai as well as those from other platforms following a compatible format. It enables high-throughput analysis of multiple population files and supports deeper exploration of genomic variation at the population level. eVaiutilities integrates analyses of annotated variants across populations, examination of reference and alternate alleles, coordinate-based searches, and large-scale annotation searches across extensive datasets. This extension allows scalable and reproducible population-level analyses and has the potential to accelerate research on disease-associated variants and support the development of more effective disease-combatting strategies.
+[eVai](https://www.engenome.com/product/) is a variant annotation platform that leverages multiple open-source databases and tools to annotate genomic variants. It has been widely adopted in both industry and [academic research](https://www.engenome.com/resources/?category=our-publications
+). However, because eVai lacks native command-line support for high-throughput, large-scale population analyses, its use in population-scale studies can be limited. To address this limitation, I developed eVaiutilities, a command-line tool that processes annotations produced by eVai as well as those from other platforms following a compatible format. It enables high-throughput analysis of multiple population files and supports deeper exploration of genomic variation at the population level. eVaiutilities integrates analyses of annotated variants across populations, examination of reference and alternate alleles, coordinate-based searches, and large-scale annotation searches across extensive datasets. This extension allows scalable and reproducible population-level analyses and has the potential to accelerate research on disease-associated variants and support the development of more effective disease-combatting strategies.
 
 # Statement of need
 
@@ -32,6 +32,6 @@ Comprehensive annotation of human genomic variants is essential for biological i
 
 # Acknowledgements
 
-I thank Julia Romanowska for working on the text revisions of the paper, which has significantly improved the reading content of the eVaiutilties. 
+I thank Julia Romanowska and reviewers for working on the text revisions of the paper, which has significantly improved the reading content of the eVaiutilties. 
 
 # References
