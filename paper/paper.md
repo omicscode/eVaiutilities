@@ -35,6 +35,6 @@ Comprehensive annotation of human genomic variants is essential for biological i
 
 # Acknowledgements
 
-I thank Julia Romanowska and reviewers for working on the text revisions of the paper, which has significantly improved the readability.
+I thank Julia Romanowska and the reviewers for their work on revising the text, which has significantly improved the paper’s readability.
 
 # References
