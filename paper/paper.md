@@ -9,10 +9,6 @@ tags:
 authors:
   - name: Gaurav Sablok
     orcid: 0000-0002-4157-9405
-    affiliation: 1
-affiliations:
-  - name: Institute of Bioorganic Chemistry, Polish Academy of Sciences, Noskowskiego 12/14, 61-704, Poznan, Poland
-    index: 1
 date: 10 April 2025
 bibliography: paper.bib
 ---
