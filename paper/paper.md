@@ -10,7 +10,7 @@ authors:
   - name: Gaurav Sablok
     orcid: 0000-0002-4157-9405
     affiliation: 1
-  - affiliations:
+affiliations:
   - name: Software Developer, Poznan, Poland
     index: 1
 date: 10 April 2025
