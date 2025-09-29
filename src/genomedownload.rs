@@ -4,13 +4,13 @@ use std::error::Error;
 use std::fs;
 use std::path::Path;
 use std::process::Command;
+
 /*
- Authom Gaurav Sablok
- Instytut Chemii Bioorganicznej
- Polskiej Akademii Nauk
- ul. Noskowskiego 12/14 | 61-704, Poznań
- Date: 2025-3-19
+Author Gaurav Sablok,
+Email: codeprog@icloud.com
+Date: 2025-3-19
 */
+
 #[tokio::main]
 pub async fn downloadgenome(input: &str) -> Result<String, Box<dyn Error>> {
     if input == "yes" {

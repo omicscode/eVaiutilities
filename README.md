@@ -7,7 +7,7 @@
 - It analyzes the eVai output files for variant annotation to filtering, preparating user reports and database and annotator and more. See the example folder for the older and the newer version files.
 - It provides the population scale variant searching given a folder according to the variant, annotation, transcript, gene, and coordinates.
 - It uses this version of the human genome from [GENCODE](https://www.gencodegenes.org/human/)
-- It summaries several stats and plots figures for the variant analysis. 
+- It summaries several stats and plots figures for the variant analysis.
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17083829.svg)](https://doi.org/10.5281/zenodo.17083829)
 
@@ -22,7 +22,6 @@
 ```
 
 ```
-__     __          _   _   _   _     _   _   _   _     _
 ___  \ \   / /   __ _  (_) | | | | | |_  (_) | | (_) | |_  (_)   ___   ___
 / _ \  \ \ / /   / _` | | | | | | | | __| | | | | | | | __| | |  / _ \ / __|
 |  __/   \ V /   | (_| | | | | |_| | | |_  | | | | | | | |_  | | |  __/ \__ \
@@ -31,11 +30,10 @@ ___  \ \   / /   __ _  (_) | | | | | |_  (_) | | (_) | |_  (_)   ___   ___
 
 annotating and analyzing eVai results.
 
-************************************************
-Gaurav Sablok, IBCH, PAN, Poznan, Poland,
-https://portal.ichb.pl/laboratory-of-genomics/.
-Email: gsablok@ibch.poznan.pl
-************************************************
+   ************************************************
+   Gaurav Sablok,
+   Email: codeprog@icloud.com
+   ************************************************
 
 Usage: eVaiutilities <COMMAND>
 

@@ -1,13 +1,13 @@
 [package]
 name = "eVaiutilities"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2024"
 readme = "README.md"
 license = "MIT"
-authors = ["Gaurav Sablok <gsablok@ibch.poznan.pl>"]
+authors = ["Gaurav Sablok <codeprog@icloud.com>"]
 description = "variant analyzer for human genomics"
-homepage = "https://github.com/genomicssport/eVai-utilities"
-repository = "https://github.com/genomicssport/eVai-utilities"
+homepage = "https://github.com/omicscode/eVai-utilities"
+repository = "https://github.com/omicscode/eVai-utilities"
 
 [dependencies]
 clap = { version = "4.5.32", features = ["derive"] }

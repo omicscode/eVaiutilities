@@ -6,11 +6,9 @@ use std::fs::File;
 use std::io::{BufRead, BufReader, Write};
 
 /*
- Author Gaurav Sablok
- Instytut Chemii Bioorganicznej
- Polskiej Akademii Nauk
- ul. Noskowskiego 12/14 | 61-704, Poznań
- Date: 2025-3-12
+Author Gaurav Sablok,
+Email: codeprog@icloud.com
+Date: 2025-3-12
 */
 #[tokio::main]
 pub async fn analyzegtf(pathgtf: &str) -> Result<String, Box<dyn Error>> {

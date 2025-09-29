@@ -9,10 +9,8 @@ use std::io::Write;
 
 /*
 
- Author Gaurav Sablok
- Instytut Chemii Bioorganicznej
- Polskiej Akademii Nauk
- ul. Noskowskiego 12/14 | 61-704, Poznań
+ Author Gaurav Sablok,
+Email: codeprog@icloud.com
  Date: 2025-3-28
 
 */

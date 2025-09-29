@@ -4,13 +4,13 @@ use std::error::Error;
 use std::fs::File;
 use std::io::{BufRead, BufReader, Write};
 use std::process::Command;
+
 /*
- Author Gaurav Sablok
- Instytut Chemii Bioorganicznej
- Polskiej Akademii Nauk
- ul. Noskowskiego 12/14 | 61-704, Poznań
- Date: 2025-3-18
+Author Gaurav Sablok,
+Email: codeprog@icloud.com
+Date: 2025-3-18
 */
+
 #[tokio::main]
 pub async fn fastagtf(pathacmg: &str, pathfasta: &str) -> Result<String, Box<dyn Error>> {
     let fastafile = File::open(pathfasta).expect("file not present");

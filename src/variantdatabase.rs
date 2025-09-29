@@ -8,13 +8,9 @@ use std::error::Error;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 /*
-
- Author Gaurav Sablok
- Instytut Chemii Bioorganicznej
- Polskiej Akademii Nauk
- ul. Noskowskiego 12/14 | 61-704, Poznań
- Date: 2025-3-14
-
+Author Gaurav Sablok,
+Email: codeprog@icloud.com
+Date: 2025-3-28
 */
 #[tokio::main]
 pub async fn variantdatabase(

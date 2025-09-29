@@ -6,9 +6,8 @@ use clap::{Parser, Subcommand};
     about = "annotating and analyzing eVai results.
 
       ************************************************
-      Gaurav Sablok, IBCH, PAN, Poznan, Poland,
-      https://portal.ichb.pl/laboratory-of-genomics/.
-      Email: gsablok@ibch.poznan.pl
+      Gaurav Sablok,
+      Email: codeprog@icloud.com
       ************************************************"
 )]
 pub struct CommandParse {
