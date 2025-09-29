@@ -339,7 +339,4 @@ cargo xwin build --target x86_64-pc-windows-msvc
 ```
 
  Gaurav Sablok \
- Instytut Chemii Bioorganicznej \
- Polskiej Akademii Nauk \
- ul. Noskowskiego 12/14 | 61-704, Poznań \
- Poland
+ codeprog@icloud.com
